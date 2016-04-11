@@ -20,12 +20,14 @@ set virtualedit=onemore
 noremap <end> <end><right>
 inoremap <end> <end><right>
 
+
 " When selected with shift, C/X copies/cuts
 snoremap c <c-o>mQ<c-o>y<c-o>`Q
 snoremap x <c-o>x
 " When selected with shift, C/X copies/cuts as with Ctrl-C/X
 snoremap c <c-o>mQ<c-o>"+y<c-o>`Q
 snoremap x <c-o>"+x
+
 
 " Ctrl-V pastes as usual
 " Use Ctrl-U to get raw-character-insertion
@@ -41,6 +43,7 @@ nnoremap <c-k> "+dd
 inoremap <c-k> <c-o>"+dd
 snoremap <c-k> <c-o>"+x
 vnoremap <c-k> "+x
+
 
 " Tab also completes
 function! s:CompleteOrTab()
@@ -61,7 +64,7 @@ inoremap <Tab> <C-R>=<SID>CompleteOrTab()<cr>
 
 " Space starts insert mode
 noremap <space> i
-" Backspace stants insert mode
+" Backspace starts insert mode
 noremap <bs> i
 
 
@@ -100,6 +103,7 @@ command! -nargs=+ Nap call NapFunc("", "", "", <f-args>)
 command! -nargs=+ NapC call NapFunc("", ":", "<cr>", <f-args>)
 command! -nargs=+ NapCsil call NapFunc("<silent>", ":", "<cr>", <f-args>)
 
+
 ""
 " Noremap ivs x y => inoremap x y | vnoremap x y | snoremap x y
 " Noremap i\  x y => inoremap x y | noremap x y
@@ -121,7 +125,7 @@ command! -nargs=+ NoremapCsil call NoremapFunc("<silent>", ":", "<cr>", <f-args>
 " Ctrl-A executes a command
 " Not conventional, but useful
 Nap <c-a> :
-" Ctrl-S saves the file
+" Ctrl-S saves
 NapC <c-s> w!
 " Ctrl-F searches
 Nap <c-f> /
@@ -133,22 +137,29 @@ cmap <c-g> <cr><c-g>
 Nap <F6> <c-w>w
 Nap <S-F6> <c-w>W
 Nap <c-b> :b!<space>
-" Alt-Left/Right navigate tags
+
+" Alt-Left/Right navigate tags backward-forward
 Nap <a-left> <c-t>
 Nap <a-right> <c-]>
-" F7 toogles auto-indenting
+
+" F7 toogles raw-inserting
 NapC <F7> set\ invpaste\ paste?\|\ set\ pastetoggle=<F7>
+
 " F4 goes to next/prev compiling error
 NapCsil <F4> cn
 NapCsil <S-F4> cp
 " Ctrl-Alt-c shows errors if any
 NapC <c-a-c> copen\|cwin
-" Ctrl-F4 closes the current buffer
+
+" Ctrl-F4 closes file
 NapC <C-F4> confirm\ q
 NapC O1;5S confirm\ q
+" Ctrl-w for window operations
+" Not conventional, but useful
+Nap <c-w> <c-w>
 
-" Ctrl-Alt-l redraws
-NapC <c-a-l> nohlsearch\ redraw!
+" Ctrl-l redraws, also clearing search highlightings
+NapC <c-l> nohlsearch\|if\ has('diff')\|diffupdate\|endif\|redraw!
 
 " Ctrl-z undoes
 NoremapC n <C-z> undo\|redraw
