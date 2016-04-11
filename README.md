@@ -13,7 +13,7 @@ Caveats:
 
 * If you do not want to touch your current configuration:
    - Do `mkdir ~/.notepad.vim`
-   - Do `echo > ~/.notepad.vim/rc.vim`, as it would be the vimrc of notepad.vim.
+   - Do `echo > ~/.notepad.vim/rc.vim`, as it would be the vimrc of notepad.vim
    - Add an `alias` to your `~/.bashrc`:
        * `alias notepad.vim='vim -u ~/notepad.vim/rc.vim --cmd "let &runtimepath = substitute(&runtimepath, \"[._]vim\", \".notepad.vim\", \"g\")"'`
    - Proceed with installation using `~/.notepad.vim` in place of `~/.vim`
@@ -22,16 +22,26 @@ Caveats:
 * Install [vim-sensible](https://github.com/tpope/vim-sensible).
 * Do `cd ~/.vim/bundle`, then `git checkout`, `ln -s`, or `cp -r` this repo.
 
-## Post-installation
-
+## Post-installation, or Plugins
 
 If you want the "full version" with additional plugins, then
 (using `~/.notepad.vim` instead of `~/.vim` if installed there):
 - Edit `~/.vim/bundle/notepad.vim/dependencies` to your liking, now or later.
 - Do `cd ~/.vim/bundle && sh notepad.vim/update.sh`
-- The latter could also be `alias`-ed for later in your `~/.bashrc` or somewhere:
-    * `alias notepad.vim.update="(cd ~/.vim/bundle && sh notepad.vim/update.sh)"`
-    * ... or even be put in a user-local `cron` or `systemd` job.
+
+To update the plugins:
+* Add an `alias` to `~/.bashrc`:
+    - `alias notepad.vim.update="(cd ~/.vim/bundle && sh notepad.vim/update.sh)"`
+* Then do `notepad.vim.update` whenever you want the plugins to be updated.
+
+To disable a plugin, say scrooloose's [syntastic](https://github.com/scrooloose/syntastic):
+* First, add an `alias` to `~/.bashrc`:
+    - `alias notepad.vim.disable="(cd ~/.vim/bundle && sh notepad.vim/update.sh --off)"`
+* Do `notepad.vim.disable scrooloose syntastic`. This will:
+    - Remove `syntastic` folder from `bundle/`
+    - Comment out `scrooloose syntastic` line in `bundle/notepad.vim/dependencies`
+
+To re-enable the plugin, uncomment it in `~/.vim/bundle/notepad.vim/dependencies`, then run `notepad.vim.update`.
 
 ## License
 
