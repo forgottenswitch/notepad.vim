@@ -43,7 +43,7 @@ snoremap <c-k> <c-o>"+x
 vnoremap <c-k> "+x
 
 " Tab also completes
-function! CompleteOrTab()
+function! s:CompleteOrTab()
     if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
         return "\<Tab>"
     else
@@ -56,7 +56,7 @@ function! CompleteOrTab()
         endif
     endif
 endfunction
-inoremap <Tab> <C-R>=notepad#CompleteOrTab()<cr>
+inoremap <Tab> <C-R>=<SID>CompleteOrTab()<cr>
 
 
 " Space starts insert mode
@@ -162,13 +162,12 @@ inoremap <right> <c-o><space>
 snoremap <left> <left>
 snoremap <right> <right>
 " Left does not ignore 1 character past end of line
-function! BackwardChar()
-	normal h
+function! s:Left()
 	let l:pos = getcurpos()
+	normal h
 	if l:pos[2] == 1
 		normal k$l
 	endif
 endfunction
-Nap <left> :call<space>notepad#BackwardChar()<cr>
-snoremap <left> <left>
+Nap <left> :call<space><SID>Left()<cr>
 
