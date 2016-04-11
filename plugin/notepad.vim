@@ -65,6 +65,7 @@ noremap <space> i
 noremap <bs> i
 
 
+""
 " Key remapping utility
 " Defines mapping for use in Insert, Normal, Visual, Select modes.
 "
@@ -75,7 +76,8 @@ noremap <bs> i
 "   vnoremap x <c-o>y
 "   snoremap x <c-o>y
 "
-" NapS x y does the same, but with <silent> in front.
+" NapC x y does the same, but with 'y' surrounded by : and <cr> -- same as Nap x :y<cr>
+" NapCsil x y does Nap x :y<cr> with a <silent>
 "
 " Should the binding have two commands, y and z, the following would need to be done:
 "   nnoremap x yz              -- that is, when in Normal, execute y, execute z.
@@ -85,36 +87,42 @@ noremap <bs> i
 "       vnoremap ...
 "       snoremap ...
 "
-function! NapFunc(prefix,key,bind)
-    let l:ncmd = " ".a:prefix." ".a:key." ".a:bind
-    let l:ivscmd = " ".a:prefix." ".a:key." <c-o>".a:bind
+function! NapFunc(prefix,bndprefix,postfix,key,bind)
+    let l:ncmd = " ".a:prefix." ".a:key." ".a:bndprefix.a:bind.a:postfix
+    let l:ivscmd = " ".a:prefix." ".a:key." <c-o>".a:bndprefix.a:bind.a:postfix
     " echoerr "Nap: ".l:ncmd
     exec "nnoremap ".l:ncmd
     exec "inoremap ".l:ivscmd
     exec "vnoremap ".l:ivscmd
     exec "snoremap ".l:ivscmd
 endfunction
-command! -nargs=+ Nap call NapFunc("", <f-args>)
-command! -nargs=+ NapS call NapFunc("<silent>", <f-args>)
+command! -nargs=+ Nap call NapFunc("", "", "", <f-args>)
+command! -nargs=+ NapC call NapFunc("", ":", "<cr>", <f-args>)
+command! -nargs=+ NapCsil call NapFunc("<silent>", ":", "<cr>", <f-args>)
 
+""
 " Noremap ivs x y => inoremap x y | vnoremap x y | snoremap x y
 " Noremap i\  x y => inoremap x y | noremap x y
-function! NoremapFunc(prefix,modes,key,bind)
-    let l:mapcmd = " ".a:prefix." ".a:key." ".a:bind
+" There are also Nap..-like:
+"  NoremapC, NoremapCsil
+"
+function! NoremapFunc(prefix,bndprefix,postfix,modes,key,bind)
+    let l:mapcmd = " ".a:prefix." ".a:key." ".a:bndprefix.a:bind.a:postfix
     " echoerr "Noremap: ".l:mapcmd
-    for m in split(l:modes, '\zs')
+    for m in split(a:modes, '\zs')
 	exec l:m."noremap ".l:mapcmd
     endfor
 endfunction
-command! -nargs=+ Noremap call NoremapFunc("", <f-args>)
-command! -nargs=+ NoremapS call NoremapFunc("<silent>", <f-args>)
+command! -nargs=+ Noremap call NoremapFunc("", "", "", <f-args>)
+command! -nargs=+ NoremapC call NoremapFunc("", ":", "<cr>", <f-args>)
+command! -nargs=+ NoremapCsil call NoremapFunc("<silent>", ":", "<cr>", <f-args>)
 
 
 " Ctrl-A executes a command
 " Not conventional, but useful
 Nap <c-a> :
 " Ctrl-S saves the file
-Nap <c-s> :w!<cr>
+NapC <c-s> w!
 " Ctrl-F searches
 Nap <c-f> /
 " Ctrl-G goes to next match
@@ -129,27 +137,27 @@ Nap <c-b> :b!<space>
 Nap <a-left> <c-t>
 Nap <a-right> <c-]>
 " F7 toogles auto-indenting
-Nap <F7> :set<space>invpaste<space>paste?<bar><space>set<space>pastetoggle=<F7>
+NapC <F7> set\ invpaste\ paste?\|\ set\ pastetoggle=<F7>
 " F4 goes to next/prev compiling error
-NapS <F4> :cn<cr>
-NapS <S-F4> :cp<cr>
+NapCsil <F4> cn
+NapCsil <S-F4> cp
 " Ctrl-Alt-c shows errors if any
-NapS <c-a-c> :copen<bar>cwin<cr>
+NapC <c-a-c> copen\|cwin
 " Ctrl-F4 closes the current buffer
-NapS <C-F4> :confirm<space>q<cr>
-NapS O1;5S :confirm<space>q<cr>
+NapC <C-F4> confirm\ q
+NapC O1;5S confirm\ q
 
 " Ctrl-Alt-l redraws
-Nap <c-a-l> :nohlsearch<bar>redraw!<cr>
+NapC <c-a-l> nohlsearch\ redraw!
 
 " Ctrl-z undoes
+NoremapC n <C-z> undo\|redraw
 imap <C-z> <c-o><c-z>
-noremap <C-z> :undo<bar>redraw<cr>
 smap <C-z> <esc><c-z>
 vmap <C-z> <esc><c-z>
 " Ctrl-y redoes
+NoremapC n <C-y> redo\|redraw
 imap <C-y> <c-o><c-y>
-noremap <C-y> :redo<bar>redraw<cr>
 smap <C-y> <esc><c-y>
 vmap <C-y> <esc><c-y>
 
@@ -169,5 +177,5 @@ function! s:Left()
 		normal k$l
 	endif
 endfunction
-Nap <left> :call<space><SID>Left()<cr>
+NapC <left> call\ <SID>Left()
 
