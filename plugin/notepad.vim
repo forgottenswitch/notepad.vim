@@ -19,45 +19,31 @@ set virtualedit=onemore
 " Make End go to end of line not the last character
 noremap <end> <end><right>
 inoremap <end> <end><right>
+
 " When selected with shift, C/X copies/cuts
 snoremap c <c-o>mQ<c-o>y<c-o>`Q
 snoremap x <c-o>x
 " When selected with shift, C/X copies/cuts as with Ctrl-C/X
 snoremap c <c-o>mQ<c-o>"+y<c-o>`Q
 snoremap x <c-o>"+x
+
 " Ctrl-V pastes as usual
 " Use Ctrl-U to get raw-character-insertion
+" (as Ctrl-Shift-U in Gtk+ inputting Unicode codepoint)
 inoremap <c-u> <c-v>
 inoremap <c-v> <c-o>"+gP
 nnoremap <c-v> "+gP
 snoremap <c-v> x"+gP
 vnoremap <c-v> x"+gP
+
 " Ctrl-K cuts selection or line
-noremap <c-k> "+dd
+nnoremap <c-k> "+dd
 inoremap <c-k> <c-o>"+dd
 snoremap <c-k> <c-o>"+x
 vnoremap <c-k> "+x
 
-
-" Ctrl-S saves the file
-nnoremap <c-s> :w!<cr>
-" Shift-Q quits
-noremap Q :confirm qall<cr>
-" F6 switches window
-noremap <F6> <c-w>w
-" Ctrl-A executes a command
-noremap <C-a> :
-inoremap <C-a> <C-o>:
-" Ctrl-S saves the file
-nnoremap <c-s> :w!<cr>
-" Shift-Q quits
-noremap Q :confirm qall<cr>
-" F6 switches window
-noremap <F6> <c-w>w
-
-
 " Tab also completes
-function! TabDwim()
+function! CompleteOrTab()
     if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
         return "\<Tab>"
     else
@@ -70,36 +56,103 @@ function! TabDwim()
         endif
     endif
 endfunction
-inoremap <Tab> <C-R>=notepad#TabDwim()<cr>
-
-
-" Key remapping utility
-function! Map_in_modes(kind, args)
-	let l:modes = substitute(a:args, "^ \*\\(\[^ \]\*\\).\*", "\\1", "")
-	let l:mapping = substitute(a:args, "^ \*\[^ \]\* \*\\(.\*\\)", "\\1", "")
-	let l:mapping1 = l:mapping
-	let l:arg_silent = ""
-	for c in split(l:modes, '\zs')
-		if c == "i"
-			let l:mapping1 = substitute(l:mapping, "^ \*\\(\[^ \]\*\\) \*\\(.\*\\)", "\\1 <C-o>\\2", "")
-		elseif c == "S"
-			let l:arg_silent = "<silent>"
-			continue
-		else
-			let l:mapping1 = l:mapping
-		endif
-		"echom "binding ".c.a:kind."map ".l:mapping1
-		execute c.a:kind."map ".l:arg_silent." ".l:mapping1
-	endfor
-endfunction
-command! -nargs=1 Map call Map_in_modes("", "<args>")
-command! -nargs=1 Nap call Map_in_modes("nore", "<args>")
+inoremap <Tab> <C-R>=notepad#CompleteOrTab()<cr>
 
 
 " Space starts insert mode
 noremap <space> i
-" Backspace ends up in insert mode
-noremap <bs> i<bs>
+" Backspace stants insert mode
+noremap <bs> i
+
+
+" Key remapping utility
+" Defines mapping for use in Insert, Normal, Visual, Select modes.
+"
+"   Nap x y
+" becomes
+"   nnoremap x y      -- that is, when in Normal, execute 'y' as if no custom key-bindings are in effect.
+"   inoremap x <c-o>y -- that is, when not in Insert, get to Normal for single command, and do y.
+"   vnoremap x <c-o>y
+"   snoremap x <c-o>y
+"
+" NapS x y does the same, but with <silent> in front.
+"
+" Should the binding have two commands, y and z, the following would need to be done:
+"   nnoremap x yz              -- that is, when in Normal, execute y, execute z.
+"   Noremap ivs x <c-o>y<c-o>z -- that is, when in Insert,Visual,Select, get to Normal for single command, execute y, do the same for z.
+"     which becomes
+"       inoremap x <c-o>y...
+"       vnoremap ...
+"       snoremap ...
+"
+function! NapFunc(prefix,key,bind)
+    let l:ncmd = " ".a:prefix." ".a:key." ".a:bind
+    let l:ivscmd = " ".a:prefix." ".a:key." <c-o>".a:bind
+    " echoerr "Nap: ".l:ncmd
+    exec "nnoremap ".l:ncmd
+    exec "inoremap ".l:ivscmd
+    exec "vnoremap ".l:ivscmd
+    exec "snoremap ".l:ivscmd
+endfunction
+command! -nargs=+ Nap call NapFunc("", <f-args>)
+command! -nargs=+ NapS call NapFunc("<silent>", <f-args>)
+
+" Noremap ivs x y => inoremap x y | vnoremap x y | snoremap x y
+" Noremap i\  x y => inoremap x y | noremap x y
+function! NoremapFunc(prefix,modes,key,bind)
+    let l:mapcmd = " ".a:prefix." ".a:key." ".a:bind
+    " echoerr "Noremap: ".l:mapcmd
+    for m in split(l:modes, '\zs')
+	exec l:m."noremap ".l:mapcmd
+    endfor
+endfunction
+command! -nargs=+ Noremap call NoremapFunc("", <f-args>)
+command! -nargs=+ NoremapS call NoremapFunc("<silent>", <f-args>)
+
+
+" Ctrl-A executes a command
+" Not conventional, but useful
+Nap <c-a> :
+" Ctrl-S saves the file
+Nap <c-s> :w!<cr>
+" Ctrl-F searches
+Nap <c-f> /
+" Ctrl-G goes to next match
+noremap <c-g> n/<up>
+inoremap <c-g> <c-o>n<c-o>/<up>
+cmap <c-g> <cr><c-g>
+" F6/Ctrl-B switch window/file
+Nap <F6> <c-w>w
+Nap <S-F6> <c-w>W
+Nap <c-b> :b!<space>
+" Alt-Left/Right navigate tags
+Nap <a-left> <c-t>
+Nap <a-right> <c-]>
+" F7 toogles auto-indenting
+Nap <F7> :set<space>invpaste<space>paste?<bar><space>set<space>pastetoggle=<F7>
+" F4 goes to next/prev compiling error
+NapS <F4> :cn<cr>
+NapS <S-F4> :cp<cr>
+" Ctrl-Alt-c shows errors if any
+NapS <c-a-c> :copen<bar>cwin<cr>
+" Ctrl-F4 closes the current buffer
+NapS <C-F4> :confirm<space>q<cr>
+NapS O1;5S :confirm<space>q<cr>
+
+" Ctrl-Alt-l redraws
+Nap <c-a-l> :nohlsearch<bar>redraw!<cr>
+
+" Ctrl-z undoes
+imap <C-z> <c-o><c-z>
+noremap <C-z> :undo<bar>redraw<cr>
+smap <C-z> <esc><c-z>
+vmap <C-z> <esc><c-z>
+" Ctrl-y redoes
+imap <C-y> <c-o><c-y>
+noremap <C-y> :redo<bar>redraw<cr>
+smap <C-y> <esc><c-y>
+vmap <C-y> <esc><c-y>
+
 " Left/Right ignore end of line
 " Left also ignores 1 character past end of line
 noremap <left> <bs>
@@ -116,46 +169,6 @@ function! BackwardChar()
 		normal k$l
 	endif
 endfunction
-Nap Sinv <left> :call notepad#BackwardChar()<cr>
-" Ctrl-S saves the file
-Nap invs <c-s> :w!<cr>
-" Ctrl-F searches
-Nap invs <c-f> /
-" Ctrl-G goes to next match
-noremap <c-g> n/<up>
-inoremap <c-g> <c-o>n<c-o>/<up>
-cmap <c-g> <cr><c-g>
-" F6/Ctrl-B switch window/file
-Nap invs <F6> <c-w>w
-Nap invs <S-F6> <c-w>W
-Nap invs <c-b> :b!<space>
-if exists(":BuffergatorOpen")
-    Nap Sinvs <c-b> :BuffergatorOpen<cr>
-endif
-" Alt-Left/Right navigate tags
-Nap invs <a-left> <c-t>
-Nap invs <a-right> <c-]>
-" F7 toogles auto-indenting
-Map invs <F7> :set invpaste paste?<bar> set pastetoggle=<F7>
-" F4 goes to next/prev compiling error
-Nap Sinvs <F4> :cn<cr>
-Nap Sinvs <S-F4> :cp<cr>
-" Ctrl-Alt-C shows errors if any
-Nap Sinvs <c-a-c> :copen<bar>cwin<cr>
-" Ctrl-F4 closes the current buffer
-Nap Sinvs <C-F4> :confirm q<cr>
-Nap Sinvs O1;5S :confirm q<cr>
-" Ctrl-d is like Normal mode 'd'
-Nap invs <C-d> d
-
-" Ctrl-Alt-l redraws
-Nap invs <c-a-l> :nohlsearch<bar>redraw!<cr>
-
-" Ctrl-z undoes, Ctrl-y redoes
-imap <C-z> <c-o><c-z>
-noremap <C-z> :undo<bar>redraw<cr>
-imap <C-y> <c-o><c-y>
-noremap <C-y> :redo<bar>redraw<cr>
-Map vs <C-z> <esc><c-z>
-Map vs <C-y> <esc><c-y>
+Nap <left> :call<space>notepad#BackwardChar()<cr>
+snoremap <left> <left>
 
