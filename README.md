@@ -43,6 +43,22 @@ To disable a plugin, say scrooloose's [syntastic](https://github.com/scrooloose/
 
 To re-enable the plugin, uncomment it in `~/.vim/bundle/notepad.vim/dependencies`, then run `notepad.vim.update`.
 
+### Adding a plugin
+
+First, the plugin could just be `git checkout`-ed into `bundle/`, as usual with pathogen.
+However, this has the disadvantage of being hard-to-remember what-is-what.
+
+So, the `bundle/notepad.vim/dependencies` file could be edited, adding a new entry.
+There, a comment is possible, providing a reminder of what the [vim-sleuth](https://github.com/tpope/vim-sleuth), etc. is.
+Then run `notepad.vim.update`.
+
+Finally, the plugin may not be destined for `:set insertmode`.
+If this is the case, check the plugin documentation for workaround, and then either:
+* Report the issue to plugin maintainer and wait for it to be fixed.
+* Fix it yourself, adding a vimscript file containing the fixes to `~/.vim/after/plugin/`.
+  The fixes file should probably have the same name as the plugin it fixes, and must end with ".vim".
+
 ## License
 
 Vim license. See `:help license`.
+
