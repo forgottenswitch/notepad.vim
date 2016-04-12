@@ -17,6 +17,7 @@ usage() {
   echo " DRYRUN=1  sh $PROG to show what would be performed"
 }
 
+nargs="$#"
 arg1="$1"
 shift
 
@@ -40,12 +41,6 @@ script_dir_base=$(basename "$script_dir_real")
 script_dir_up=$(dirname "$script_dir")
 script_dir_up_real=$(realpath "$script_dir_up")
 script_dir_up_base=$(basename "$script_dir_up_real")
-
-# echo "cwd: $PWD"
-# echo "real cwd: $current_dir_real"
-# echo "script dir: $script_dir"
-# echo "real script dir: $script_dir_real"
-# echo "upper real script dir: $script_dir_up_real"
 
 check_the_dir() {
   test "$script_dir_base" != "notepad.vim" && {
@@ -85,5 +80,70 @@ test "$mode" == "off" && {
   echocmd command rm -rf "$plugin_dir"
   echocmd sed -i -e "s/^${deps_line}$/# &/g" $deps_file
   exit
+}
+
+strip_spaces() {
+  l="$1"
+  l1="${l#[ ]}"
+  while test "$l" != "$l1"; do l="$l1"; l1="${l#[ ]}"; done
+  l1="${l%[ ]}"
+  while test "$l" != "$l1"; do l="$l1"; l1="${l%[ ]}"; done
+  echo "$l"
+}
+
+update_git() {
+  local url="$1"
+  local repo="$2"
+  shift 2
+  echo "Updating $repo (git, $url) ..."
+  if test -d "$repo"
+  then
+    echo " cd $repo && git pull --rebase"
+    cd "$repo"
+    git pull --rebase || {
+      echo " Error pulling updates from $url ! $PROG: aborted." > /dev/stderr
+      exit 1
+    }
+    cd - > /dev/null
+  else 
+    echo " git clone $url"
+    git clone "$url" || {
+      echo " Error cloning from $url ! $PROG: aborted." > /dev/stderr
+      exit 1
+    }
+  fi
+  echo
+}
+
+test "$mode" == "" && {
+  test "$nargs" -ne "0" && { usage; exit 1; }
+  check_the_dir
+  site="github"
+  deps_file="notepad.vim/dependencies"
+  deps_file_real=$(realpath "$deps_file")
+  lineno=0
+  echo "Updating Vim plugins in $current_dir_real..."
+  echo " Using plugin list $current_dir_real/$deps_file"
+  echo
+  test -e "$deps_file" || { echo "$PROG: fatal error: $deps_file does not exist!"; exit 1; }
+  cat "$deps_file" | while read -r
+  do
+    line=$(strip_spaces "$REPLY")
+    lineno=$((lineno+1))
+    case "$line" in
+      "[github]") site="github";;
+      "["*) echo "$deps_file:$lineno: fatal error: unknown site $line" > /dev/stderr; exit 1;;
+      "#"*|"") ;;
+      *)
+        author="${line%% *}"
+	plugin="${line##* }"
+        case "$site" in
+          github) update_git "https://github.com/${author}/${plugin}.git" "${plugin}" ;;
+          *) echo "$deps_file:$lineno: fatal error: unknown site $site" > /dev/stderr; exit 1;;
+        esac
+        ;;
+    esac
+  done
+  echo "Done updating Vim plugins in $current_dir_real"
 }
 
