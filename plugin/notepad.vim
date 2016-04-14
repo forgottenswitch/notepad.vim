@@ -121,6 +121,34 @@ command! -nargs=+ Noremap call NoremapFunc("", "", "", <f-args>)
 command! -nargs=+ NoremapC call NoremapFunc("", ":", "<cr>", <f-args>)
 command! -nargs=+ NoremapCsil call NoremapFunc("<silent>", ":", "<cr>", <f-args>)
 
+""
+" NapMap => imap x y | vmap x y | smap x y | nmap x y
+"
+function! NapMapFunc(key1, key2)
+    let l:nivs_cmd = " ".a:key1." ".a:key2
+    " echoerr "NapMap: ".l:nivs_cmd
+    exec "nmap ".l:nivs_cmd
+    exec "imap ".l:nivs_cmd
+    exec "vmap ".l:nivs_cmd
+    exec "smap ".l:nivs_cmd
+endfunction
+command! -nargs=+ NapMap call NapMapFunc(<f-args>)
+""
+" xterm (VT220 ?) compatibility
+"
+NapMap O1;2Q <S-F2>
+NapMap O1;2R <S-F3>
+NapMap O1;2S <S-F4>
+"
+NapMap O1;5Q <C-F2>
+NapMap O1;5R <C-F3>
+NapMap O1;5S <C-F4>
+"
+NapMap [1;5D <C-Left>
+NapMap [1;5B <C-Down>
+NapMap [1;5A <C-Up>
+NapMap [1;5C <C-Left>
+
 
 " Ctrl-A executes a command
 " Not conventional, but useful
@@ -148,12 +176,15 @@ NapC <F7> set\ invpaste\ paste?\|\ set\ pastetoggle=<F7>
 " F4 goes to next/prev compiling error
 NapCsil <F4> cn
 NapCsil <S-F4> cp
+" F3 goes to next/prev occurence of word
+Nap <F3> *
+Nap <S-F3> #
+
 " Ctrl-Alt-c shows errors if any
 NapC <c-a-c> copen\|cwin
 
 " Ctrl-F4 closes file
 NapC <C-F4> confirm\ q
-NapC O1;5S confirm\ q
 " Ctrl-w for window operations
 " Not conventional, but useful
 Nap <c-w> <c-w>
