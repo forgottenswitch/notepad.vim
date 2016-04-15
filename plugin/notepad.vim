@@ -138,6 +138,8 @@ function! NapMapFunc(key1, key2)
     exec "smap ".l:nivs_cmd
 endfunction
 command! -nargs=+ NapMap call NapMapFunc(<f-args>)
+
+
 ""
 " xterm (VT220 ?) compatibility
 "
@@ -208,6 +210,13 @@ imap <C-y> <c-o><c-y>
 smap <C-y> <esc><c-y>
 vmap <C-y> <esc><c-y>
 
+" Up/Down work in visual mode
+vnoremap <down> j
+vnoremap <up> k
+" Home/End work in visual mode
+vnoremap <home> ^
+vnoremap <end> $
+
 " Left/Right ignore end of line
 " Left also ignores 1 character past end of line
 noremap <left> <bs>
@@ -225,4 +234,52 @@ function! s:Left()
 	endif
 endfunction
 NapC <left> call\ <SID>Left()
+vnoremap <left> <bs>
+" Up/Down consider screen lines, not content ones
+noremap <down> gj
+noremap <up> gk
+
+
+" Ctrl-T is a selection key
+" The explicit NapC A norm B is used instead of Nap A B,
+" as the latter sometimes gets interpreted as Insert binding
+"
+" Ctrl-T 0 selects
+" Ctrl-T 1 selects line-wise
+" Ctrl-T 2 selects rectangular
+" Ctrl-T 3 selects rectangular as much as possible
+NapC <C-t>0 norm\ v
+NapC <C-t>1 norm\ V
+NapC <C-t>2 norm\ <C-v>
+NapC <C-t>3 norm\ <C-v>
+"
+" Ctrl-T S/L/R => select, linewise, rectangular
+NapC <C-t>l norm\ V
+NapC <C-t>s norm\ v
+NapC <C-t>r norm\ <C-v>
+"
+" Ctrl-T a/g/G
+NapC <C-t>a norm\ Gvgg
+NapC <C-t>g norm\ vgg
+NapC <C-t>G norm\ vG
+"
+" Ctrl-T Left/Right shortcuts
+NapC <C-t><left> norm\ vh
+NapC <C-t><right> norm\ vl
+"
+" Ctrl-T Up/Down shortcuts
+NapC <C-t><up> norm\ V
+NapC <C-t><down> norm\ V
+"
+" Ctrl-T Home/End shortcuts
+NapC <C-t><Home> norm\ v^
+NapC <C-t><End> norm\ v$
+"
+" Ctrl-T Ctrl-Home/End shortcuts
+NapC <C-t><C-Home> norm\ vgg
+NapC <C-t><C-End> norm\ vG
+"
+" Ctrl-TT Home/End act as Ctrl-T Ctrl-Home
+NapC <C-t><C-t><Home> norm\ vgg
+NapC <C-t><C-t><End> norm\ vG
 
