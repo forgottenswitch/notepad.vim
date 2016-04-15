@@ -30,13 +30,18 @@ snoremap x <c-o>"+x
 
 
 " Ctrl-V pastes as usual
-" Use Ctrl-U to get raw-character-insertion
-" (as Ctrl-Shift-U in Gtk+ inputting Unicode codepoint)
-inoremap <c-u> <c-v>
-inoremap <c-v> <c-o>"+gP
-nnoremap <c-v> "+gP
-snoremap <c-v> x"+gP
-vnoremap <c-v> x"+gP
+inoremap <C-v> <C-o>"+gP
+nnoremap <C-v> "+gP
+snoremap <C-v> x"+gP
+vnoremap <C-v> x"+gP
+
+" Ctrl-U inserts input as-is, like Ctrl-V in shell,
+" and/or Ctrl-Shift-U Unicode input in Gtk+.
+" The mapping won't work right there, and must be delayed.
+function! notepad#Bind_ctrl_u_to_raw_insert()
+    inoremap <C-u> <C-v>
+endfunction
+autocmd VimEnter * call notepad#Bind_ctrl_u_to_raw_insert()
 
 " Ctrl-K cuts selection or line
 nnoremap <c-k> "+dd
