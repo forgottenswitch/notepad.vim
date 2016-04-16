@@ -29,12 +29,6 @@ snoremap c <c-o>mQ<c-o>"+y<c-o>`Q
 snoremap x <c-o>"+x
 
 
-" Ctrl-V pastes as usual
-inoremap <C-v> <C-o>"+gP
-nnoremap <C-v> "+gP
-snoremap <C-v> x"+gP
-vnoremap <C-v> x"+gP
-
 " Ctrl-U inserts input as-is, like Ctrl-V in shell,
 " and/or Ctrl-Shift-U Unicode input in Gtk+.
 " The mapping won't work right there, and must be delayed.
@@ -43,11 +37,39 @@ function! notepad#Bind_ctrl_u_to_raw_insert()
 endfunction
 autocmd VimEnter * call notepad#Bind_ctrl_u_to_raw_insert()
 
+" Ctrl-V pastes
 " Ctrl-K cuts selection or line
-nnoremap <c-k> "+dd
-inoremap <c-k> <c-o>"+dd
-snoremap <c-k> <c-o>"+x
-vnoremap <c-k> "+x
+if has("x11")
+    inoremap <C-v> <C-o>"+gP
+    nnoremap <C-v> "+gP
+    snoremap <C-v> x"+gP
+    vnoremap <C-v> x"+gP
+    "
+    nnoremap <C-k> "+dd
+    inoremap <C-k> <c-o>"+dd
+    snoremap <C-k> <c-o>"+x
+    vnoremap <C-k> "+x
+elseif has("win16") || has("win32") || has("win64")
+    inoremap <C-v> <C-o>"*gP
+    nnoremap <C-v> "*gP
+    snoremap <C-v> x"*gP
+    vnoremap <C-v> x"*gP
+    "
+    nnoremap <C-k> "*dd
+    inoremap <C-k> <c-o>"*dd
+    snoremap <C-k> <c-o>"*x
+    vnoremap <C-k> "+x
+else
+    inoremap <C-v> <C-o>gP
+    nnoremap <C-v> gP
+    snoremap <C-v> "*xgP
+    vnoremap <C-v> "*xgP
+    "
+    nnoremap <C-k> dd
+    inoremap <C-k> <c-o>dd
+    snoremap <C-k> <c-o>x
+    vnoremap <C-k> x
+endif
 
 
 " Tab also completes
@@ -308,16 +330,22 @@ NapV <C-t><C-t><Up> {
 NapV <C-t><C-t><Down> }
 
 
-" Ctrl-Y is the source code key
+" Ctrl-O is the source code key
 "
-" Ctrl-Y Left/Right navigate Excuberant Ctags
-Nap <C-y><left> <C-t>
-Nap <C-y><right> <C-]>
-" Ctrl-Y H/L do the same
-Nap <C-y>h <C-t>
-Nap <C-y>l <C-]>
-" Ctrl-Y Ctrl-A executes ("developer's") command-line
-Nap <C-y><C-a> :!
-" Ctrl-Y M runs make
-NapC <C-y>m !make
+" Ctrl-O Left/Right navigate Excuberant Ctags and Vim help
+Nap <C-o><left> <C-t>
+Nap <C-o><right> <C-]>
+"
+" Ctrl-O H/L do the same
+Nap <C-o>h <C-t>
+Nap <C-o>l <C-]>
+"
+" Ctrl-O Ctrl-A executes ("developer's") command-line
+Nap <C-o><C-a> :!
+"
+" Ctrl-O Ctrl-Z suspends ("goes to developer's console")
+Nap <C-o><C-z> <C-z>
+"
+" Ctrl-O M runs make
+NapC <C-o>m !make
 
