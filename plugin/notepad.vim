@@ -235,7 +235,7 @@ snoremap <left> <left>
 snoremap <right> <right>
 " Left does not ignore 1 character past end of line
 function! s:Left()
-	let l:pos = getcurpos()
+	let l:pos = getpos(".")
 	normal h
 	if l:pos[2] == 1
 		normal k$l
