@@ -86,6 +86,7 @@ noremap <bs> i
 "
 " NapC x y does the same, but with 'y' surrounded by : and <cr> -- same as Nap x :y<cr>
 " NapCsil x y does Nap x :y<cr> with a <silent>
+" NapV x y auto-starts the visual mode prior to command -- same as Nap x :norm<space>vy<cr> | vnoremap x y
 "
 " Should the binding have two commands, y and z, the following would need to be done:
 "   nnoremap x yz              -- that is, when in Normal, execute y, execute z.
@@ -107,6 +108,17 @@ endfunction
 command! -nargs=+ Nap call NapFunc("", "", "", <f-args>)
 command! -nargs=+ NapC call NapFunc("", ":", "<cr>", <f-args>)
 command! -nargs=+ NapCsil call NapFunc("<silent>", ":", "<cr>", <f-args>)
+function! NapVFunc(prefix,bndprefix,postfix,key,bind)
+    let l:ncmd = " ".a:prefix." ".a:key." :normal v".a:bndprefix.a:bind.a:postfix."<cr>"
+    let l:vcmd = " ".a:prefix." ".a:key." ".a:bndprefix.a:bind.a:postfix
+    let l:iscmd = " ".a:prefix." ".a:key." <c-o>:normal v".a:bndprefix.a:bind.a:postfix."<cr>"
+    " echoerr "NapV: ".l:ncmd
+    exec "nnoremap ".l:ncmd
+    exec "inoremap ".l:iscmd
+    exec "vnoremap ".l:vcmd
+    exec "snoremap ".l:iscmd
+endfunction
+command! -nargs=+ NapV call NapVFunc("", "", "", <f-args>)
 
 
 ""
@@ -173,10 +185,6 @@ Nap <F6> <c-w>w
 Nap <S-F6> <c-w>W
 Nap <c-b> :b!<space>
 
-" Alt-Left/Right navigate tags backward-forward
-Nap <a-left> <c-t>
-Nap <a-right> <c-]>
-
 " F7 toogles raw-inserting
 NapC <F7> set\ invpaste\ paste?\|\ set\ pastetoggle=<F7>
 
@@ -239,6 +247,9 @@ vnoremap <left> <bs>
 noremap <down> gj
 noremap <up> gk
 
+" Alt-Left/Right navigate backward-forward
+Nap <A-left> <C-o>
+Nap <A-right> <C-i>
 
 " Ctrl-T is a selection key
 " The explicit NapC A norm B is used instead of Nap A B,
@@ -258,28 +269,55 @@ NapC <C-t>l norm\ V
 NapC <C-t>s norm\ v
 NapC <C-t>r norm\ <C-v>
 "
+" Ctrl-T Ctrl-A executes ('selects') a menu command
+source $VIMRUNTIME/menu.vim
+Nap <C-t><C-a> :emenu<space>
+"
 " Ctrl-T a/g/G
 NapC <C-t>a norm\ Gvgg
 NapC <C-t>g norm\ vgg
 NapC <C-t>G norm\ vG
 "
 " Ctrl-T Left/Right shortcuts
-NapC <C-t><left> norm\ vh
-NapC <C-t><right> norm\ vl
+NapV <C-t><left> h
+NapV <C-t><right> l
 "
 " Ctrl-T Up/Down shortcuts
 NapC <C-t><up> norm\ V
 NapC <C-t><down> norm\ V
 "
 " Ctrl-T Home/End shortcuts
-NapC <C-t><Home> norm\ v^
-NapC <C-t><End> norm\ v$
+NapV <C-t><Home> ^
+NapV <C-t><End> $
 "
 " Ctrl-T Ctrl-Home/End shortcuts
-NapC <C-t><C-Home> norm\ vgg
-NapC <C-t><C-End> norm\ vG
+NapV <C-t><C-Home> gg
+NapV <C-t><C-End> G
+
+
+" Control + Double T is the Control-selection key
 "
+imap <C-t>t <C-t><C-t>
+map <C-t>t <C-t><C-t>
 " Ctrl-TT Home/End act as Ctrl-T Ctrl-Home
-NapC <C-t><C-t><Home> norm\ vgg
-NapC <C-t><C-t><End> norm\ vG
+NapV <C-t><C-t><Home> gg
+NapV <C-t><C-t><End> G
+"
+" Ctrl-TT Up/Down selects paragraphs
+NapV <C-t><C-t><Up> {
+NapV <C-t><C-t><Down> }
+
+
+" Ctrl-Y is the source code key
+"
+" Ctrl-Y Left/Right navigate Excuberant Ctags
+Nap <C-y><left> <C-t>
+Nap <C-y><right> <C-]>
+" Ctrl-Y H/L do the same
+Nap <C-y>h <C-t>
+Nap <C-y>l <C-]>
+" Ctrl-Y Ctrl-A executes ("developer's") command-line
+Nap <C-y><C-a> :!
+" Ctrl-Y M runs make
+NapC <C-y>m !make
 
