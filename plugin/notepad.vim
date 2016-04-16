@@ -231,14 +231,14 @@ NapC <c-l> nohlsearch\|if\ has('diff')\|diffupdate\|endif\|redraw!
 
 " Ctrl-z undoes
 NoremapC n <C-z> undo\|redraw
-imap <C-z> <c-o><c-z>
-smap <C-z> <esc><c-z>
-vmap <C-z> <esc><c-z>
+imap <C-z> <c-o>:norm <c-z><cr>
+smap <C-z> <esc>:norm <c-z><cr>
+vmap <C-z> <esc>:norm <c-z><cr>
 " Ctrl-y redoes
 NoremapC n <C-y> redo\|redraw
-imap <C-y> <c-o><c-y>
-smap <C-y> <esc><c-y>
-vmap <C-y> <esc><c-y>
+imap <C-y> <c-o>:norm <c-y><cr>
+smap <C-y> <esc>:norm <c-y><cr>
+vmap <C-y> <esc>:norm <c-y><cr>
 
 " Up/Down work in visual mode
 vnoremap <down> j
