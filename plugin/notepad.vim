@@ -222,19 +222,19 @@ NapC <c-a-c> copen\|cwin
 
 " Ctrl-F4 closes file
 NapC <C-F4> confirm\ q
-" Ctrl-w for window operations
+" Ctrl-W for window operations
 " Not conventional, but useful
 Nap <c-w> <c-w>
 
-" Ctrl-l redraws, also clearing search highlightings
-NapC <c-l> nohlsearch\|if\ has('diff')\|diffupdate\|endif\|redraw!
+" Ctrl-/ redraws, clearing search highlightings
+NapC <c-/> nohlsearch\|if\ has('diff')\|diffupdate\|endif\|redraw!
 
-" Ctrl-z undoes
+" Ctrl-Z undoes
 NoremapC n <C-z> undo\|redraw
 imap <C-z> <c-o>:norm <c-z><cr>
 smap <C-z> <esc>:norm <c-z><cr>
 vmap <C-z> <esc>:norm <c-z><cr>
-" Ctrl-y redoes
+" Ctrl-Y redoes
 NoremapC n <C-y> redo\|redraw
 imap <C-y> <c-o>:norm <c-y><cr>
 smap <C-y> <esc>:norm <c-y><cr>
@@ -273,18 +273,33 @@ noremap <up> gk
 Nap <A-left> <C-o>
 Nap <A-right> <C-i>
 
+" Ctrl-L goes to line
+function! notepad#AskGotoLine()
+    call inputsave()
+    let l:lineno = input("Goto line: ")
+    call inputrestore()
+    "
+    let l:lineno1 = substitute(l:lineno, "[^0-9]", "", "g")
+    if (l:lineno != l:lineno1) || (strlen(l:lineno1) == 0)
+        return
+    endif
+    exec "norm! ".l:lineno1."G"
+endfunction
+NapC <C-l> call\ notepad#AskGotoLine()
+
 " Ctrl-T is a selection key
 " The explicit NapC A norm B is used instead of Nap A B,
 " as the latter sometimes gets interpreted as Insert binding
 "
-" Ctrl-T 0 selects
-" Ctrl-T 1 selects line-wise
-" Ctrl-T 2 selects rectangular
+" Ctrl-T 1 or 0 selects
+" Ctrl-T 2 selects line-wise
+" Ctrl-T 4 selects rectangular
 " Ctrl-T 3 selects rectangular as much as possible
 NapC <C-t>0 norm\ v
-NapC <C-t>1 norm\ V
-NapC <C-t>2 norm\ <C-v>
-NapC <C-t>3 norm\ <C-v>
+NapC <C-t>1 norm\ v
+NapC <C-t>2 norm\ V
+NapC <C-t>3 norm\ \<C-v\>
+NapC <C-t>4 norm\ \<C-v\>
 "
 " Ctrl-T S/L/R => select, linewise, rectangular
 NapC <C-t>l norm\ V
@@ -332,19 +347,18 @@ NapV <C-t><C-t><Down> }
 
 " Ctrl-O is the source code key
 "
-" Ctrl-O Left/Right navigate Excuberant Ctags and Vim help
-Nap <C-o><left> <C-t>
-Nap <C-o><right> <C-]>
-"
-" Ctrl-O H/L do the same
-Nap <C-o>h <C-t>
-Nap <C-o>l <C-]>
+" Ctrl-O 2/1 navigate Excuberant Ctags and Vim help
+Nap <C-o>1 <C-t>
+Nap <C-o>2 <C-]>
 "
 " Ctrl-O Ctrl-A executes ("developer's") command-line
 Nap <C-o><C-a> :!
 "
 " Ctrl-O Ctrl-Z suspends ("goes to developer's console")
 Nap <C-o><C-z> <C-z>
+" Ctrl-O Tilde does the same
+Nap <C-o>` <C-z>
+Nap <C-o>~ <C-z>
 "
 " Ctrl-O M runs make
 NapC <C-o>m !make
