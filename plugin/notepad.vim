@@ -20,19 +20,13 @@ set virtualedit=onemore
 noremap <end> <end><right>
 inoremap <end> <end><right>
 
-
 " When selected with shift, C/X copies/cuts
 "
-if has("x11")
+if has("gui_running")
     vnoremap c mQ"+y`Q<esc>
     vnoremap x "+x
     snoremap c <c-o>mQ<c-o>"+y<c-o>`Q<esc>
     snoremap x <c-o>"+x
-elseif has("win16") || has("win32") || has("win64")
-    vnoremap c mQ"*y`Q<esc>
-    vnoremap x "*x
-    snoremap c <c-o>mQ<c-o>"*y<c-o>`Q<esc>
-    snoremap x <c-o>"*x
 else
     vnoremap c mQy`Q<esc>
     snoremap c <c-o>mQ<c-o>y<c-o>`Q<esc>
@@ -50,7 +44,7 @@ autocmd VimEnter * call notepad#Bind_ctrl_u_to_raw_insert()
 
 " Ctrl-V pastes
 " Ctrl-K cuts selection or line
-if has("x11")
+if has("gui_running")
     inoremap <C-v> <C-o>"+gP
     nnoremap <C-v> "+gP
     snoremap <C-v> x"+gP
@@ -59,16 +53,6 @@ if has("x11")
     nnoremap <C-k> "+dd
     inoremap <C-k> <c-o>"+dd
     snoremap <C-k> <c-o>"+x
-    vnoremap <C-k> "+x
-elseif has("win16") || has("win32") || has("win64")
-    inoremap <C-v> <C-o>"*gP
-    nnoremap <C-v> "*gP
-    snoremap <C-v> x"*gP
-    vnoremap <C-v> x"*gP
-    "
-    nnoremap <C-k> "*dd
-    inoremap <C-k> <c-o>"*dd
-    snoremap <C-k> <c-o>"*x
     vnoremap <C-k> "+x
 else
     inoremap <C-v> <C-o>gP
@@ -394,16 +378,11 @@ NapV <C-t><C-t><Down> }
 
 " Ctrl-T Ctrl-K/Delete cuts forward
 "
-if has("x11")
+if has("gui_running")
     Nap <c-t><c-k> \"+d$
     Nap <c-t><delete> \"+d$
     xnoremap <c-t><c-k> "+x
     xnoremap <c-t><delete> "+x
-elseif has("win16") || has("win32") || has("win64")
-    Nap <c-t><c-k> \"*d$
-    Nap <c-t><delete> \"*d$
-    xnoremap <c-t><c-k> "*x
-    xnoremap <c-t><delete> "*x
 else
     Nap <c-t><c-k> d$
     Nap <c-t><delete> d$
@@ -413,16 +392,11 @@ endif
 "
 " Ctrl-T Ctrl-H/Backspace cuts backward
 "
-if has("x11")
+if has("gui_running")
     Nap <c-t><c-h> \"+dg0
     Nap <c-t><bs> \"+dg0
     xnoremap <c-t><c-h> "+x
     xnoremap <c-t><bs> "+x
-elseif has("win16") || has("win32") || has("win64")
-    Nap <c-t><c-h> \"*dg0
-    Nap <c-t><bs> \"*dg0
-    xnoremap <c-t><c-h> "*x
-    xnoremap <c-t><bs> "*x
 else
     Nap <c-t><c-h> dg0
     Nap <c-t><bs> dg0
