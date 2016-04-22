@@ -196,15 +196,14 @@ NapMap [1;5C <C-Left>
 
 " Ctrl-A executes a command
 " Not conventional, but useful
-Nap <c-a> :
+Nap <C-a> :
 " Ctrl-S saves
-NapC <c-s> w!
+NapC <C-s> w!
 " Ctrl-F searches
-Nap <c-f> /
+Nap <C-f> /
 " Ctrl-G goes to next match
-noremap <c-g> n/<up>
-inoremap <c-g> <c-o>n<c-o>/<up>
-cmap <c-g> <cr><c-g>
+let g:surround_no_insert_mappings = 1
+Nap <C-g> n
 " F6/Ctrl-B switch window/file
 Nap <F6> <c-w>w
 Nap <S-F6> <c-w>W
