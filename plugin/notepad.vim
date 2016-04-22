@@ -280,7 +280,9 @@ noremap <up> gk
 Nap <A-left> <C-o>
 Nap <A-right> <C-i>
 
+
 " Home alterates between first non-blank and first
+" (but not when selecting)
 "
 function! s:Home()
     let l:pos = getpos(".")
@@ -291,8 +293,11 @@ function! s:Home()
     endif
 endfunction
 NapC <Home> call\ <SID>Home()
-"
+vnoremap <Home> ^
+snoremap <S-Home> <c-o>^
+
 " End alterates between last and last non-blank
+" (but not when selecting)
 "
 function! s:End()
     let l:pos = getpos(".")
@@ -303,6 +308,9 @@ function! s:End()
     endif
 endfunction
 NapC <End> call\ <SID>End()
+vnoremap <End> $
+snoremap <S-End> <c-o>$
+
 
 " Ctrl-L goes to line
 function! s:GotoLine(...)
@@ -325,18 +333,22 @@ NapC <C-l> GotoLine
 
 
 " Ctrl-T is a selection key
-" The explicit NapC A norm B is used instead of Nap A B,
-" as the latter sometimes gets interpreted as Insert binding
+"
+" Unbind the Vim Ctrl-T
+inoremap <c-t> <c-o>:<esc>
 "
 " Ctrl-T 1 or 0 selects
 " Ctrl-T 2 selects line-wise
 " Ctrl-T 4 selects rectangular
 " Ctrl-T 3 selects rectangular as much as possible
+"
+" The explicit NapC A norm B is used instead of Nap A B,
+" as the latter sometimes gets interpreted as Insert binding
 NapC <C-t>0 norm!\ v
 NapC <C-t>1 norm!\ v
 NapC <C-t>2 norm!\ V
-NapC <C-t>3 norm!\ <c-v><c-v><c-v><c-v>
-NapC <C-t>4 norm!\ <c-v><c-v><c-v><c-v>
+NapC <C-t>3 norm!\ <c-v><c-v>
+NapC <C-t>4 norm!\ <c-v><c-v>
 "
 " Ctrl-T Ctrl-A executes ('selects') a menu command
 source $VIMRUNTIME/menu.vim
