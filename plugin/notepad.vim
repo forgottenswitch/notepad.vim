@@ -281,7 +281,7 @@ Nap <A-left> <C-o>
 Nap <A-right> <C-i>
 
 " Ctrl-L goes to line
-function! notepad#AskGotoLine(...)
+function! s:GotoLine(...)
     if a:0 < 1
         call inputsave()
         let l:lineno = input("Goto line: ")
@@ -296,7 +296,7 @@ function! notepad#AskGotoLine(...)
     endif
     exec "norm! ".l:lineno1."G"
 endfunction
-command! -nargs=* GotoLine call notepad#AskGotoLine(<f-args>)
+command! -nargs=* GotoLine call <SID>GotoLine(<f-args>)
 NapC <C-l> GotoLine
 
 
