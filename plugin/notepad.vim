@@ -280,6 +280,30 @@ noremap <up> gk
 Nap <A-left> <C-o>
 Nap <A-right> <C-i>
 
+" Home alterates between first non-blank and first
+"
+function! s:Home()
+    let l:pos = getpos(".")
+    norm! ^
+    let l:pos1 = getpos(".")
+    if l:pos[2] == l:pos1[2]
+        norm! g0
+    endif
+endfunction
+NapC <Home> call\ <SID>Home()
+"
+" End alterates between last and last non-blank
+"
+function! s:End()
+    let l:pos = getpos(".")
+    norm! $l
+    let l:pos1 = getpos(".")
+    if l:pos[2] == l:pos1[2]
+        norm! g_l
+    endif
+endfunction
+NapC <End> call\ <SID>End()
+
 " Ctrl-L goes to line
 function! s:GotoLine(...)
     if a:0 < 1
