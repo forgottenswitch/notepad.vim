@@ -22,14 +22,22 @@ inoremap <end> <end><right>
 
 
 " When selected with shift, C/X copies/cuts
-vnoremap c mQy`Q<esc>
-snoremap c <c-o>mQ<c-o>y<c-o>`Q<esc>
-snoremap x <c-o>x
-" When selected with shift, C/X copies/cuts as with Ctrl-C/X
-vnoremap c mQ"+y`Q<esc>
-vnoremap x "+x
-snoremap c <c-o>mQ<c-o>"+y<c-o>`Q<esc>
-snoremap x <c-o>"+x
+"
+if has("x11")
+    vnoremap c mQ"+y`Q<esc>
+    vnoremap x "+x
+    snoremap c <c-o>mQ<c-o>"+y<c-o>`Q<esc>
+    snoremap x <c-o>"+x
+elseif has("win16") || has("win32") || has("win64")
+    vnoremap c mQ"*y`Q<esc>
+    vnoremap x "*x
+    snoremap c <c-o>mQ<c-o>"*y<c-o>`Q<esc>
+    snoremap x <c-o>"*x
+else
+    vnoremap c mQy`Q<esc>
+    snoremap c <c-o>mQ<c-o>y<c-o>`Q<esc>
+    snoremap x <c-o>x
+endif
 
 
 " Ctrl-U inserts input as-is, like Ctrl-V in shell,
@@ -346,6 +354,45 @@ NapV <C-t><C-t><End> G
 " Ctrl-TT Up/Down selects paragraphs
 NapV <C-t><C-t><Up> {
 NapV <C-t><C-t><Down> }
+
+
+" Ctrl-T Ctrl-K/Delete cuts forward
+"
+if has("x11")
+    Nap <c-t><c-k> \"+d$
+    Nap <c-t><delete> \"+d$
+    xnoremap <c-t><c-k> "+x
+    xnoremap <c-t><delete> "+x
+elseif has("win16") || has("win32") || has("win64")
+    Nap <c-t><c-k> \"*d$
+    Nap <c-t><delete> \"*d$
+    xnoremap <c-t><c-k> "*x
+    xnoremap <c-t><delete> "*x
+else
+    Nap <c-t><c-k> d$
+    Nap <c-t><delete> d$
+    xnoremap <c-t><c-k> x
+    xnoremap <c-t><delete> x
+endif
+"
+" Ctrl-T Ctrl-H/Backspace cuts backward
+"
+if has("x11")
+    Nap <c-t><c-h> \"+dg0
+    Nap <c-t><bs> \"+dg0
+    xnoremap <c-t><c-h> "+x
+    xnoremap <c-t><bs> "+x
+elseif has("win16") || has("win32") || has("win64")
+    Nap <c-t><c-h> \"*dg0
+    Nap <c-t><bs> \"*dg0
+    xnoremap <c-t><c-h> "*x
+    xnoremap <c-t><bs> "*x
+else
+    Nap <c-t><c-h> dg0
+    Nap <c-t><bs> dg0
+    xnoremap <c-t><c-h> x
+    xnoremap <c-t><bs> x
+endif
 
 
 " Ctrl-O is the source code key
