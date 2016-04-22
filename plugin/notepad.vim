@@ -119,7 +119,7 @@ noremap <bs> i
 "
 " NapC x y does the same, but with 'y' surrounded by : and <cr> -- same as Nap x :y<cr>
 " NapCsil x y does Nap x :y<cr> with a <silent>
-" NapV x y auto-starts the visual mode prior to command -- same as Nap x :norm<space>vy<cr> | vnoremap x y
+" NapV x y auto-starts the visual mode prior to command -- same as Nap x :normal!<space>vy<cr> | vnoremap x y
 "
 " Should the binding have two commands, y and z, the following would need to be done:
 "   nnoremap x yz              -- that is, when in Normal, execute y, execute z.
@@ -142,9 +142,9 @@ command! -nargs=+ Nap call NapFunc("", "", "", <f-args>)
 command! -nargs=+ NapC call NapFunc("", ":", "<cr>", <f-args>)
 command! -nargs=+ NapCsil call NapFunc("<silent>", ":", "<cr>", <f-args>)
 function! NapVFunc(prefix,bndprefix,postfix,key,bind)
-    let l:ncmd = " ".a:prefix." ".a:key." :normal v".a:bndprefix.a:bind.a:postfix."<cr>"
+    let l:ncmd = " ".a:prefix." ".a:key." :normal! v".a:bndprefix.a:bind.a:postfix."<cr>"
     let l:vcmd = " ".a:prefix." ".a:key." ".a:bndprefix.a:bind.a:postfix
-    let l:iscmd = " ".a:prefix." ".a:key." <c-o>:normal v".a:bndprefix.a:bind.a:postfix."<cr>"
+    let l:iscmd = " ".a:prefix." ".a:key." <c-o>:normal! v".a:bndprefix.a:bind.a:postfix."<cr>"
     " echoerr "NapV: ".l:ncmd
     exec "nnoremap ".l:ncmd
     exec "inoremap ".l:iscmd
@@ -265,9 +265,9 @@ snoremap <right> <right>
 " Left does not ignore 1 character past end of line
 function! s:Left()
 	let l:pos = getpos(".")
-	normal h
+	normal! h
 	if l:pos[2] == 1
-		normal k$l
+		normal! k$l
 	endif
 endfunction
 NapC <left> call\ <SID>Left()
@@ -319,17 +319,17 @@ source $VIMRUNTIME/menu.vim
 Nap <C-t><C-a> :emenu<space>
 "
 " Ctrl-T a/g/G select all, to-start, to-end
-NapC <C-t>a norm\ Gvgg
-NapC <C-t>g norm\ vgg
-NapC <C-t>G norm\ vG
+NapC <C-t>a norm!\ Gvgg
+NapC <C-t>g norm!\ vgg
+NapC <C-t>G norm!\ vG
 "
 " Ctrl-T Left/Right shortcuts
 NapV <C-t><left> h
 NapV <C-t><right> l
 "
 " Ctrl-T Up/Down shortcuts
-NapC <C-t><up> norm\ V
-NapC <C-t><down> norm\ V
+NapC <C-t><up> norm!\ V
+NapC <C-t><down> norm!\ V
 "
 " Ctrl-T Home/End shortcuts
 NapV <C-t><Home> ^
