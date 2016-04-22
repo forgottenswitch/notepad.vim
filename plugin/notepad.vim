@@ -22,10 +22,13 @@ inoremap <end> <end><right>
 
 
 " When selected with shift, C/X copies/cuts
-snoremap c <c-o>mQ<c-o>y<c-o>`Q
+vnoremap c mQy`Q<esc>
+snoremap c <c-o>mQ<c-o>y<c-o>`Q<esc>
 snoremap x <c-o>x
 " When selected with shift, C/X copies/cuts as with Ctrl-C/X
-snoremap c <c-o>mQ<c-o>"+y<c-o>`Q
+vnoremap c mQ"+y`Q<esc>
+vnoremap x "+x
+snoremap c <c-o>mQ<c-o>"+y<c-o>`Q<esc>
 snoremap x <c-o>"+x
 
 
@@ -226,9 +229,6 @@ NapC <C-F4> confirm\ q
 " Not conventional, but useful
 Nap <c-w> <c-w>
 
-" Ctrl-/ redraws, clearing search highlightings
-NapC <c-/> nohlsearch\|if\ has('diff')\|diffupdate\|endif\|redraw!
-
 " Ctrl-Z undoes
 NoremapC n <C-z> undo\|redraw
 imap <C-z> <c-o>:norm <c-z><cr>
@@ -274,10 +274,14 @@ Nap <A-left> <C-o>
 Nap <A-right> <C-i>
 
 " Ctrl-L goes to line
-function! notepad#AskGotoLine()
-    call inputsave()
-    let l:lineno = input("Goto line: ")
-    call inputrestore()
+function! notepad#AskGotoLine(...)
+    if a:0 < 1
+        call inputsave()
+        let l:lineno = input("Goto line: ")
+        call inputrestore()
+    else
+        let l:lineno = a:1
+    endif
     "
     let l:lineno1 = substitute(l:lineno, "[^0-9]", "", "g")
     if (l:lineno != l:lineno1) || (strlen(l:lineno1) == 0)
@@ -285,7 +289,9 @@ function! notepad#AskGotoLine()
     endif
     exec "norm! ".l:lineno1."G"
 endfunction
-NapC <C-l> call\ notepad#AskGotoLine()
+command! -nargs=* GotoLine call notepad#AskGotoLine(<f-args>)
+NapC <C-l> GotoLine
+
 
 " Ctrl-T is a selection key
 " The explicit NapC A norm B is used instead of Nap A B,
@@ -295,22 +301,17 @@ NapC <C-l> call\ notepad#AskGotoLine()
 " Ctrl-T 2 selects line-wise
 " Ctrl-T 4 selects rectangular
 " Ctrl-T 3 selects rectangular as much as possible
-NapC <C-t>0 norm\ v
-NapC <C-t>1 norm\ v
-NapC <C-t>2 norm\ V
-NapC <C-t>3 norm\ \<C-v\>
-NapC <C-t>4 norm\ \<C-v\>
-"
-" Ctrl-T S/L/R => select, linewise, rectangular
-NapC <C-t>l norm\ V
-NapC <C-t>s norm\ v
-NapC <C-t>r norm\ <C-v>
+NapC <C-t>0 norm!\ v
+NapC <C-t>1 norm!\ v
+NapC <C-t>2 norm!\ V
+NapC <C-t>3 norm!\ <c-v><c-v><c-v><c-v>
+NapC <C-t>4 norm!\ <c-v><c-v><c-v><c-v>
 "
 " Ctrl-T Ctrl-A executes ('selects') a menu command
 source $VIMRUNTIME/menu.vim
 Nap <C-t><C-a> :emenu<space>
 "
-" Ctrl-T a/g/G
+" Ctrl-T a/g/G select all, to-start, to-end
 NapC <C-t>a norm\ Gvgg
 NapC <C-t>g norm\ vgg
 NapC <C-t>G norm\ vG
@@ -330,6 +331,9 @@ NapV <C-t><End> $
 " Ctrl-T Ctrl-Home/End shortcuts
 NapV <C-t><C-Home> gg
 NapV <C-t><C-End> G
+"
+" Ctrl-T Ctrl-L clears search highlights
+NapC <C-t><C-l> nohlsearch\|if\ has('diff')\|diffupdate\|endif\|redraw!
 
 
 " Control + Double T is the Control-selection key
