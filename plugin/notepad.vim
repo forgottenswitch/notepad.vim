@@ -3,7 +3,7 @@ set nocompatible
 " Set Insert mode (rather than Normal) as the default
 set insertmode
 " Show line numbers column
-set nu!
+set nu
 " Disable automatic line breaking
 set textwidth=0 wrapmargin=0
 " Show Syntax menu (gvim)
@@ -170,6 +170,18 @@ command! -nargs=+ NapMap call NapMapFunc(<f-args>)
 
 
 ""
+" Linux console compatibility
+NapMap [25~ <S-F1>
+NapMap [26~ <S-F2>
+NapMap [28~ <S-F3>
+NapMap [29~ <S-F4>
+NapMap [31~ <S-F5>
+NapMap [32~ <S-F6>
+NapMap [33~ <S-F7>
+NapMap [34~ <S-F8>
+
+
+""
 " xterm (VT220 ?) compatibility
 "
 NapMap O1;2Q <S-F2>
@@ -184,6 +196,35 @@ NapMap [1;5D <C-Left>
 NapMap [1;5B <C-Down>
 NapMap [1;5A <C-Up>
 NapMap [1;5C <C-Left>
+
+
+""
+" st (VT100 ?) compatibility
+NapMap [1;2P <S-F1>
+NapMap [1;2Q <S-F2>
+NapMap [1;2R <S-F3>
+NapMap [1;2S <S-F4>
+NapMap [15;2~ <S-F5>
+NapMap [17;2~ <S-F6>
+NapMap [18;2~ <S-F7>
+NapMap [19;2~ <S-F8>
+NapMap [20;2~ <S-F9>
+NapMap [21;2~ <S-F10>
+NapMap [23;2~ <S-F11>
+NapMap [24;2~ <S-F12>
+"
+NapMap [1;5P <C-F1>
+NapMap [1;5Q <C-F2>
+NapMap [1;5R <C-F3>
+NapMap [1;5S <C-F4>
+NapMap [15;5~ <C-F5>
+NapMap [17;5~ <C-F6>
+NapMap [18;5~ <C-F7>
+NapMap [19;5~ <C-F8>
+NapMap [20;5~ <C-F9>
+NapMap [21;5~ <C-F10>
+NapMap [23;5~ <C-F11>
+NapMap [24;5~ <C-F12>
 
 
 " Ctrl-A executes a command
