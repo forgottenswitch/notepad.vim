@@ -182,7 +182,7 @@ NapMap [34~ <S-F8>
 
 
 ""
-" xterm (VT220 ?) compatibility
+" VTE compatibility
 "
 NapMap O1;2Q <S-F2>
 NapMap O1;2R <S-F3>
@@ -195,11 +195,16 @@ NapMap O1;5S <C-F4>
 NapMap [1;5D <C-Left>
 NapMap [1;5B <C-Down>
 NapMap [1;5A <C-Up>
-NapMap [1;5C <C-Left>
+NapMap [1;5C <C-Right>
+"
+NapMap [1;3D <A-Left>
+NapMap [1;3C <A-Right>
+NapMap [1;3A <A-Up>
+NapMap [1;3B <A-Down>
 
 
 ""
-" st (VT100 ?) compatibility
+" st compatibility
 NapMap [1;2P <S-F1>
 NapMap [1;2Q <S-F2>
 NapMap [1;2R <S-F3>
@@ -225,7 +230,9 @@ NapMap [20;5~ <C-F9>
 NapMap [21;5~ <C-F10>
 NapMap [23;5~ <C-F11>
 NapMap [24;5~ <C-F12>
-
+"
+NapMap [1;2A <S-Up>
+NapMap [1;2B <S-Down>
 
 " Ctrl-A executes a command
 " Not conventional, but useful
@@ -279,14 +286,16 @@ vnoremap <up> k
 vnoremap <home> ^
 vnoremap <end> $
 
-" Left/Right ignore end of line
+" Left/Right ignore end of line (but not when selecting)
 " Left also ignores 1 character past end of line
 noremap <left> <bs>
 inoremap <left> <c-o><bs>
+vnoremap <left> <bs>
+vnoremap <s-left> <bs>
 noremap <right> <space>
 inoremap <right> <c-o><space>
-snoremap <left> <left>
-snoremap <right> <right>
+vnoremap <right> <space>
+vnoremap <s-right> <space>
 " Left does not ignore 1 character past end of line
 function! s:Left()
 	let l:pos = getpos(".")
@@ -301,13 +310,21 @@ vnoremap <left> <bs>
 noremap <down> gj
 noremap <up> gk
 
+" Control-Right (if supported by terminal [emulator])
+" goes to end of word, rather than start
+nnoremap <C-Right> el
+inoremap <C-Right> <c-o>e<c-o>l
+vnoremap <C-Right> el
+" Control Left works for selecting
+vnoremap <C-Left> b
+
 " Alt-Left/Right navigate backward-forward
 Nap <A-left> <C-o>
 Nap <A-right> <C-i>
 
 
 " Home alterates between first non-blank and first
-" (but not when selecting)
+" (but not when selecting; use Shift-Home or Home for that)
 "
 function! s:Home()
     let l:pos = getpos(".")
@@ -319,10 +336,10 @@ function! s:Home()
 endfunction
 NapC <Home> call\ <SID>Home()
 vnoremap <Home> ^
-snoremap <S-Home> <c-o>^
+vnoremap <S-Home> g0
 
 " End alterates between last and last non-blank
-" (but not when selecting)
+" (but not when selecting; use Shift-End or End for that)
 "
 function! s:End()
     let l:pos = getpos(".")
@@ -333,8 +350,8 @@ function! s:End()
     endif
 endfunction
 NapC <End> call\ <SID>End()
-vnoremap <End> $
-snoremap <S-End> <c-o>$
+vnoremap <End> $l
+vnoremap <S-End> g_l
 
 
 " Ctrl-L goes to line
