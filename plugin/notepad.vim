@@ -293,25 +293,7 @@ vnoremap <home> ^
 vnoremap <end> $
 
 " Left/Right ignore end of line (but not when selecting)
-" Left also ignores 1 character past end of line
-noremap <left> <bs>
-inoremap <left> <c-o><bs>
-vnoremap <left> <bs>
-vnoremap <s-left> <bs>
-noremap <right> <space>
-inoremap <right> <c-o><space>
-vnoremap <right> <space>
-vnoremap <s-right> <space>
-" Left does not ignore 1 character past end of line
-function! notepad#Left()
-	let l:pos = getpos(".")
-	normal! h
-	if l:pos[2] == 1
-		normal! k$l
-	endif
-endfunction
-NapC <left> call\ notepad#Left()
-vnoremap <left> <bs>
+set whichwrap+=[,],<,>
 " Up/Down consider screen lines, not content ones
 noremap <down> gj
 noremap <up> gk
@@ -361,7 +343,7 @@ vnoremap <S-End> g_l
 
 
 " Ctrl-Backspace/Delete delete a word
-" Bug: Undo gets to wrong end of word
+" Bug: Undo gets to wrong end of word with Ctrl-Backspace
 Nap <C-BS> "_db
 Nap <C-Delete> "_de
 
