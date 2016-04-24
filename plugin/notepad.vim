@@ -212,6 +212,18 @@ NapMap [24;5~ <C-F12>
 NapMap [1;5A <S-Up>
 NapMap [1;2B <S-Down>
 
+""
+" st compatibility
+if $TERM == "st-256color"
+    NapMap [1;5D <C-Left>
+    NapMap [1;5B <C-Down>
+    NapMap [1;5A <C-Up>
+    NapMap [1;5C <C-Right>
+    "
+    NapMap [1;2A <S-Up>
+    NapMap [1;2B <S-Down>
+endif
+
 
 ""
 " VTE compatibility
