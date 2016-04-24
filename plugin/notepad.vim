@@ -182,7 +182,7 @@ NapMap [34~ <S-F8>
 
 
 ""
-" xterm compatibility
+" xterm normal mode compatibility
 NapMap [1;2P <S-F1>
 NapMap [1;2Q <S-F2>
 NapMap [1;2R <S-F3>
@@ -209,34 +209,23 @@ NapMap [21;5~ <C-F10>
 NapMap [23;5~ <C-F11>
 NapMap [24;5~ <C-F12>
 "
+NapMap [1;5A <C-Up>
+NapMap [1;5B <C-Down>
+NapMap [1;5D <C-Left>
+NapMap [1;5C <C-Right>
+"
 NapMap [1;5A <S-Up>
 NapMap [1;2B <S-Down>
 "
 NapMap  <C-BS>
 NapMap [3;5~ <C-Delete>
 "
-NapMap OH <Home>
-NapMap OF <End>
-"
 NapMap [1;2H <S-Home>
 NapMap [1;2F <S-End>
 
 
 ""
-" st compatibility
-if $TERM == "st-256color"
-    NapMap [1;5D <C-Left>
-    NapMap [1;5B <C-Down>
-    NapMap [1;5A <C-Up>
-    NapMap [1;5C <C-Right>
-    "
-    NapMap [1;2A <S-Up>
-    NapMap [1;2B <S-Down>
-endif
-
-
-""
-" VTE compatibility
+" xterm application mode compatibility
 NapMap O1;2Q <S-F2>
 NapMap O1;2R <S-F3>
 NapMap O1;2S <S-F4>
@@ -244,6 +233,14 @@ NapMap O1;2S <S-F4>
 NapMap O1;5Q <C-F2>
 NapMap O1;5R <C-F3>
 NapMap O1;5S <C-F4>
+"
+NapMap OH <Home>
+NapMap OF <End>
+
+
+""
+" st normal mode compatibility
+NapMap [1;2A <S-Up>
 
 
 " Ctrl-A executes a command
