@@ -68,7 +68,7 @@ endif
 
 
 " Tab also completes
-function! s:CompleteOrTab()
+function! notepad#CompleteOrTab()
     if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
         return "\<Tab>"
     else
@@ -81,7 +81,7 @@ function! s:CompleteOrTab()
         endif
     endif
 endfunction
-inoremap <Tab> <C-R>=<SID>CompleteOrTab()<cr>
+inoremap <Tab> <C-R>=notepad#CompleteOrTab()<cr>
 
 
 " Space starts insert mode
@@ -284,14 +284,14 @@ inoremap <right> <c-o><space>
 vnoremap <right> <space>
 vnoremap <s-right> <space>
 " Left does not ignore 1 character past end of line
-function! s:Left()
+function! notepad#Left()
 	let l:pos = getpos(".")
 	normal! h
 	if l:pos[2] == 1
 		normal! k$l
 	endif
 endfunction
-NapC <left> call\ <SID>Left()
+NapC <left> call\ notepad#Left()
 vnoremap <left> <bs>
 " Up/Down consider screen lines, not content ones
 noremap <down> gj
@@ -313,7 +313,7 @@ Nap <A-right> <C-i>
 " Home alterates between first non-blank and first
 " (but not when selecting; use Shift-Home or Home for that)
 "
-function! s:Home()
+function! notepad#Home()
     let l:pos = getpos(".")
     norm! ^
     let l:pos1 = getpos(".")
@@ -321,14 +321,14 @@ function! s:Home()
         norm! g0
     endif
 endfunction
-NapC <Home> call\ <SID>Home()
+NapC <Home> call\ notepad#Home()
 vnoremap <Home> ^
 vnoremap <S-Home> g0
 
 " End alterates between last and last non-blank
 " (but not when selecting; use Shift-End or End for that)
 "
-function! s:End()
+function! notepad#End()
     let l:pos = getpos(".")
     norm! $l
     let l:pos1 = getpos(".")
@@ -336,13 +336,13 @@ function! s:End()
         norm! g_l
     endif
 endfunction
-NapC <End> call\ <SID>End()
+NapC <End> call\ notepad#End()
 vnoremap <End> $l
 vnoremap <S-End> g_l
 
 
 " Ctrl-L goes to line
-function! s:GotoLine(...)
+function! notepad#GotoLine(...)
     if a:0 < 1
         call inputsave()
         let l:lineno = input("Goto line: ")
@@ -357,7 +357,7 @@ function! s:GotoLine(...)
     endif
     exec "norm! ".l:lineno1."G"
 endfunction
-command! -nargs=* GotoLine call <SID>GotoLine(<f-args>)
+command! -nargs=* GotoLine call notepad#GotoLine(<f-args>)
 NapC <C-l> GotoLine
 
 
