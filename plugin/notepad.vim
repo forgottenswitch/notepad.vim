@@ -208,6 +208,9 @@ NapMap [20;5~ <C-F9>
 NapMap [21;5~ <C-F10>
 NapMap [23;5~ <C-F11>
 NapMap [24;5~ <C-F12>
+"
+NapMap [1;5A <S-Up>
+NapMap [1;2B <S-Down>
 
 
 ""
