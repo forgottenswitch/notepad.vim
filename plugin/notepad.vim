@@ -214,6 +214,12 @@ NapMap [1;2B <S-Down>
 "
 NapMap  <C-BS>
 NapMap [3;5~ <C-Delete>
+"
+NapMap OH <Home>
+NapMap OF <End>
+"
+NapMap [1;2H <S-Home>
+NapMap [1;2F <S-End>
 
 
 ""
@@ -243,6 +249,7 @@ NapMap O1;5S <C-F4>
 " Ctrl-A executes a command
 " Not conventional, but useful
 Nap <C-a> :
+vnoremap <C-a> :
 " Ctrl-S saves
 NapC <C-s> w!
 " Ctrl-F searches
@@ -346,6 +353,9 @@ vnoremap <S-End> g_l
 " Bug: Undo gets to wrong end of word with Ctrl-Backspace
 Nap <C-BS> "_db
 Nap <C-Delete> "_de
+
+" Backspace deletes a selection
+vnoremap <BS> "_x
 
 
 " Ctrl-L goes to line
