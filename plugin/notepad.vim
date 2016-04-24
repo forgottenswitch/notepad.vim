@@ -182,29 +182,7 @@ NapMap [34~ <S-F8>
 
 
 ""
-" VTE compatibility
-"
-NapMap O1;2Q <S-F2>
-NapMap O1;2R <S-F3>
-NapMap O1;2S <S-F4>
-"
-NapMap O1;5Q <C-F2>
-NapMap O1;5R <C-F3>
-NapMap O1;5S <C-F4>
-"
-NapMap [1;5D <C-Left>
-NapMap [1;5B <C-Down>
-NapMap [1;5A <C-Up>
-NapMap [1;5C <C-Right>
-"
-NapMap [1;3D <A-Left>
-NapMap [1;3C <A-Right>
-NapMap [1;3A <A-Up>
-NapMap [1;3B <A-Down>
-
-
-""
-" st compatibility
+" xterm compatibility
 NapMap [1;2P <S-F1>
 NapMap [1;2Q <S-F2>
 NapMap [1;2R <S-F3>
@@ -230,9 +208,18 @@ NapMap [20;5~ <C-F9>
 NapMap [21;5~ <C-F10>
 NapMap [23;5~ <C-F11>
 NapMap [24;5~ <C-F12>
+
+
+""
+" VTE compatibility
+NapMap O1;2Q <S-F2>
+NapMap O1;2R <S-F3>
+NapMap O1;2S <S-F4>
 "
-NapMap [1;2A <S-Up>
-NapMap [1;2B <S-Down>
+NapMap O1;5Q <C-F2>
+NapMap O1;5R <C-F3>
+NapMap O1;5S <C-F4>
+
 
 " Ctrl-A executes a command
 " Not conventional, but useful
