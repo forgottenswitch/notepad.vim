@@ -211,6 +211,10 @@ NapMap [24;5~ <C-F12>
 "
 NapMap [1;5A <S-Up>
 NapMap [1;2B <S-Down>
+"
+NapMap  <C-BS>
+NapMap [3;5~ <C-Delete>
+
 
 ""
 " st compatibility
@@ -354,6 +358,12 @@ endfunction
 NapC <End> call\ notepad#End()
 vnoremap <End> $l
 vnoremap <S-End> g_l
+
+
+" Ctrl-Backspace/Delete delete a word
+" Bug: Undo gets to wrong end of word
+Nap <C-BS> "_db
+Nap <C-Delete> "_de
 
 
 " Ctrl-L goes to line
