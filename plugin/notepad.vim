@@ -241,6 +241,7 @@ NapMap OF <End>
 ""
 " st normal mode compatibility
 NapMap [1;2A <S-Up>
+NapMap [1;5F <C-End>
 
 
 " Ctrl-A executes a command
