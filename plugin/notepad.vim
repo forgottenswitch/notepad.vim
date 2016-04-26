@@ -160,13 +160,24 @@ command! -nargs=+ NoremapCsil call NoremapFunc("<silent>", ":", "<cr>", <f-args>
 "
 function! NapMapFunc(key1, key2)
     let l:nivs_cmd = " ".a:key1." ".a:key2
-    " echoerr "NapMap: ".l:nivs_cmd
+    "echoerr "NapMap: ".l:nivs_cmd
     exec "nmap ".l:nivs_cmd
     exec "imap ".l:nivs_cmd
     exec "vmap ".l:nivs_cmd
     exec "smap ".l:nivs_cmd
 endfunction
 command! -nargs=+ NapMap call NapMapFunc(<f-args>)
+
+""
+" NapMap2 xyz n => NapMap x[z n | NapMap xOz n
+"
+function! NapMap2Func(key1, key2)
+    let l:key11 = a:key1[0:0]."[".a:key1[2:-1]
+    let l:key12 = a:key1[0:0]."O".a:key1[2:-1]
+    call NapMapFunc(l:key11, a:key2)
+    call NapMapFunc(l:key12, a:key2)
+endfunction
+command! -nargs=+ NapMap2 call NapMap2Func(<f-args>)
 
 
 ""
@@ -182,68 +193,57 @@ NapMap [34~ <S-F8>
 
 
 ""
-" xterm normal mode compatibility
-NapMap [1;2P <S-F1>
-NapMap [1;2Q <S-F2>
-NapMap [1;2R <S-F3>
-NapMap [1;2S <S-F4>
-NapMap [15;2~ <S-F5>
-NapMap [17;2~ <S-F6>
-NapMap [18;2~ <S-F7>
-NapMap [19;2~ <S-F8>
-NapMap [20;2~ <S-F9>
-NapMap [21;2~ <S-F10>
-NapMap [23;2~ <S-F11>
-NapMap [24;2~ <S-F12>
+" xterm normal/application mode compatibility
+NapMap2 [1;2P <S-F1>
+NapMap2 [1;2Q <S-F2>
+NapMap2 [1;2R <S-F3>
+NapMap2 [1;2S <S-F4>
+NapMap2 [15;2~ <S-F5>
+NapMap2 [17;2~ <S-F6>
+NapMap2 [18;2~ <S-F7>
+NapMap2 [19;2~ <S-F8>
+NapMap2 [20;2~ <S-F9>
+NapMap2 [21;2~ <S-F10>
+NapMap2 [23;2~ <S-F11>
+NapMap2 [24;2~ <S-F12>
 "
-NapMap [1;5P <C-F1>
-NapMap [1;5Q <C-F2>
-NapMap [1;5R <C-F3>
-NapMap [1;5S <C-F4>
-NapMap [15;5~ <C-F5>
-NapMap [17;5~ <C-F6>
-NapMap [18;5~ <C-F7>
-NapMap [19;5~ <C-F8>
-NapMap [20;5~ <C-F9>
-NapMap [21;5~ <C-F10>
-NapMap [23;5~ <C-F11>
-NapMap [24;5~ <C-F12>
+NapMap2 [1;5P <C-F1>
+NapMap2 [1;5Q <C-F2>
+NapMap2 [1;5R <C-F3>
+NapMap2 [1;5S <C-F4>
+NapMap2 [15;5~ <C-F5>
+NapMap2 [17;5~ <C-F6>
+NapMap2 [18;5~ <C-F7>
+NapMap2 [19;5~ <C-F8>
+NapMap2 [20;5~ <C-F9>
+NapMap2 [21;5~ <C-F10>
+NapMap2 [23;5~ <C-F11>
+NapMap2 [24;5~ <C-F12>
 "
-NapMap [1;5A <C-Up>
-NapMap [1;5B <C-Down>
-NapMap [1;5D <C-Left>
-NapMap [1;5C <C-Right>
+NapMap2 [1;5A <C-Up>
+NapMap2 [1;5B <C-Down>
+NapMap2 [1;5D <C-Left>
+NapMap2 [1;5C <C-Right>
 "
-NapMap [1;2A <S-Up>
-NapMap [1;2B <S-Down>
+NapMap2 [1;2A <S-Up>
+NapMap2 [1;2B <S-Down>
 "
-NapMap [1;6A <C-S-Up>
-NapMap [1;6B <C-S-Down>
-NapMap [1;6D <C-S-Left>
-NapMap [1;6C <C-S-Right>
+NapMap2 [1;6A <C-S-Up>
+NapMap2 [1;6B <C-S-Down>
+NapMap2 [1;6D <C-S-Left>
+NapMap2 [1;6C <C-S-Right>
 "
 NapMap  <C-BS>
-NapMap [3;5~ <C-Delete>
+NapMap2 [3;5~ <C-Delete>
 "
-NapMap [1;5H <C-Home>
-NapMap [1;5F <C-End>
+NapMap2 [1;5H <C-Home>
+NapMap2 [1;5F <C-End>
 "
-NapMap [1;2H <S-Home>
-NapMap [1;2F <S-End>
-
-
-""
-" xterm application mode compatibility
-NapMap O1;2Q <S-F2>
-NapMap O1;2R <S-F3>
-NapMap O1;2S <S-F4>
+NapMap2 [1;2H <S-Home>
+NapMap2 [1;2F <S-End>
 "
-NapMap O1;5Q <C-F2>
-NapMap O1;5R <C-F3>
-NapMap O1;5S <C-F4>
-"
-NapMap OH <Home>
-NapMap OF <End>
+NapMap2 OH <Home>
+NapMap2 OF <End>
 
 
 " Ctrl-A executes a command
