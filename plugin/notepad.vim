@@ -317,6 +317,14 @@ vnoremap <C-Left> b
 Nap <A-left> <C-o>
 Nap <A-right> <C-i>
 
+" Ctrl-Up/Down navigate/select paragraphs
+Nap <C-Up> {
+Nap <C-Down> }
+Nap <C-S-Up> v{
+Nap <C-S-Down> v}
+vnoremap <C-S-Up> {
+vnoremap <C-S-Down> }
+
 
 " Home alterates between first non-blank and first
 " (but not when selecting; use Shift-Home or Home for that)
