@@ -302,8 +302,8 @@ vnoremap <end> $
 " Left/Right ignore end of line (but not when selecting)
 set whichwrap+=[,],<,>
 " Up/Down consider screen lines, not content ones
-noremap <down> gj
-noremap <up> gk
+Nap <down> gj
+Nap <up> gk
 
 " Control-Right (if supported by terminal [emulator])
 " goes to end of word, rather than start
