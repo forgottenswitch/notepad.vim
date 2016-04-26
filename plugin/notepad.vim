@@ -214,11 +214,19 @@ NapMap [1;5B <C-Down>
 NapMap [1;5D <C-Left>
 NapMap [1;5C <C-Right>
 "
-NapMap [1;5A <S-Up>
+NapMap [1;2A <S-Up>
 NapMap [1;2B <S-Down>
+"
+NapMap [1;6A <C-S-Up>
+NapMap [1;6B <C-S-Down>
+NapMap [1;6D <C-S-Left>
+NapMap [1;6C <C-S-Right>
 "
 NapMap  <C-BS>
 NapMap [3;5~ <C-Delete>
+"
+NapMap [1;5H <C-Home>
+NapMap [1;5F <C-End>
 "
 NapMap [1;2H <S-Home>
 NapMap [1;2F <S-End>
@@ -236,12 +244,6 @@ NapMap O1;5S <C-F4>
 "
 NapMap OH <Home>
 NapMap OF <End>
-
-
-""
-" st normal mode compatibility
-NapMap [1;2A <S-Up>
-NapMap [1;5F <C-End>
 
 
 " Ctrl-A executes a command
