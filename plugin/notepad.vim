@@ -475,6 +475,13 @@ else
 endif
 
 
+" Ctrl-E goes to pair brace
+Nap <C-e> %
+vnoremap <C-e> %
+Nap <C-t><C-e> v%
+vnoremap <C-t><C-e> %
+
+
 " Ctrl-O is the source code key
 "
 " Ctrl-O 2/1 navigate Excuberant Ctags and Vim help
