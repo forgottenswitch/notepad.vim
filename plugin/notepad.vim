@@ -305,6 +305,15 @@ set whichwrap+=[,],<,>
 Nap <down> gj
 Nap <up> gk
 
+" In terminal, selection could be extended without no Shift
+if has("gui_running")
+else
+  vnoremap <Left> <S-Left>
+  vnoremap <Right> <S-Right>
+  vnoremap <Up> <S-Up>
+  vnoremap <Down> <S-Down>
+endif
+
 " Control-Right (if supported by terminal [emulator])
 " goes to end of word, rather than start
 nnoremap <C-Right> el
@@ -499,4 +508,14 @@ Nap <C-o>~ <C-z>
 "
 " Ctrl-O M runs make
 NapC <C-o>m !make
+"
+" Ctrl-O PageUp/Down go to prev/next file
+NapC <C-o><PageUp> prev
+NapC <C-o><PageDown> next
+" Ctrl-O Home/End rewind files
+NapC <C-o><Home> first
+NapC <C-o><End> last
+"
+" Ctrl-OO edits the file under cursor
+Nap <C-o><C-o> gf
 
