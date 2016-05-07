@@ -292,27 +292,11 @@ imap <C-y> <c-o>:norm <c-y><cr>
 smap <C-y> <esc>:norm <c-y><cr>
 vmap <C-y> <esc>:norm <c-y><cr>
 
-" Up/Down work in visual mode
-vnoremap <down> j
-vnoremap <up> k
-" Home/End work in visual mode
-vnoremap <home> ^
-vnoremap <end> $
-
 " Left/Right ignore end of line (but not when selecting)
 set whichwrap+=[,],<,>
 " Up/Down consider screen lines, not content ones
 Nap <down> gj
 Nap <up> gk
-
-" In terminal, selection could be extended without no Shift
-if has("gui_running")
-else
-  vnoremap <Left> <S-Left>
-  vnoremap <Right> <S-Right>
-  vnoremap <Up> <S-Up>
-  vnoremap <Down> <S-Down>
-endif
 
 " Control-Right (if supported by terminal [emulator])
 " goes to end of word, rather than start
@@ -336,7 +320,7 @@ vnoremap <C-S-Down> }
 
 
 " Home alterates between first non-blank and first
-" (but not when selecting; use Shift-Home or Home for that)
+" (but not when selecting)
 "
 function! notepad#Home()
     let l:pos = getpos(".")
@@ -347,11 +331,9 @@ function! notepad#Home()
     endif
 endfunction
 NapC <Home> call\ notepad#Home()
-vnoremap <Home> ^
-vnoremap <S-Home> g0
 
 " End alterates between last and last non-blank
-" (but not when selecting; use Shift-End or End for that)
+" (but not when selecting)
 "
 function! notepad#End()
     let l:pos = getpos(".")
@@ -362,8 +344,21 @@ function! notepad#End()
     endif
 endfunction
 NapC <End> call\ notepad#End()
-vnoremap <End> $l
-vnoremap <S-End> g_l
+
+" In terminal, selection could be extended with no Shift
+if has("gui_running")
+else
+  vnoremap <Left> <S-Left>
+  vnoremap <Right> <S-Right>
+  vnoremap <Up> <S-Up>
+  vnoremap <Down> <S-Down>
+  vnoremap <PageUp> <S-PageUp>
+  vnoremap <PageDown> <S-PageDown>
+  vnoremap <Home> ^
+  vnoremap <S-Home> g0
+  vnoremap <End> $
+  vnoremap <S-End> g_l
+endif
 
 
 " Ctrl-Backspace/Delete delete a word
@@ -430,9 +425,11 @@ NapV <C-t><right> l
 NapC <C-t><up> norm!\ V
 NapC <C-t><down> norm!\ V
 "
-" Ctrl-T Home/End shortcuts
-NapV <C-t><Home> ^
-NapV <C-t><End> $
+" Ctrl-T Home/End select to absolute line beginning/end
+inoremap <C-t><Home> <c-o>vg0
+inoremap <C-t><End> <c-o>vg_
+vnoremap <C-t><Home> g0
+vnoremap <C-t><End> g_
 "
 " Ctrl-T Ctrl-Home/End shortcuts
 NapV <C-t><C-Home> gg
