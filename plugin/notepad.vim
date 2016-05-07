@@ -452,6 +452,11 @@ NapV <C-t><C-t><Up> {
 NapV <C-t><C-t><Down> }
 
 
+" Ctrl-T Ctrl-S saves as
+"
+Nap <C-t><C-s> :w<space><c-r>=bufname("")<cr>
+
+
 " Ctrl-T Ctrl-K/Delete cuts forward
 "
 if has("gui_running")
@@ -515,4 +520,14 @@ NapC <C-o><End> last
 "
 " Ctrl-OO edits the file under cursor
 Nap <C-o><C-o> gf
+"
+" Ctrl-OE "explores"
+function! notepad#Explorer()
+  if exists(":Rexplore")
+    Rexplore
+  else
+    Sexplore!
+  endif
+endfunction
+NapC <C-o><C-e> call\ notepad#Explorer()
 
