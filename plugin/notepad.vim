@@ -266,11 +266,14 @@ Nap <c-b> :b!<space>
 NapC <F7> set\ invpaste\ paste?\|\ set\ pastetoggle=<F7>
 
 " F4 goes to next/prev compiling error
-NapCsil <F4> cn
-NapCsil <S-F4> cp
+NapCsil <F4> cnext
+NapCsil <S-F4> cprev
 " F3 goes to next/prev occurence of word
 Nap <F3> *
 Nap <S-F3> #
+" F8 goes to next/prev syntax error
+NapCsil <F8> lnext
+NapCsil <S-F8> lprev
 
 " Ctrl-Alt-c shows errors if any
 NapC <c-a-c> copen\|cwin
@@ -530,4 +533,7 @@ function! notepad#Explorer()
   endif
 endfunction
 NapC <C-o><C-e> call\ notepad#Explorer()
-
+"
+" Ctrl-O F4/F8 show errors
+NapC <C-o><F4> cwin
+NapC <C-o><F8> lwin

@@ -21,12 +21,6 @@ tpope vim-sleuth
 # ag/ack/pt find-in-files integration
 dyng ctrlsf.vim
 
-# gitk in terminal
-gregsexton gitv
-
-# git commands in vim
-tpope vim-fugitive
-
 # undo tree visualizer
 sjl gundo.vim
 
@@ -39,7 +33,7 @@ scrooloose syntastic
 # user interface framework for selecting items
 Shougo unite.vim
 
-# prettifier for assignments or alike
+# prettifier for assignments and alike
 junegunn vim-easy-align
 
 # adds text => (text) capabilities
