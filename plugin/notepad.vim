@@ -6,6 +6,9 @@ set insertmode
 set nu
 " Disable automatic line breaking
 set textwidth=0 wrapmargin=0
+" Tab inserts spaces
+" Use ":setlocal noexpandtab" where undesired (Makefiles, etc.)
+set expandtab
 " Show Syntax menu (gvim)
 let do_syntax_sel_menu = 1| runtime! synmenu.vim|
 
@@ -306,7 +309,7 @@ Nap <up> gk
 nnoremap <C-Right> el
 inoremap <C-Right> <c-o>e<c-o>l
 vnoremap <C-Right> el
-" Control Left works for selecting
+" Control-Left works when selecting
 vnoremap <C-Left> b
 
 " Alt-Left/Right navigate backward-forward
