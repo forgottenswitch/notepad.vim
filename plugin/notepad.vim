@@ -496,7 +496,7 @@ Nap <C-t><C-e> v%
 vnoremap <C-t><C-e> %
 
 
-" Ctrl-O is the source code key
+" Ctrl-O is source code key
 "
 " Ctrl-O 2/1 navigate Excuberant Ctags and Vim help
 Nap <C-o>1 <C-t>
@@ -526,14 +526,19 @@ Nap <C-o><C-o> gf
 "
 " Ctrl-OE "explores"
 function! notepad#Explorer()
-  if exists(":Rexplore")
-    Rexplore
-  else
-    Sexplore!
-  endif
+  Sexplore!
 endfunction
 NapC <C-o><C-e> call\ notepad#Explorer()
 "
 " Ctrl-O F4/F8 show errors
 NapC <C-o><F4> cwin
 NapC <C-o><F8> lwin
+"
+" Ctrl-O Ctrl-K/Backspace cut forward/backward
+map <C-o><C-k> <C-t><C-k>
+map <C-o><C-h> <C-t><C-h>
+map <C-o><bs> <C-t><bs>
+imap <C-o><C-k> <C-t><C-k>
+imap <C-o><C-h> <C-t><C-h>
+imap <C-o><bs> <C-t><bs>
+
