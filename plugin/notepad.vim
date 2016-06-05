@@ -69,7 +69,6 @@ else
     vnoremap <C-k> x
 endif
 
-
 " Tab also completes
 function! notepad#CompleteOrTab()
     if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
@@ -281,11 +280,15 @@ NapCsil <S-F8> lprev
 " Ctrl-Alt-c shows errors if any
 NapC <c-a-c> copen\|cwin
 
-" Ctrl-F4 closes file
-NapC <C-F4> confirm\ q
 " Ctrl-W for window operations
 " Not conventional, but useful
 Nap <c-w> <c-w>
+
+" Ctrl-F4 closes file
+" Ctrl-W C does the same
+" Use :q to close a window
+NapC <C-F4> confirm\ bw
+NapC <C-w>c confirm\ bw
 
 " Ctrl-Z undoes
 NoremapC n <C-z> undo\|redraw
