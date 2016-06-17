@@ -521,11 +521,11 @@ Nap <C-o>~ <C-z>
 NapC <C-o>m !make
 "
 " Ctrl-O PageUp/Down go to prev/next file
-NapC <C-o><PageUp> prev
-NapC <C-o><PageDown> next
+NapC <C-o><PageUp> confirm\ prev
+NapC <C-o><PageDown> confirm\ next
 " Ctrl-O Home/End rewind files
-NapC <C-o><Home> first
-NapC <C-o><End> last
+NapC <C-o><Home> confirm\ first
+NapC <C-o><End> confirm\ last
 "
 " Ctrl-OO edits the file under cursor
 Nap <C-o><C-o> gf
