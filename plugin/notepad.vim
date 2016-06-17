@@ -235,8 +235,11 @@ NapMap2 [1;6B <C-S-Down>
 NapMap2 [1;6D <C-S-Left>
 NapMap2 [1;6C <C-S-Right>
 "
-NapMap  <C-BS>
-NapMap2 [3;5~ <C-Delete>
+" Non-MSYS2 remaps
+if $WINDIR == ""
+  NapMap  <C-BS>
+  NapMap2 [3;5~ <C-Delete>
+endif
 "
 NapMap2 [1;5H <C-Home>
 NapMap2 [1;5F <C-End>
