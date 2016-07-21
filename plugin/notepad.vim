@@ -500,6 +500,26 @@ else
 endif
 
 
+" Ctrl-T Ctrl-N inserts a file-specific string (N also asks for)
+"
+function! notepad#InsertFileSpecificString(ask)
+  if !exists("b:FileSpecificString")
+    let b:FileSpecificString = ""
+  endif
+  if a:ask != 0 || strlen(b:FileSpecificString) <= 0
+    call inputsave()
+    let b:FileSpecificString = input("File-specific string: ")
+    call inputrestore()
+  endif
+  exec "norm! i".b:FileSpecificString
+  exec "norm! l"
+endfunction
+command! AskingFileSpecificString call notepad#InsertFileSpecificString(1)
+command! InsertFileSpecificString call notepad#InsertFileSpecificString(0)
+NapC <C-t><C-n> InsertFileSpecificString
+NapC <C-t>n AskingFileSpecificString
+
+
 " Ctrl-E goes to pair brace
 Nap <C-e> %
 vnoremap <C-e> %
