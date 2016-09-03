@@ -9,35 +9,14 @@
 # minimal settings
 tpope vim-sensible
 
-# XML tags auto-closer
-docunext closetag.vim
-
 # vimscript, shell, etc. auto-closer
 tpope vim-endwise
 
 # autodetect tab width
 tpope vim-sleuth
 
-# ag/ack/pt find-in-files integration
-dyng ctrlsf.vim
-
-# undo tree visualizer
-sjl gundo.vim
-
-# vertical bars on indent levels
-Yggdroot indentLine
-
 # syntax checker
 scrooloose syntastic
 
-# user interface framework for selecting items
-Shougo unite.vim
-
-# prettifier for assignments and alike
-junegunn vim-easy-align
-
-# adds text => (text) capabilities
-tpope vim-surround
-
-# adds preview of find-and-replace
-osyo-manga vim-over
+# indent highlighter
+Yggdroot indentLine
