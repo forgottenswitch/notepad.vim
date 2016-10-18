@@ -519,6 +519,9 @@ command! InsertFileSpecificString call notepad#InsertFileSpecificString(0)
 NapC <C-t><C-n> InsertFileSpecificString
 NapC <C-t>n AskingFileSpecificString
 
+" Ctrl-T Ctrl-O reflows current paragraph
+"
+NapC <C-t><C-o> norm!\ gqip
 
 " Ctrl-E goes to pair brace
 Nap <C-e> %
