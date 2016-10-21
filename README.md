@@ -13,17 +13,15 @@ Caveats:
 # Installation
 - Back up the `~/.vim` and `~/.vimrc` somewhere.
 - Install [pathogen](https://github.com/tpope/vim-pathogen).
-- Do `cd ~/.vim/bundle`, then `git checkout`, `ln -s`, or `cp -r` this repo.
-- In `~/.vim/bundle`, run: `sh notepad.vim/update.sh`.
+- Do `cd ~/.vim/bundle`, then `git checkout` this repo.
+- Run `sh notepad.vim/update.sh` to install recommended plugins.
 
-# Adding a plugin
-First, the plugin could just be `git checkout`-ed into `bundle/`, as usual with pathogen.
-However, this has the disadvantage of being hard-to-remember what-is-what.
-
-So, the `bundle/notepad.vim/dependencies` file could be edited, adding a new entry.
-There, a comment is possible, providing a reminder of what the
-[vim-sleuth](https://github.com/tpope/vim-sleuth), etc. is.
-Then run `sh notepad.vim/update.sh`.
+# Vim plugins
+Plugins could be listed in `bundle/notepad.vim/dependencies`, and updated with
+```sh
+cd ~/.vim/bundle
+sh notepad.vim/update.sh
+```
 
 Fixing a plugin misbehaving with `:set insertmode` could be done in the
 `~/.vim/after/plugin/` dir.
@@ -31,5 +29,4 @@ The fixes file should probably have the same name as the plugin it fixes,
 and must end with ".vim".
 
 # License
-Vim license. See `:help license`.
-
+Vim license.
