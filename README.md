@@ -5,6 +5,8 @@ Provides conventional, Notepad-like behaviours and key bindings,
 like being always in Insert mode, or having Shift select text.
 That is, `:set insertmode` and `:behave mswin` with additional tweaks.
 
+Intended to be used with [qwaf](https://github.com/forgottenswitch/qwaf).
+
 Caveats:
 * Plugins are likely not to be designed for
   `:set insertmode` compatibility, and so may misbehave.
