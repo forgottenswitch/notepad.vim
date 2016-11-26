@@ -379,6 +379,7 @@ endif
 " Bug: Undo gets to wrong end of word with Ctrl-Backspace
 Nap <C-BS> "_db
 Nap <C-Delete> "_de
+Nap  "_db
 
 " Backspace deletes a selection
 vnoremap <BS> "_x
