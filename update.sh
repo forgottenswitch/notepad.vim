@@ -52,8 +52,9 @@ check_the_dir() {
     exit 1
   }
   test _"$script_dir_up_real" != _"$current_dir_real" && {
-    echo "You should run this command from $script_dir_up_real (not $current_dir_real)"
-    exit 1
+    echo "Doing update in $script_dir_up_real"
+    echo
+    cd "$script_dir_up_real"
   }
 }
 
@@ -146,6 +147,6 @@ test _"$mode" = _"" && {
     esac
   done
 
-  echo "Done updating Vim plugins in $current_dir_real"
+  echo "Done updating Vim plugins in $script_dir_up_real"
 }
 
