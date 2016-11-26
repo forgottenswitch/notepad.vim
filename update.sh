@@ -15,11 +15,11 @@ usage() {
   echo "        sh $PROG --help to show this help"
   echo " VERBOSE=1 sh $PROG to show what is performed"
   echo " DRYRUN=1  sh $PROG to show what would be performed"
+  echo
 }
 
 nargs="$#"
 arg1="$1"
-shift
 
 mode=""
 case "$arg1" in
@@ -27,7 +27,7 @@ case "$arg1" in
   --help|-h) mode=help ;;
 esac
 
-test "$mode" == "help" && {
+test _"$mode" = _"help" && {
   usage
   exit 1
 }
@@ -43,15 +43,15 @@ script_dir_up_real=$(realpath "$script_dir_up")
 script_dir_up_base=$(basename "$script_dir_up_real")
 
 check_the_dir() {
-  test "$script_dir_base" != "notepad.vim" && {
+  test _"$script_dir_base" != _"notepad.vim" && {
     echo "This script is not in bundle/notepad.vim directory"
     exit 1
   }
-  test "$script_dir_up_base" != "bundle" && {
+  test _"$script_dir_up_base" != _"bundle" && {
     echo "This script is inside notepad.vim, but not bundle/notepad.vim directory"
     exit 1
   }
-  test "$script_dir_up_real" != "$current_dir_real" && {
+  test _"$script_dir_up_real" != _"$current_dir_real" && {
     echo "You should run this command from $script_dir_up_real (not $current_dir_real)"
     exit 1
   }
@@ -60,13 +60,13 @@ check_the_dir() {
 check_not_a_path() {
   test ! -z "$1" || return 1
   local base=$(basename "$1")
-  test "$base" = "$1" || return 1
-  test "$base" != "/" || return 1
+  test _"$base" = _"$1" || return 1
+  test _"$base" != _"/" || return 1
   local no_colons=$(echo "$1" | sed -e "s/://g")
-  test "$1" == "$no_colons" || return 1
+  test _"$1" = _"$no_colons" || return 1
 }
 
-test "$mode" == "off" && {
+test _"$mode" = _"off" && {
   check_the_dir
   usage="$PROG --off AUTHOR PLUGIN"
   author="$1"
@@ -115,7 +115,7 @@ update_git() {
   echo
 }
 
-test "$mode" == "" && {
+test _"$mode" = _"" && {
   test "$nargs" -ne "0" && { usage; exit 1; }
   check_the_dir
   site="github"
@@ -126,8 +126,9 @@ test "$mode" == "" && {
   echo " Using plugin list $current_dir_real/$deps_file"
   echo
   test -e "$deps_file" || { echo "$PROG: fatal error: $deps_file does not exist!"; exit 1; }
-  cat "$deps_file" | while read -r
-  do
+
+  cat "$deps_file" |
+  while read -r REPLY ; do
     line=$(strip_spaces "$REPLY")
     lineno=$((lineno+1))
     case "$line" in
@@ -136,7 +137,7 @@ test "$mode" == "" && {
       "#"*|"") ;;
       *)
         author="${line%% *}"
-	plugin="${line##* }"
+        plugin="${line##* }"
         case "$site" in
           github) update_git "https://github.com/${author}/${plugin}.git" "${plugin}" ;;
           *) echo "$deps_file:$lineno: fatal error: unknown site $site" > /dev/stderr; exit 1;;
@@ -144,6 +145,7 @@ test "$mode" == "" && {
         ;;
     esac
   done
+
   echo "Done updating Vim plugins in $current_dir_real"
 }
 
