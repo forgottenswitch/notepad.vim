@@ -6,6 +6,8 @@ A set of `Ctrl-ZXCV`-like keybindings and defaults for Vim.
 
 The missing HJKL keys could be provided with [qwaf](https://github.com/forgottenswitch/qwaf).
 
+[Keybindings list](SHORTCUTS.txt).
+
 Installation
 ------------
 - Back up the `~/.vim` and `~/.vimrc` somewhere.
