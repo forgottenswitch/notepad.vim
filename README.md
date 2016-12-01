@@ -1,15 +1,13 @@
 Notepad.vim
 ===========
 
-A set of `Ctrl-ZXCV`-like keybindings and defaults for Vim.
-(I.e. more complete `:set insertmode` and `:behave mswin`).
-
-The missing HJKL keys could be provided with [qwaf](https://github.com/forgottenswitch/qwaf).
+`Ctrl-ZXCV`-ish vim config (a more complete `:set insertmode` and `:behave mswin`).
 
 [Keybindings list](SHORTCUTS.txt).
+HJKL keys could be provided with [qwaf](https://github.com/forgottenswitch/qwaf).
 
-Installation
-------------
+Running
+-------
 - Back up the `~/.vim` and `~/.vimrc` somewhere.
 - Install [pathogen](https://github.com/tpope/vim-pathogen).
 - Do `cd ~/.vim/bundle`, then `git checkout` this repo.
@@ -18,6 +16,8 @@ Caveats
 -------
 * Breaks plugins, as they do not expect `set insertmode`
 * Terminal emulators by default intercept `Shift-Up,Down,Home,End`
+* Misses clipboard integration, text objects.
+  Word navigation could not work depending on the terminal.
 
 Plugin manager
 --------------
