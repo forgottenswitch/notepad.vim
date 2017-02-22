@@ -15,6 +15,17 @@ let do_syntax_sel_menu = 1| runtime! synmenu.vim|
 " Fix .md files
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 
+" Do not overwrite output of commands, such as "!norm ga",
+" with "-- INSERT --"
+au InsertEnter * call notepad#DisableShowMode()
+au InsertLeave * call notepad#EnableShowMode()
+function! notepad#DisableShowMode()
+  set noshowmode
+endfunction
+function! notepad#EnableShowMode()
+  set showmode
+endfunction
+
 " Shift selects
 behave mswin
 " Mouse works in terminal
