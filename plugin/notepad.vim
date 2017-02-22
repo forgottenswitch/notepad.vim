@@ -117,7 +117,7 @@ noremap <bs> i
 "   snoremap x <c-o>y
 "
 " NapC x y does the same, but with 'y' surrounded by : and <cr> -- same as Nap x :y<cr>
-" NapCsil x y does Nap x :y<cr> with a <silent>
+"  It also adds <silent>
 " NapV x y auto-starts the visual mode prior to command -- same as Nap x :normal!<space>vy<cr> | vnoremap x y
 "
 " Should the binding have two commands, y and z, the following would need to be done:
@@ -138,8 +138,7 @@ function! NapFunc(prefix,bndprefix,postfix,key,bind)
     exec "snoremap ".l:ivscmd
 endfunction
 command! -nargs=+ Nap call NapFunc("", "", "", <f-args>)
-command! -nargs=+ NapC call NapFunc("", ":", "<cr>", <f-args>)
-command! -nargs=+ NapCsil call NapFunc("<silent>", ":", "<cr>", <f-args>)
+command! -nargs=+ NapC call NapFunc("<silent>", ":", "<cr>", <f-args>)
 function! NapVFunc(prefix,bndprefix,postfix,key,bind)
     let l:ncmd = " ".a:prefix." ".a:key." :normal! v".a:bndprefix.a:bind.a:postfix."<cr>"
     let l:vcmd = " ".a:prefix." ".a:key." ".a:bndprefix.a:bind.a:postfix
@@ -284,14 +283,14 @@ Nap <c-b> :b!<space>
 NapC <F7> set\ invpaste\ paste?\|\ set\ pastetoggle=<F7>
 
 " F4 goes to next/prev compiling error
-NapCsil <F4> cnext
-NapCsil <S-F4> cprev
+NapC <F4> cnext
+NapC <S-F4> cprev
 " F3 goes to next/prev occurence of word
 Nap <F3> *
 Nap <S-F3> #
 " F8 goes to next/prev syntax error
-NapCsil <F8> lnext
-NapCsil <S-F8> lprev
+NapC <F8> lnext
+NapC <S-F8> lprev
 
 " Ctrl-Alt-c shows errors if any
 NapC <c-a-c> copen\|cwin
