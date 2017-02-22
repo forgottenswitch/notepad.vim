@@ -269,7 +269,7 @@ Nap <F6> <c-w>w
 Nap <S-F6> <c-w>W
 Nap <c-b> :b!<space>
 
-" F7 toogles raw-inserting
+" F7 toogles raw-inserting (allows to paste without auto-indent)
 NapC <F7> set\ invpaste\ paste?\|\ set\ pastetoggle=<F7>
 
 " F4 goes to next/prev compiling error
