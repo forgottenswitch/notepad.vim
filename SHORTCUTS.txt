@@ -36,6 +36,7 @@ Ctrl-T Ctrl-S saves as
 Ctrl-T Ctrl-K/Delete cuts forward
 Ctrl-T Ctrl-H/Backspace cuts backward
 Ctrl-T Ctrl-N inserts a file-specific string (N also asks for)
+Ctrl-T 8 describes current character
 Ctrl-T Ctrl-O reflows current paragraph
 Ctrl-E goes to pair brace
 Ctrl-O is source code key

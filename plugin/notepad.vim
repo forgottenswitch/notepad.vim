@@ -531,6 +531,9 @@ command! InsertFileSpecificString call notepad#InsertFileSpecificString(0)
 NapC <C-t><C-n> InsertFileSpecificString
 NapC <C-t>n AskingFileSpecificString
 
+" Ctrl-T 8 describes current character
+NapC <C-t>8 norm!\ ga
+
 " Ctrl-T Ctrl-O reflows current paragraph
 "
 NapC <C-t><C-o> norm!\ gqip
