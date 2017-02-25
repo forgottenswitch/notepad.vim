@@ -12,6 +12,16 @@ set expandtab
 " Show Syntax menu (gvim)
 let do_syntax_sel_menu = 1| runtime! synmenu.vim|
 
+command! -nargs=+ SetIfExists call SetIfExistsFunc(<f-args>)
+function! SetIfExistsFunc(setting, value)
+  if exists("+" . a:setting)
+    exec "set " . a:setting . "=" . a:value
+  endif
+endfunction
+
+" Do not bell
+SetIfExists belloff all
+
 " Fix .md files
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 
