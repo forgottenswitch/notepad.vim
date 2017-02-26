@@ -1,5 +1,12 @@
+" Make plugins be noticed
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
 " Disable obsolete features
 set nocompatible
+" Enable file type specific plugins
+filetype plugin indent on
+" Enable syntax highlighing
+syntax on
 " Set Insert mode (rather than Normal) as the default
 set insertmode
 " Show line numbers column
@@ -27,12 +34,12 @@ autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " Do not overwrite output of commands, such as "!norm ga",
 " with "-- INSERT --"
-au InsertEnter * call notepad#DisableShowMode()
-au InsertLeave * call notepad#EnableShowMode()
-function! notepad#DisableShowMode()
+au InsertEnter * call rc#DisableShowMode()
+au InsertLeave * call rc#EnableShowMode()
+function! rc#DisableShowMode()
   set noshowmode
 endfunction
-function! notepad#EnableShowMode()
+function! rc#EnableShowMode()
   set showmode
 endfunction
 
@@ -63,10 +70,10 @@ endif
 " Ctrl-U inserts input as-is, like Ctrl-V in shell,
 " and/or Ctrl-Shift-U Unicode input in Gtk+.
 " The mapping won't work right there, and must be delayed.
-function! notepad#Bind_ctrl_u_to_raw_insert()
+function! rc#Bind_ctrl_u_to_raw_insert()
     inoremap <C-u> <C-v>
 endfunction
-autocmd VimEnter * call notepad#Bind_ctrl_u_to_raw_insert()
+autocmd VimEnter * call rc#Bind_ctrl_u_to_raw_insert()
 
 " Ctrl-V pastes
 " Ctrl-K cuts selection or line
@@ -93,7 +100,7 @@ else
 endif
 
 " Tab also completes
-function! notepad#CompleteOrTab()
+function! rc#CompleteOrTab()
     if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
         return "\<Tab>"
     else
@@ -106,7 +113,7 @@ function! notepad#CompleteOrTab()
         endif
     endif
 endfunction
-inoremap <Tab> <C-R>=notepad#CompleteOrTab()<cr>
+inoremap <Tab> <C-R>=rc#CompleteOrTab()<cr>
 
 
 " Space starts insert mode
@@ -356,7 +363,7 @@ vnoremap <C-S-Down> }
 " Home alterates between first non-blank and first
 " (but not when selecting)
 "
-function! notepad#Home()
+function! rc#Home()
     let l:pos = getpos(".")
     norm! ^
     let l:pos1 = getpos(".")
@@ -364,12 +371,12 @@ function! notepad#Home()
         norm! g0
     endif
 endfunction
-NapC <Home> call\ notepad#Home()
+NapC <Home> call\ rc#Home()
 
 " End alterates between last and last non-blank
 " (but not when selecting)
 "
-function! notepad#End()
+function! rc#End()
     let l:pos = getpos(".")
     norm! $l
     let l:pos1 = getpos(".")
@@ -377,7 +384,7 @@ function! notepad#End()
         norm! g_l
     endif
 endfunction
-NapC <End> call\ notepad#End()
+NapC <End> call\ rc#End()
 
 " In terminal, selection could be extended with no Shift
 if has("gui_running")
@@ -406,7 +413,7 @@ vnoremap <BS> "_x
 
 
 " Ctrl-L goes to line
-function! notepad#GotoLine(...)
+function! rc#GotoLine(...)
     if a:0 < 1
         call inputsave()
         let l:lineno = input("Goto line: ")
@@ -421,7 +428,7 @@ function! notepad#GotoLine(...)
     endif
     exec "norm! ".l:lineno1."G"
 endfunction
-command! -nargs=* GotoLine call notepad#GotoLine(<f-args>)
+command! -nargs=* GotoLine call rc#GotoLine(<f-args>)
 NapC <C-l> GotoLine
 
 
@@ -523,7 +530,7 @@ endif
 
 " Ctrl-T Ctrl-N inserts a file-specific string (N also asks for)
 "
-function! notepad#InsertFileSpecificString(ask)
+function! rc#InsertFileSpecificString(ask)
   if !exists("b:FileSpecificString")
     let b:FileSpecificString = ""
   endif
@@ -535,8 +542,8 @@ function! notepad#InsertFileSpecificString(ask)
   exec "norm! i".b:FileSpecificString
   exec "norm! l"
 endfunction
-command! AskingFileSpecificString call notepad#InsertFileSpecificString(1)
-command! InsertFileSpecificString call notepad#InsertFileSpecificString(0)
+command! AskingFileSpecificString call rc#InsertFileSpecificString(1)
+command! InsertFileSpecificString call rc#InsertFileSpecificString(0)
 NapC <C-t><C-n> InsertFileSpecificString
 NapC <C-t>n AskingFileSpecificString
 
@@ -583,7 +590,7 @@ NapC <C-o><End> confirm\ last
 Nap <C-o><C-o> gf
 "
 " Ctrl-OE "explores"
-function! notepad#Explorer()
+function! rc#Explorer()
   Sexplore!
 endfunction
 NapC <C-o><C-e> call\ notepad#Explorer()

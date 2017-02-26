@@ -1,29 +1,27 @@
-Notepad.vim
-===========
+GUI-like customizations for vim.
 
-`Ctrl-ZXCV`-ish vim config (a more complete `:set insertmode` and `:behave mswin`).
+- `Ctrl-S` saves
+- `Ctrl-T` selects
+  * `1` for by-chars, `2` for by-lines, `3` for rectangle, `a` for select-all
+  * `C` then copies, `X` cuts
+- `Ctrl-Z` undoes, `Ctrl-O Ctrl-Z` suspends
+- `Ctrl-V` pastes
+- `Ctrl-A` enters the `:` prompt
 
-[Keybindings list](SHORTCUTS.txt).
-HJKL keys could be provided with [qwaf](https://github.com/forgottenswitch/qwaf).
+[List of keybindings](SHORTCUTS.txt).
+Cursor keys are expected to be provided by keyboard layout, such as [qwaf](https://github.com/forgottenswitch/qwaf).
 
-Running
--------
-- Back up the `~/.vim` and `~/.vimrc` somewhere.
-- Install [pathogen](https://github.com/tpope/vim-pathogen).
-- Do `cd ~/.vim/bundle`, then `git checkout` this repo.
-
-Caveats
--------
-* Breaks plugins, as they do not expect `set insertmode`
+Misfeatures:
+* Breaks plugins where they do not expect `set insertmode`
 * Terminal emulators by default intercept `Shift-Up,Down,Home,End`
-* Misses clipboard integration, text objects.
-  Word navigation could not work depending on the terminal.
+* No text objects
 
-Plugin manager
---------------
-Plugins could be listed in `~/.vim/bundle/notepad.vim/dependencies`,
-and updated with the following shell command:
-```sh
-sh ~/.vim/bundle/notepad.vim/update.sh
+Installation
+------------
+- Back up the `~/.vim` and `~/.vimrc` somewhere.
+- `git clone` this repo as `~/.vim`
+- `git submodule update --init --recursive`
+- Put into `~/.vimrc`:
 ```
-They are then installed into `~/.vim/bundle`.
+source $HOME/.vim/rc.vim
+```
