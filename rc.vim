@@ -1,3 +1,8 @@
+" Colors
+colors desert
+" Consider these encodings when opening a file
+set fileencodings=ucs-bom,utf-8,default,latin-1,cp1251
+
 " Make plugins be noticed
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
@@ -31,6 +36,28 @@ SetIfExists belloff all
 
 " Fix .md files
 autocmd BufNewFile,BufRead *.md set filetype=markdown
+
+" git commit message wrap
+au BufNewFile,BufRead *.git/* setl textwidth=72
+
+" C/C++: Do not highlight {} inside () as error
+let c_no_curly_error = 1
+
+" Highlights
+"  trailing space as _
+"  off-the-screen as $
+"  tab as |
+set list lcs=trail:_,extends:$,precedes:$,tab:\|\	
+
+" Line indents (from Yggdroot/indentLine)
+"  sacrifice correctness for speed
+"  use a custom character: | ¦ ┆ │ ┊
+let g:indentLine_faster = 1
+if $LANG == "C"
+        let g:indentLine_char = '|'
+else
+        let g:indentLine_char = '¦'
+endif
 
 " Do not overwrite output of commands, such as "!norm ga",
 " with "-- INSERT --"
