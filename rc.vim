@@ -206,7 +206,7 @@ function! NoremapFunc(prefix,bndprefix,postfix,modes,key,bind)
     let l:mapcmd = " ".a:prefix." ".a:key." ".a:bndprefix.a:bind.a:postfix
     " echoerr "Noremap: ".l:mapcmd
     for m in split(a:modes, '\zs')
-	exec l:m."noremap ".l:mapcmd
+        exec l:m."noremap ".l:mapcmd
     endfor
 endfunction
 command! -nargs=+ Noremap call NoremapFunc("", "", "", <f-args>)
