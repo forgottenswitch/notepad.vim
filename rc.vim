@@ -6,6 +6,10 @@ set fileencodings=ucs-bom,utf-8,default,latin-1,cp1251
 " Make plugins be noticed
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
+" Load Vim defaults
+if v:version > 740 || (v:version == 740 && has("patch2111"))
+  unlet! skip_defaults_vim | source $VIMRUNTIME/defaults.vim
+endif
 " Disable obsolete features
 set nocompatible
 " Enable file type specific plugins
