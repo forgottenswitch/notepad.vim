@@ -51,7 +51,7 @@ let c_no_curly_error = 1
 "  trailing space as _
 "  off-the-screen as $
 "  tab as |
-set list lcs=trail:_,extends:$,precedes:$,tab:\|\	
+set list lcs=trail:_,extends:$,precedes:$,tab:\|\ 
 
 " Line indents (from Yggdroot/indentLine)
 "  sacrifice correctness for speed
