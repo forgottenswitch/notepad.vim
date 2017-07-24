@@ -2,6 +2,7 @@ Ctrl-U inserts input as-is, like Ctrl-V in shell,
 and/or Ctrl-Shift-U Unicode input in Gtk+.
 Ctrl-V pastes
 Ctrl-K cuts selection or line
+Ctrl+level5+Left/Right/Backspace/Delete of qwaf
 Ctrl-A executes a command
 Ctrl-S saves
 Ctrl-F searches

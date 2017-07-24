@@ -252,6 +252,12 @@ NapMap [31~ <S-F5>
 NapMap [32~ <S-F6>
 NapMap [33~ <S-F7>
 NapMap [34~ <S-F8>
+"
+" Ctrl+level5+Left/Right/Backspace/Delete of qwaf
+NapMap b <C-Left>
+NapMap f <C-Right>
+NapMap  <C-BS>
+NapMap d <C-Delete>
 
 
 ""
