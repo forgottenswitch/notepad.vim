@@ -97,14 +97,8 @@ else
     snoremap x <c-o>x
 endif
 
-
-" Ctrl-U inserts input as-is
-"- (like Ctrl-V in shell, or Ctrl-Shift-U Unicode input in Gtk+).
-"- The mapping won't work right there, and must be delayed.
-function! rc#Bind_ctrl_u_to_raw_insert()
-    inoremap <C-u> <C-v>
-endfunction
-autocmd VimEnter * call rc#Bind_ctrl_u_to_raw_insert()
+" Ctrl-Q inserts input as-is
+" (provided by Vim).
 
 " Ctrl-V pastes
 " Ctrl-K cuts selection or line

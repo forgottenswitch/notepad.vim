@@ -1,4 +1,4 @@
-Ctrl-U inserts input as-is
+Ctrl-Q inserts input as-is
 Ctrl-V pastes
 Ctrl-K cuts selection or line
 Ctrl-A executes a command
