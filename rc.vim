@@ -644,3 +644,8 @@ imap <C-o><C-k> <C-t><C-k>
 imap <C-o><C-h> <C-t><C-h>
 imap <C-o><bs> <C-t><bs>
 
+command! -nargs=1 I call SetIndent(<f-args>)
+function! SetIndent(n)
+  exec "setl sw=" . a:n . ""
+  exec "IndentLinesReset"
+endfunction
