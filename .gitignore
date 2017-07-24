@@ -1,1 +1,4 @@
 *.html
+
+# https://github.com/mattn/invader-vim.git
+bundle/invader
