@@ -1,8 +1,6 @@
-Ctrl-U inserts input as-is, like Ctrl-V in shell,
-and/or Ctrl-Shift-U Unicode input in Gtk+.
+Ctrl-U inserts input as-is
 Ctrl-V pastes
 Ctrl-K cuts selection or line
-Ctrl+level5+Left/Right/Backspace/Delete of qwaf
 Ctrl-A executes a command
 Ctrl-S saves
 Ctrl-F searches
@@ -16,20 +14,16 @@ Ctrl-Z undoes
 Ctrl-Y redoes
 Ctrl-Up/Down navigate/select paragraphs
 Ctrl-Backspace/Delete delete a word
-Bug: Undo gets to wrong end of word with Ctrl-Backspace
+ Bug: Undo gets to wrong end of word with Ctrl-Backspace
 Ctrl-L goes to line
 Ctrl-T is a selection key
-Unbind the Vim Ctrl-T
 Ctrl-T 1 or 0 selects
 Ctrl-T 2 selects line-wise
 Ctrl-T 4 selects rectangular
 Ctrl-T 3 selects rectangular as much as possible
 Ctrl-T Ctrl-A executes ('selects') a menu command
 Ctrl-T a/g/G select all, to-start, to-end
-Ctrl-T Left/Right shortcuts
-Ctrl-T Up/Down shortcuts
 Ctrl-T Home/End select to absolute line beginning/end
-Ctrl-T Ctrl-Home/End shortcuts
 Ctrl-T Ctrl-L clears search highlights
 Ctrl-TT Home/End act as Ctrl-T Ctrl-Home
 Ctrl-TT Up/Down selects paragraphs

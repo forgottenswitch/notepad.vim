@@ -4,7 +4,10 @@ all: $(shortcuts_txt)
 
 .PHONY: $(shortcuts_txt)
 $(shortcuts_txt): rc.vim
-	grep "Ctrl" $+ | sed -e 's/^" //' > $@
+	grep "Ctrl" $+ | \
+		grep -v shortcuts | \
+		grep -v '^"-'| \
+		sed -e 's/^" //' > $@
 
 .PHONY: clean
 clean:

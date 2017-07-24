@@ -98,9 +98,9 @@ else
 endif
 
 
-" Ctrl-U inserts input as-is, like Ctrl-V in shell,
-" and/or Ctrl-Shift-U Unicode input in Gtk+.
-" The mapping won't work right there, and must be delayed.
+" Ctrl-U inserts input as-is
+"- (like Ctrl-V in shell, or Ctrl-Shift-U Unicode input in Gtk+).
+"- The mapping won't work right there, and must be delayed.
 function! rc#Bind_ctrl_u_to_raw_insert()
     inoremap <C-u> <C-v>
 endfunction
@@ -253,7 +253,7 @@ NapMap [32~ <S-F6>
 NapMap [33~ <S-F7>
 NapMap [34~ <S-F8>
 "
-" Ctrl+level5+Left/Right/Backspace/Delete of qwaf
+"- Ctrl+level5+Left/Right/Backspace/Delete of qwaf
 NapMap b <C-Left>
 NapMap f <C-Right>
 NapMap  <C-BS>
@@ -440,7 +440,7 @@ endif
 
 
 " Ctrl-Backspace/Delete delete a word
-" Bug: Undo gets to wrong end of word with Ctrl-Backspace
+"  Bug: Undo gets to wrong end of word with Ctrl-Backspace
 Nap <C-BS> "_db
 Nap <C-Delete> "_de
 Nap  "_db
@@ -471,7 +471,7 @@ NapC <C-l> GotoLine
 
 " Ctrl-T is a selection key
 "
-" Unbind the Vim Ctrl-T
+"- Unbind the Vim Ctrl-T
 inoremap <c-t> <c-o>:<esc>
 "
 " Ctrl-T 1 or 0 selects
