@@ -1,6 +1,10 @@
+Shift selects
+When selected with shift, C/X copies/cuts
 Ctrl-Q inserts input as-is
+ (provided by Vim).
 Ctrl-V pastes
 Ctrl-K cuts selection or line
+ Tab also completes
 Ctrl-A executes a command
 Ctrl-S saves
 Ctrl-F searches

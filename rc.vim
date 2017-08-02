@@ -92,7 +92,7 @@ function! rc#MapEnterToFollowIfHelpFunc()
 endfunction
 au Syntax * MapEnterToFollowIfHelp
 
-" Shift selects
+"== Shift selects
 behave mswin
 " Mouse works in terminal
 set mouse=a
@@ -102,7 +102,7 @@ set virtualedit=onemore
 noremap <end> <end><right>
 inoremap <end> <end><right>
 
-" When selected with shift, C/X copies/cuts
+"== When selected with shift, C/X copies/cuts
 "
 if has("gui_running")
     vnoremap c mQ"+y`Q<esc>
@@ -116,7 +116,7 @@ else
 endif
 
 " Ctrl-Q inserts input as-is
-" (provided by Vim).
+"= (provided by Vim).
 
 " Ctrl-V pastes
 " Ctrl-K cuts selection or line
@@ -142,7 +142,7 @@ else
     vnoremap <C-k> x
 endif
 
-" Tab also completes
+"= Tab also completes
 function! rc#CompleteOrTab()
     if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
         return "\<Tab>"
