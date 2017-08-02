@@ -186,23 +186,6 @@ else
   vnoremap <C-k> x
 endif
 
-"= Tab also completes
-function! rc#CompleteOrTab()
-  if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-    return "\<Tab>"
-  else
-    if &omnifunc != ''
-      return "\<C-X>\<C-O>"
-    elseif &dictionary != ''
-      return "\<C-K>"
-    else
-      return "\<C-N>"
-    endif
-  endif
-endfunction
-inoremap <Tab> <C-R>=rc#CompleteOrTab()<cr>
-
-
 " Space starts insert mode
 noremap <space> i
 " Backspace starts insert mode
@@ -390,6 +373,12 @@ let g:surround_no_insert_mappings = 1
 Nap <C-g> n
 " Ctrl-O Ctrl-G goes to previous match
 Nap <C-o><C-g> N
+" Ctrl-N / Ctrl-P select completions
+"= Provided by Vim.
+
+" Ctrl-B switches files
+"= Access file list with Ctrl-B Ctrl-D
+Nap <c-b> :b!<space>
 
 "== F6 switches windows
 "= (ignoring error and location list ones)
@@ -415,10 +404,6 @@ function! NextWindowFunc(direction)
 endfunction
 NapC <F6> call\ NextWindowFunc(1)
 NapC <S-F6> call\ NextWindowFunc(-1)
-
-" Ctrl-B switches files
-"= Access file list with Ctrl-B Ctrl-D
-Nap <c-b> :b!<space>
 
 " F7 toogles raw-inserting (allows to paste without auto-indent)
 NapC <F7> set\ invpaste\ paste?\|\ set\ pastetoggle=<F7>

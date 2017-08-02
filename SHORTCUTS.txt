@@ -7,7 +7,6 @@ Ctrl-Q inserts input as-is (e.g. Ctrl-Q Ctrl-I always gives TAB)
  Provided by Vim.
 Ctrl-V pastes
 Ctrl-K cuts selection or line
- Tab also completes
 Ctrl-A executes a command
  Access command history with Ctrl-A Ctrl-F
 Ctrl-S saves
@@ -16,10 +15,12 @@ Ctrl-F searches
 Ctrl-O Ctrl-F searches backwards
 Ctrl-G goes to next match
 Ctrl-O Ctrl-G goes to previous match
-F6 switches windows
- (ignoring error and location list ones)
+Ctrl-N / Ctrl-P select completions
+ Provided by Vim.
 Ctrl-B switches files
  Access file list with Ctrl-B Ctrl-D
+F6 switches windows
+ (ignoring error and location list ones)
 Ctrl-W for window operations
  Not conventional, but useful - try e.g. Ctrl-W V,S, or Shift-L
 Ctrl-F4 closes file
