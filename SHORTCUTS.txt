@@ -16,8 +16,10 @@ Ctrl-F searches
 Ctrl-O Ctrl-F searches backwards
 Ctrl-G goes to next match
 Ctrl-O Ctrl-G goes to previous match
-F6/Ctrl-B switch window/file
- Access buffer list with Ctrl-B Ctrl-D
+F6 switches windows
+ (ignoring error and location list ones)
+Ctrl-B switches files
+ Access file list with Ctrl-B Ctrl-D
 Ctrl-W for window operations
  Not conventional, but useful - try e.g. Ctrl-W V,S, or Shift-L
 Ctrl-F4 closes file

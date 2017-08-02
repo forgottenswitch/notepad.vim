@@ -390,10 +390,34 @@ let g:surround_no_insert_mappings = 1
 Nap <C-g> n
 " Ctrl-O Ctrl-G goes to previous match
 Nap <C-o><C-g> N
-" F6/Ctrl-B switch window/file
-"= Access buffer list with Ctrl-B Ctrl-D
-Nap <F6> <c-w>w
-Nap <S-F6> <c-w>W
+
+"== F6 switches windows
+"= (ignoring error and location list ones)
+function! NextWindowFunc(direction)
+  let l:visited_windows = [ winnr() ]
+  while 1
+    if a:direction > 0
+      wincmd w
+    else
+      wincmd W
+    endif
+    " ignore quickfix and location list windows
+    if &ft != "qf"
+      break
+    endif
+    let l:this_window = winnr()
+    " avoid infinite loop
+    if index(l:visited_windows, l:this_window) != -1
+      break
+    endif
+    let l:visited_windows += [ l:this_window ]
+  endwhile
+endfunction
+NapC <F6> call\ NextWindowFunc(1)
+NapC <S-F6> call\ NextWindowFunc(-1)
+
+" Ctrl-B switches files
+"= Access file list with Ctrl-B Ctrl-D
 Nap <c-b> :b!<space>
 
 " F7 toogles raw-inserting (allows to paste without auto-indent)
