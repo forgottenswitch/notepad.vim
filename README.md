@@ -15,7 +15,6 @@ For ergonomics, CapsLock should be made a Control as well.
 Misfeatures:
 * Breaks plugins where they do not expect `set insertmode`
 * Terminal emulators by default intercept `Shift-Up,Down,Home,End`
-* No text objects
 
 Installation
 ------------

@@ -115,11 +115,10 @@ else
   snoremap x <c-o>x
 endif
 
-"== When selected with shift, I/T/Tab indents, D/U/Shift-Tab deindents
-vnoremap i >gv
+"== When selected with shift, T/Tab indents, D/U/Shift-Tab deindents
+"= ('I' is not used so as not to clash with iW/is/ib/ip/iB text objects)
 vnoremap t >gv
 vnoremap <Tab> >gv
-snoremap i >gv
 snoremap t >gv
 snoremap <Tab> >gv
 "
@@ -130,7 +129,7 @@ snoremap d <gv
 snoremap u <gv
 snoremap <S-Tab> <gv
 
-"== When selected with shift, Shift-I / Shift-T / Space indent by a single column
+"== When selected with shift, Shift-T / Space indent by a single column
 "= (Shift-D/U/Space deindent).  Bug: Space / Shift-Space do not work.
 command! -range -nargs=1 IndentLinesBy call IndentLinesByFunc(<f-args>)
 function! IndentLinesByFunc(width)
@@ -145,10 +144,8 @@ function! IndentLinesByFunc(width)
   exec "set shiftwidth=" . l:saved_width
 endfunction
 "
-vnoremap I :IndentLinesBy 1<cr>
 vnoremap T :IndentLinesBy 1<cr>
 vnoremap <Space> :IndentLinesBy 1<cr>
-snoremap I :IndentLinesBy 1<cr>
 snoremap T :IndentLinesBy 1<cr>
 snoremap <Space> :IndentLinesBy 1<cr>
 "
