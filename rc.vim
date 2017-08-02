@@ -74,6 +74,24 @@ function! rc#EnableShowMode()
   set showmode
 endfunction
 
+" In Help, Enter follows a hyperlink, H goes backward in history, Shift-H forward
+" (Backspace/Delete were not used due to them varying between terminals)
+command! -nargs=0 MapEnterToFollowIfHelp call rc#MapEnterToFollowIfHelpFunc(<f-args>)
+function! rc#MapEnterToFollowIfHelpFunc()
+  if &syntax == "help"
+    inoremap <buffer> <cr> <C-o><C-]>
+    inoremap <buffer> h <C-o><C-t>
+    inoremap <buffer> H <C-o>:tag<cr>
+    "
+    " Consistency with radare2
+    inoremap <buffer> u <C-o><C-t>
+    inoremap <buffer> U <C-o>:tag<cr>
+    inoremap <buffer> f <C-o><C-]>
+    inoremap <buffer> g <C-o><C-]>
+  endif
+endfunction
+au Syntax * MapEnterToFollowIfHelp
+
 " Shift selects
 behave mswin
 " Mouse works in terminal
