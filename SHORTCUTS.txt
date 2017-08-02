@@ -27,7 +27,7 @@ Ctrl-T Home/End select to absolute line beginning/end
 Ctrl-T Ctrl-L clears search highlights
 Ctrl-TT Home/End act as Ctrl-T Ctrl-Home
 Ctrl-TT Up/Down selects paragraphs
-Ctrl-T Ctrl-S saves as
+Ctrl-T S/Ctrl-S saves as
 Ctrl-T Ctrl-K/Delete cuts forward
 Ctrl-T Ctrl-H/Backspace cuts backward
 Ctrl-T N opens a new tab

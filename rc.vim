@@ -521,9 +521,10 @@ NapV <C-t><C-t><Up> {
 NapV <C-t><C-t><Down> }
 
 
-" Ctrl-T Ctrl-S saves as
+" Ctrl-T S/Ctrl-S saves as
 "
 Nap <C-t><C-s> :w<space><c-r>=bufname("")<cr>
+Nap <C-t>s :w<space><c-r>=bufname("")<cr>
 
 
 " Ctrl-T Ctrl-K/Delete cuts forward
