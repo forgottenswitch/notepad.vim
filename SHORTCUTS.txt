@@ -72,5 +72,7 @@ Ctrl-O N/P switch location lists
 Ctrl-O W close location list
 Ctrl-O Ctrl-R inserts a file-specific string (R also asks for)
 Ctrl-O Ctrl-K/Backspace cut forward/backward
+Ctrl-O Y toggles syntax checking on save
+Ctrl-O Ctrl-Y opens syntax errors list
 
 Indent width is controlled with :I<N>

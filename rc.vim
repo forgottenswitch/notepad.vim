@@ -734,6 +734,12 @@ map <C-o><bs> <C-t><bs>
 imap <C-o><C-k> <C-t><C-k>
 imap <C-o><C-h> <C-t><C-h>
 imap <C-o><bs> <C-t><bs>
+"
+" Ctrl-O Y toggles syntax checking on save
+NapC <C-o>y SyntasticToggleMode
+"
+" Ctrl-O Ctrl-Y opens syntax errors list
+NapC <C-o><C-y> Errors
 
 "=
 
