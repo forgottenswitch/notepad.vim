@@ -555,25 +555,6 @@ else
 endif
 
 
-" Ctrl-O Ctrl-N inserts a file-specific string (N also asks for)
-"
-function! rc#InsertFileSpecificString(ask)
-  if !exists("b:FileSpecificString")
-    let b:FileSpecificString = ""
-  endif
-  if a:ask != 0 || strlen(b:FileSpecificString) <= 0
-    call inputsave()
-    let b:FileSpecificString = input("File-specific string: ")
-    call inputrestore()
-  endif
-  exec "norm! i".b:FileSpecificString
-  exec "norm! l"
-endfunction
-command! AskingFileSpecificString call rc#InsertFileSpecificString(1)
-command! InsertFileSpecificString call rc#InsertFileSpecificString(0)
-NapC <C-o><C-n> InsertFileSpecificString
-NapC <C-o>n AskingFileSpecificString
-
 " Ctrl-T 8 describes current character
 NapC <C-t>8 norm!\ ga
 
@@ -644,6 +625,25 @@ NapC <C-t><F4> confirm\ bw
 " Ctrl-O F4/F8 show errors
 NapC <C-o><F4> cwin
 NapC <C-o><F8> lwin
+"
+" Ctrl-O Ctrl-N inserts a file-specific string (N also asks for)
+"
+function! rc#InsertFileSpecificString(ask)
+  if !exists("b:FileSpecificString")
+    let b:FileSpecificString = ""
+  endif
+  if a:ask != 0 || strlen(b:FileSpecificString) <= 0
+    call inputsave()
+    let b:FileSpecificString = input("File-specific string: ")
+    call inputrestore()
+  endif
+  exec "norm! i".b:FileSpecificString
+  exec "norm! l"
+endfunction
+command! AskingFileSpecificString call rc#InsertFileSpecificString(1)
+command! InsertFileSpecificString call rc#InsertFileSpecificString(0)
+NapC <C-o><C-n> InsertFileSpecificString
+NapC <C-o>n AskingFileSpecificString
 "
 " Ctrl-O Ctrl-K/Backspace cut forward/backward
 map <C-o><C-k> <C-t><C-k>

@@ -30,7 +30,6 @@ Ctrl-TT Up/Down selects paragraphs
 Ctrl-T Ctrl-S saves as
 Ctrl-T Ctrl-K/Delete cuts forward
 Ctrl-T Ctrl-H/Backspace cuts backward
-Ctrl-O Ctrl-N inserts a file-specific string (N also asks for)
 Ctrl-T 8 describes current character
 Ctrl-T Ctrl-O reflows current paragraph
 Ctrl-E goes to pair brace
@@ -51,4 +50,5 @@ Ctrl-T Ctrl-N/P switch tabs
 Ctrl-T W closes window
 Ctrl-T F4 closes file
 Ctrl-O F4/F8 show errors
+Ctrl-O Ctrl-N inserts a file-specific string (N also asks for)
 Ctrl-O Ctrl-K/Backspace cut forward/backward
