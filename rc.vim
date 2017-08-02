@@ -348,10 +348,9 @@ NapC <c-a-c> copen\|cwin
 Nap <c-w> <c-w>
 
 " Ctrl-F4 closes file
-" Ctrl-W C does the same
-" Use :q to close a window
 NapC <C-F4> confirm\ bw
-NapC <C-w>c confirm\ bw
+" Ctrl-W F4 does the same
+NapC <C-w><F4> confirm\ bw
 
 " Ctrl-Z undoes
 NoremapC n <C-z> undo\|redraw
@@ -634,6 +633,12 @@ NapC <C-t><C-w> tabclose
 " Ctrl-T PageUp/PageDown switch tabs
 NapC <C-t><PageUp> tabprev
 NapC <C-t><PageDown> tabnext
+"
+" Ctrl-T W closes window
+NapC <C-t>w close
+"
+" Ctrl-T F4 closes file
+NapC <C-t><F4> confirm\ bw
 "
 " Ctrl-O F4/F8 show errors
 NapC <C-o><F4> cwin

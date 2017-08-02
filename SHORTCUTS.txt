@@ -9,7 +9,7 @@ F6/Ctrl-B switch window/file
 Ctrl-Alt-c shows errors if any
 Ctrl-W for window operations
 Ctrl-F4 closes file
-Ctrl-W C does the same
+Ctrl-W F4 does the same
 Ctrl-Z undoes
 Ctrl-Y redoes
 Ctrl-Up/Down navigate/select paragraphs
@@ -47,5 +47,7 @@ Ctrl-OE "explores"
 Ctrl-T Ctrl-N opens a new tab
 Ctrl-T Ctrl-W closes the tab
 Ctrl-T PageUp/PageDown switch tabs
+Ctrl-T W closes window
+Ctrl-T F4 closes file
 Ctrl-O F4/F8 show errors
 Ctrl-O Ctrl-K/Backspace cut forward/backward
