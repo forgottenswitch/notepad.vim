@@ -68,6 +68,8 @@ Ctrl-O 3/2/1 navigate Excuberant Ctags and Vim help
 Ctrl-O Ctrl-A executes ("developer's") command-line
 Ctrl-O Ctrl-Z suspends ("goes to developer's console")
 Ctrl-O Tilde does the same
+Ctrl-O 9 and 0 go to entities - or whatever is meant by [ and ]
+ Example: Ctrl-O 9 M goes to previous method
 Ctrl-O M runs make
 Ctrl-O PageUp/Down go to prev/next file
 Ctrl-O Home/End rewind files

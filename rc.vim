@@ -692,6 +692,12 @@ Nap <C-o><C-z> <C-z>
 Nap <C-o>` <C-z>
 Nap <C-o>~ <C-z>
 "
+" Ctrl-O 9 and 0 go to entities - or whatever is meant by [ and ]
+"= Example: Ctrl-O 9 M goes to previous method
+Nap <C-o>9 [
+Nap <C-o>0 ]
+
+"
 " Ctrl-O M runs make
 NapC <C-o>m !make
 "
