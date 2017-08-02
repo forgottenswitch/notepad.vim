@@ -554,6 +554,26 @@ else
     xnoremap <c-t><bs> x
 endif
 
+"
+" Ctrl-T N opens a new tab
+NapC <C-t>n tabnew
+" Ctrl-T Ctrl-W closes window
+" (not a tab, since it would be closed when no windows would be left)
+NapC <C-t><C-w> close
+"
+" Ctrl-T PageUp/PageDown switch tabs
+NapC <C-t><PageUp> tabprev
+NapC <C-t><PageDown> tabnext
+" Ctrl-T Ctrl-N/P switch tabs
+NapC <C-t><C-n> tabnext
+NapC <C-t><C-p> tabprev
+"
+" Ctrl-T W closes window
+NapC <C-t>w close
+"
+" Ctrl-T F4 closes file
+NapC <C-t><F4> confirm\ bw
+
 
 " Ctrl-T 8 describes current character
 NapC <C-t>8 norm!\ ga
@@ -602,25 +622,6 @@ function! rc#Explorer()
   Sexplore!
 endfunction
 NapC <C-o><C-e> call\ notepad#Explorer()
-"
-" Ctrl-T N opens a new tab
-NapC <C-t>n tabnew
-" Ctrl-T Ctrl-W closes window
-" (not a tab, since it would be closed when no windows would be left)
-NapC <C-t><C-w> close
-"
-" Ctrl-T PageUp/PageDown switch tabs
-NapC <C-t><PageUp> tabprev
-NapC <C-t><PageDown> tabnext
-" Ctrl-T Ctrl-N/P switch tabs
-NapC <C-t><C-n> tabnext
-NapC <C-t><C-p> tabprev
-"
-" Ctrl-T W closes window
-NapC <C-t>w close
-"
-" Ctrl-T F4 closes file
-NapC <C-t><F4> confirm\ bw
 "
 " Ctrl-O F4/F8 show errors
 NapC <C-o><F4> cwin
