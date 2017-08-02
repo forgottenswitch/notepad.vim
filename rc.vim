@@ -615,14 +615,10 @@ NapC <C-o><PageDown> confirm\ next
 NapC <C-o><Home> confirm\ first
 NapC <C-o><End> confirm\ last
 "
-" Ctrl-OO edits the file under cursor
-Nap <C-o><C-o> gf
-"
-" Ctrl-OE "explores"
-function! rc#Explorer()
-  Sexplore!
-endfunction
-NapC <C-o><C-e> call\ notepad#Explorer()
+" Ctrl-O O edits the file under cursor
+Nap <C-o>o gf
+" Ctrl-O E starts file opening with the path to current file
+Nap <C-o>e :e<space><c-r>=bufname("")<cr>
 "
 " Ctrl-O F4/F8 show errors
 NapC <C-o><F4> cwin

@@ -47,8 +47,8 @@ Ctrl-O Tilde does the same
 Ctrl-O M runs make
 Ctrl-O PageUp/Down go to prev/next file
 Ctrl-O Home/End rewind files
-Ctrl-OO edits the file under cursor
-Ctrl-OE "explores"
+Ctrl-O O edits the file under cursor
+Ctrl-O E starts file opening with the path to current file
 Ctrl-O F4/F8 show errors
 Ctrl-O Ctrl-N inserts a file-specific string (N also asks for)
 Ctrl-O Ctrl-K/Backspace cut forward/backward
