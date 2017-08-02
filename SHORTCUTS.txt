@@ -49,6 +49,6 @@ Ctrl-O PageUp/Down go to prev/next file
 Ctrl-O Home/End rewind files
 Ctrl-O O edits the file under cursor
 Ctrl-O E starts file opening with the path to current file
-Ctrl-O F4/F8 show errors
+Ctrl-O F4/F8 show errors/search-in-files if there are any
 Ctrl-O Ctrl-N inserts a file-specific string (N also asks for)
 Ctrl-O Ctrl-K/Backspace cut forward/backward

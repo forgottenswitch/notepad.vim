@@ -620,7 +620,7 @@ Nap <C-o>o gf
 " Ctrl-O E starts file opening with the path to current file
 Nap <C-o>e :e<space><c-r>=bufname("")<cr>
 "
-" Ctrl-O F4/F8 show errors
+" Ctrl-O F4/F8 show errors/search-in-files if there are any
 NapC <C-o><F4> cwin
 NapC <C-o><F8> lwin
 "
