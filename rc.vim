@@ -582,6 +582,17 @@ NapV <C-t><C-End> G
 "
 " Ctrl-T H clears highlights (from searching)
 NapC <C-t>h nohlsearch\|if\ has('diff')\|diffupdate\|endif\|redraw!
+"
+" Ctrl-T M places a mark
+Nap <C-t>m m
+" Ctrl-T J goes to a mark
+"= (or just J when there is a selection)
+"= Also, pseudo-marks (<[{ are available
+Nap <C-t>j `
+vnoremap j `
+snoremap j `
+" Ctrl-T Shift-J lists marks
+NapC <C-t>J marks
 
 
 " Ctrl-T Ctrl-A does a "strong selection" ("as in Ctrl-A")
