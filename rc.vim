@@ -508,7 +508,7 @@ NapV <C-t><C-End> G
 NapC <C-t><C-l> nohlsearch\|if\ has('diff')\|diffupdate\|endif\|redraw!
 
 
-" Control + Double T is the Control-selection key
+" Control + TT does a "strong selection"
 "
 imap <C-t>t <C-t><C-t>
 map <C-t>t <C-t><C-t>
