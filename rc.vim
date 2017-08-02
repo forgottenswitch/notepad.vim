@@ -416,20 +416,17 @@ function! rc#End()
 endfunction
 NapC <End> call\ rc#End()
 
-" In terminal, selection could be extended with no Shift
-if has("gui_running")
-else
-  vnoremap <Left> <S-Left>
-  vnoremap <Right> <S-Right>
-  vnoremap <Up> <S-Up>
-  vnoremap <Down> <S-Down>
-  vnoremap <PageUp> <S-PageUp>
-  vnoremap <PageDown> <S-PageDown>
-  vnoremap <Home> ^
-  vnoremap <S-Home> g0
-  vnoremap <End> $
-  vnoremap <S-End> g_l
-endif
+" Selection could be extended with no Shift
+vnoremap <Left> <S-Left>
+vnoremap <Right> <S-Right>
+vnoremap <Up> <S-Up>
+vnoremap <Down> <S-Down>
+vnoremap <PageUp> <S-PageUp>
+vnoremap <PageDown> <S-PageDown>
+vnoremap <Home> ^
+vnoremap <S-Home> g0
+vnoremap <End> $
+vnoremap <S-End> g_l
 
 
 " Ctrl-Backspace/Delete delete a word
