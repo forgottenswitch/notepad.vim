@@ -526,8 +526,8 @@ vnoremap <C-t><End> g_
 NapV <C-t><C-Home> gg
 NapV <C-t><C-End> G
 "
-" Ctrl-T Ctrl-L clears search highlights
-NapC <C-t><C-l> nohlsearch\|if\ has('diff')\|diffupdate\|endif\|redraw!
+" Ctrl-T H clears highlights (from searching)
+NapC <C-t>h nohlsearch\|if\ has('diff')\|diffupdate\|endif\|redraw!
 
 
 " Ctrl-T Ctrl-A does a "strong selection" ("as in Ctrl-A")

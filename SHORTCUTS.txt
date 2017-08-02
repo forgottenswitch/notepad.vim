@@ -32,7 +32,7 @@ Ctrl-T Ctrl-A executes ('selects') a menu command
 Ctrl-T a/g/G select all, to-start, to-end
 Ctrl-T T/Ctrl-T resumes the last selection
 Ctrl-T Home/End select to absolute line beginning/end
-Ctrl-T Ctrl-L clears search highlights
+Ctrl-T H clears highlights (from searching)
 Ctrl-T Ctrl-A does a "strong selection" ("as in Ctrl-A")
 Ctrl-T Ctrl-A Home/End act as Ctrl-T Ctrl-Home
 Ctrl-T Ctrl-A Up/Down selects paragraphs
