@@ -8,8 +8,9 @@ GUI-like customizations for vim.
 - `Ctrl-V` pastes
 - `Ctrl-A` enters the `:` prompt
 
-[List of keybindings](SHORTCUTS.txt).
-Cursor keys are expected to be provided by keyboard layout, such as [qwaf](https://github.com/forgottenswitch/qwaf).
+[List of keybindings](SHORTCUTS.txt).  Cursor keys are expected to be provided
+by keyboard layout, such as [qwaf](https://github.com/forgottenswitch/qwaf).
+For ergonomics, CapsLock should be made a Control as well.
 
 Misfeatures:
 * Breaks plugins where they do not expect `set insertmode`
