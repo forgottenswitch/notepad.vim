@@ -625,8 +625,8 @@ function! rc#Explorer()
 endfunction
 NapC <C-o><C-e> call\ notepad#Explorer()
 "
-" Ctrl-T Ctrl-N opens a new tab
-NapC <C-t><C-n> tabnew
+" Ctrl-T N opens a new tab
+NapC <C-t>n tabnew
 " Ctrl-T Ctrl-W closes window
 " (not a tab, since it would be closed when no windows would be left)
 NapC <C-t><C-w> close
@@ -634,6 +634,9 @@ NapC <C-t><C-w> close
 " Ctrl-T PageUp/PageDown switch tabs
 NapC <C-t><PageUp> tabprev
 NapC <C-t><PageDown> tabnext
+" Ctrl-T Ctrl-N/P switch tabs
+NapC <C-t><C-n> tabnext
+NapC <C-t><C-p> tabprev
 "
 " Ctrl-T W closes window
 NapC <C-t>w close

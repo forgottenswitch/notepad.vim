@@ -44,9 +44,10 @@ Ctrl-O PageUp/Down go to prev/next file
 Ctrl-O Home/End rewind files
 Ctrl-OO edits the file under cursor
 Ctrl-OE "explores"
-Ctrl-T Ctrl-N opens a new tab
+Ctrl-T N opens a new tab
 Ctrl-T Ctrl-W closes window
 Ctrl-T PageUp/PageDown switch tabs
+Ctrl-T Ctrl-N/P switch tabs
 Ctrl-T W closes window
 Ctrl-T F4 closes file
 Ctrl-O F4/F8 show errors
