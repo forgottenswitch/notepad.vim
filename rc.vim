@@ -58,9 +58,9 @@ set list lcs=trail:_,extends:$,precedes:$,tab:\|\
 "  use a custom character: | ¦ ┆ │ ┊
 let g:indentLine_faster = 1
 if $LANG == "C"
-        let g:indentLine_char = '|'
+  let g:indentLine_char = '|'
 else
-        let g:indentLine_char = '¦'
+  let g:indentLine_char = '¦'
 endif
 
 " Do not overwrite output of commands, such as "!norm ga",
@@ -105,14 +105,14 @@ inoremap <end> <end><right>
 "== When selected with shift, C/X copies/cuts
 "
 if has("gui_running")
-    vnoremap c mQ"+y`Q<esc>
-    vnoremap x "+x
-    snoremap c <c-o>mQ<c-o>"+y<c-o>`Q<esc>
-    snoremap x <c-o>"+x
+  vnoremap c mQ"+y`Q<esc>
+  vnoremap x "+x
+  snoremap c <c-o>mQ<c-o>"+y<c-o>`Q<esc>
+  snoremap x <c-o>"+x
 else
-    vnoremap c mQy`Q<esc>
-    snoremap c <c-o>mQ<c-o>y<c-o>`Q<esc>
-    snoremap x <c-o>x
+  vnoremap c mQy`Q<esc>
+  snoremap c <c-o>mQ<c-o>y<c-o>`Q<esc>
+  snoremap x <c-o>x
 endif
 
 "== When selected with shift, I/T/Tab indents, D/U/Shift-Tab deindents
@@ -165,40 +165,40 @@ snoremap <S-Space> :IndentLinesBy -1<cr>
 " Ctrl-V pastes
 " Ctrl-K cuts selection or line
 if has("gui_running")
-    inoremap <C-v> <C-o>"+gP
-    nnoremap <C-v> "+gP
-    snoremap <C-v> x"+gP
-    vnoremap <C-v> x"+gP
-    "
-    nnoremap <C-k> "+dd
-    inoremap <C-k> <c-o>"+dd
-    snoremap <C-k> <c-o>"+x
-    vnoremap <C-k> "+x
+  inoremap <C-v> <C-o>"+gP
+  nnoremap <C-v> "+gP
+  snoremap <C-v> x"+gP
+  vnoremap <C-v> x"+gP
+  "
+  nnoremap <C-k> "+dd
+  inoremap <C-k> <c-o>"+dd
+  snoremap <C-k> <c-o>"+x
+  vnoremap <C-k> "+x
 else
-    inoremap <C-v> <C-o>gP
-    nnoremap <C-v> gP
-    snoremap <C-v> "*xgP
-    vnoremap <C-v> "*xgP
-    "
-    nnoremap <C-k> dd
-    inoremap <C-k> <c-o>dd
-    snoremap <C-k> <c-o>x
-    vnoremap <C-k> x
+  inoremap <C-v> <C-o>gP
+  nnoremap <C-v> gP
+  snoremap <C-v> "*xgP
+  vnoremap <C-v> "*xgP
+  "
+  nnoremap <C-k> dd
+  inoremap <C-k> <c-o>dd
+  snoremap <C-k> <c-o>x
+  vnoremap <C-k> x
 endif
 
 "= Tab also completes
 function! rc#CompleteOrTab()
-    if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-        return "\<Tab>"
+  if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+    return "\<Tab>"
+  else
+    if &omnifunc != ''
+      return "\<C-X>\<C-O>"
+    elseif &dictionary != ''
+      return "\<C-K>"
     else
-        if &omnifunc != ''
-            return "\<C-X>\<C-O>"
-        elseif &dictionary != ''
-            return "\<C-K>"
-        else
-            return "\<C-N>"
-        endif
+      return "\<C-N>"
     endif
+  endif
 endfunction
 inoremap <Tab> <C-R>=rc#CompleteOrTab()<cr>
 
@@ -233,25 +233,25 @@ noremap <bs> i
 "       snoremap ...
 "
 function! NapFunc(prefix,bndprefix,postfix,key,bind)
-    let l:ncmd = " ".a:prefix." ".a:key." ".a:bndprefix.a:bind.a:postfix
-    let l:ivscmd = " ".a:prefix." ".a:key." <c-o>".a:bndprefix.a:bind.a:postfix
-    " echoerr "Nap: ".l:ncmd
-    exec "nnoremap ".l:ncmd
-    exec "inoremap ".l:ivscmd
-    exec "vnoremap ".l:ivscmd
-    exec "snoremap ".l:ivscmd
+  let l:ncmd = " ".a:prefix." ".a:key." ".a:bndprefix.a:bind.a:postfix
+  let l:ivscmd = " ".a:prefix." ".a:key." <c-o>".a:bndprefix.a:bind.a:postfix
+  " echoerr "Nap: ".l:ncmd
+  exec "nnoremap ".l:ncmd
+  exec "inoremap ".l:ivscmd
+  exec "vnoremap ".l:ivscmd
+  exec "snoremap ".l:ivscmd
 endfunction
 command! -nargs=+ Nap call NapFunc("", "", "", <f-args>)
 command! -nargs=+ NapC call NapFunc("<silent>", ":", "<cr>", <f-args>)
 function! NapVFunc(prefix,bndprefix,postfix,key,bind)
-    let l:ncmd = " ".a:prefix." ".a:key." :normal! v".a:bndprefix.a:bind.a:postfix."<cr>"
-    let l:vcmd = " ".a:prefix." ".a:key." ".a:bndprefix.a:bind.a:postfix
-    let l:iscmd = " ".a:prefix." ".a:key." <c-o>:normal! v".a:bndprefix.a:bind.a:postfix."<cr>"
-    " echoerr "NapV: ".l:ncmd
-    exec "nnoremap ".l:ncmd
-    exec "inoremap ".l:iscmd
-    exec "vnoremap ".l:vcmd
-    exec "snoremap ".l:iscmd
+  let l:ncmd = " ".a:prefix." ".a:key." :normal! v".a:bndprefix.a:bind.a:postfix."<cr>"
+  let l:vcmd = " ".a:prefix." ".a:key." ".a:bndprefix.a:bind.a:postfix
+  let l:iscmd = " ".a:prefix." ".a:key." <c-o>:normal! v".a:bndprefix.a:bind.a:postfix."<cr>"
+  " echoerr "NapV: ".l:ncmd
+  exec "nnoremap ".l:ncmd
+  exec "inoremap ".l:iscmd
+  exec "vnoremap ".l:vcmd
+  exec "snoremap ".l:iscmd
 endfunction
 command! -nargs=+ NapV call NapVFunc("", "", "", <f-args>)
 
@@ -263,11 +263,11 @@ command! -nargs=+ NapV call NapVFunc("", "", "", <f-args>)
 "  NoremapC, NoremapCsil
 "
 function! NoremapFunc(prefix,bndprefix,postfix,modes,key,bind)
-    let l:mapcmd = " ".a:prefix." ".a:key." ".a:bndprefix.a:bind.a:postfix
-    " echoerr "Noremap: ".l:mapcmd
-    for m in split(a:modes, '\zs')
-        exec l:m."noremap ".l:mapcmd
-    endfor
+  let l:mapcmd = " ".a:prefix." ".a:key." ".a:bndprefix.a:bind.a:postfix
+  " echoerr "Noremap: ".l:mapcmd
+  for m in split(a:modes, '\zs')
+    exec l:m."noremap ".l:mapcmd
+  endfor
 endfunction
 command! -nargs=+ Noremap call NoremapFunc("", "", "", <f-args>)
 command! -nargs=+ NoremapC call NoremapFunc("", ":", "<cr>", <f-args>)
@@ -277,12 +277,12 @@ command! -nargs=+ NoremapCsil call NoremapFunc("<silent>", ":", "<cr>", <f-args>
 " NapMap => imap x y | vmap x y | smap x y | nmap x y
 "
 function! NapMapFunc(key1, key2)
-    let l:nivs_cmd = " ".a:key1." ".a:key2
-    "echoerr "NapMap: ".l:nivs_cmd
-    exec "nmap ".l:nivs_cmd
-    exec "imap ".l:nivs_cmd
-    exec "vmap ".l:nivs_cmd
-    exec "smap ".l:nivs_cmd
+  let l:nivs_cmd = " ".a:key1." ".a:key2
+  "echoerr "NapMap: ".l:nivs_cmd
+  exec "nmap ".l:nivs_cmd
+  exec "imap ".l:nivs_cmd
+  exec "vmap ".l:nivs_cmd
+  exec "smap ".l:nivs_cmd
 endfunction
 command! -nargs=+ NapMap call NapMapFunc(<f-args>)
 
@@ -290,10 +290,10 @@ command! -nargs=+ NapMap call NapMapFunc(<f-args>)
 " NapMap2 xyz n => NapMap x[z n | NapMap xOz n
 "
 function! NapMap2Func(key1, key2)
-    let l:key11 = a:key1[0:0]."[".a:key1[2:-1]
-    let l:key12 = a:key1[0:0]."O".a:key1[2:-1]
-    call NapMapFunc(l:key11, a:key2)
-    call NapMapFunc(l:key12, a:key2)
+  let l:key11 = a:key1[0:0]."[".a:key1[2:-1]
+  let l:key12 = a:key1[0:0]."O".a:key1[2:-1]
+  call NapMapFunc(l:key11, a:key2)
+  call NapMapFunc(l:key12, a:key2)
 endfunction
 command! -nargs=+ NapMap2 call NapMap2Func(<f-args>)
 
@@ -460,12 +460,12 @@ vnoremap <C-S-Down> }
 " (but not when selecting)
 "
 function! rc#Home()
-    let l:pos = getpos(".")
-    norm! ^
-    let l:pos1 = getpos(".")
-    if l:pos[2] == l:pos1[2]
-        norm! g0
-    endif
+  let l:pos = getpos(".")
+  norm! ^
+  let l:pos1 = getpos(".")
+  if l:pos[2] == l:pos1[2]
+    norm! g0
+  endif
 endfunction
 NapC <Home> call\ rc#Home()
 
@@ -473,12 +473,12 @@ NapC <Home> call\ rc#Home()
 " (but not when selecting)
 "
 function! rc#End()
-    let l:pos = getpos(".")
-    norm! $l
-    let l:pos1 = getpos(".")
-    if l:pos[2] == l:pos1[2]
-        norm! g_l
-    endif
+  let l:pos = getpos(".")
+  norm! $l
+  let l:pos1 = getpos(".")
+  if l:pos[2] == l:pos1[2]
+    norm! g_l
+  endif
 endfunction
 NapC <End> call\ rc#End()
 
@@ -507,19 +507,19 @@ vnoremap <BS> "_x
 
 " Ctrl-L goes to line
 function! rc#GotoLine(...)
-    if a:0 < 1
-        call inputsave()
-        let l:lineno = input("Goto line: ")
-        call inputrestore()
-    else
-        let l:lineno = a:1
-    endif
-    "
-    let l:lineno1 = substitute(l:lineno, "[^0-9]", "", "g")
-    if (l:lineno != l:lineno1) || (strlen(l:lineno1) == 0)
-        return
-    endif
-    exec "norm! ".l:lineno1."G"
+  if a:0 < 1
+    call inputsave()
+    let l:lineno = input("Goto line: ")
+    call inputrestore()
+  else
+    let l:lineno = a:1
+  endif
+  "
+  let l:lineno1 = substitute(l:lineno, "[^0-9]", "", "g")
+  if (l:lineno != l:lineno1) || (strlen(l:lineno1) == 0)
+    return
+  endif
+  exec "norm! ".l:lineno1."G"
 endfunction
 command! -nargs=* GotoLine call rc#GotoLine(<f-args>)
 NapC <C-l> GotoLine
@@ -598,29 +598,29 @@ Nap <C-t>s :w<space><c-r>=bufname("")<cr>
 " Ctrl-T Ctrl-K/Delete cuts forward
 "
 if has("gui_running")
-    Nap <c-t><c-k> \"+d$
-    Nap <c-t><delete> \"+d$
-    xnoremap <c-t><c-k> "+x
-    xnoremap <c-t><delete> "+x
+  Nap <c-t><c-k> \"+d$
+  Nap <c-t><delete> \"+d$
+  xnoremap <c-t><c-k> "+x
+  xnoremap <c-t><delete> "+x
 else
-    Nap <c-t><c-k> d$
-    Nap <c-t><delete> d$
-    xnoremap <c-t><c-k> x
-    xnoremap <c-t><delete> x
+  Nap <c-t><c-k> d$
+  Nap <c-t><delete> d$
+  xnoremap <c-t><c-k> x
+  xnoremap <c-t><delete> x
 endif
 "
 " Ctrl-T Ctrl-H/Backspace cuts backward
 "
 if has("gui_running")
-    Nap <c-t><c-h> \"+dg0
-    Nap <c-t><bs> \"+dg0
-    xnoremap <c-t><c-h> "+x
-    xnoremap <c-t><bs> "+x
+  Nap <c-t><c-h> \"+dg0
+  Nap <c-t><bs> \"+dg0
+  xnoremap <c-t><c-h> "+x
+  xnoremap <c-t><bs> "+x
 else
-    Nap <c-t><c-h> dg0
-    Nap <c-t><bs> dg0
-    xnoremap <c-t><c-h> x
-    xnoremap <c-t><bs> x
+  Nap <c-t><c-h> dg0
+  Nap <c-t><bs> dg0
+  xnoremap <c-t><c-h> x
+  xnoremap <c-t><bs> x
 endif
 
 "
