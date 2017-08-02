@@ -627,8 +627,9 @@ NapC <C-o><C-e> call\ notepad#Explorer()
 "
 " Ctrl-T Ctrl-N opens a new tab
 NapC <C-t><C-n> tabnew
-" Ctrl-T Ctrl-W closes the tab
-NapC <C-t><C-w> tabclose
+" Ctrl-T Ctrl-W closes window
+" (not a tab, since it would be closed when no windows would be left)
+NapC <C-t><C-w> close
 "
 " Ctrl-T PageUp/PageDown switch tabs
 NapC <C-t><PageUp> tabprev
