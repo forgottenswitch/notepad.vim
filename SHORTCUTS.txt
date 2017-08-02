@@ -81,6 +81,32 @@ Ctrl-O Ctrl-N/P switch error lists
 Ctrl-O Ctrl-W close error list
 Ctrl-O N/P switch location lists
 Ctrl-O W close location list
+Ctrl-O Ctrl-D is the folding key
+ Its bindings are taken from the Vim ones
+Ctrl-O Ctrl-D Ctrl-A toggles a fold recursively
+Ctrl-O Ctrl-D Ctrl-C closes fold recursively
+Ctrl-O Ctrl-D Ctrl-D deletes fold recursively
+Ctrl-O Ctrl-D Ctrl-E deletes all folds
+Ctrl-O Ctrl-D Ctrl-F creates a fold
+Ctrl-O Ctrl-D Ctrl-M closes all folds
+Ctrl-O Ctrl-D Ctrl-N turns folding on/off
+Ctrl-O Ctrl-D Ctrl-O opens fold recursively
+Ctrl-O Ctrl-D Ctrl-R opens all folds
+Ctrl-O Ctrl-D Ctrl-X reapplies the foldlevel
+Ctrl-O Ctrl-D A toggles a single fold
+Ctrl-O Ctrl-D C closes a single fold
+Ctrl-O Ctrl-D D deletes a single fold
+Ctrl-O Ctrl-D F create a fold for a motion; example:
+ Ctrl-O Ctrl-D F 4 Down      create a fold for the next 4 lines
+Ctrl-O Ctrl-D I turns folding on/off
+Ctrl-O Ctrl-D J moves a fold forward
+Ctrl-O Ctrl-D K moves a fold backward
+Ctrl-O Ctrl-D M closes one level of all folds
+Ctrl-O Ctrl-D N resets folding on/off
+Ctrl-O Ctrl-D O opens a single fold
+Ctrl-O Ctrl-D R opens one level of all folds
+Ctrl-O Ctrl-D V opens folds under cursor
+Ctrl-O Ctrl-D X reapplies foldlevel, and opens folds under cursor
 Ctrl-O Ctrl-R inserts a file-specific string (R also asks for)
 Ctrl-O Ctrl-K/Backspace cut forward/backward
 Ctrl-O Y toggles syntax checking on save

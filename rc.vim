@@ -732,6 +732,76 @@ NapC <C-o>p lolder
 " Ctrl-O W close location list
 NapC <C-o>w lclose
 "
+" Ctrl-O Ctrl-D is the folding key
+"= Its bindings are taken from the Vim ones
+"
+inoremap <C-o><C-d> <nop>
+vnoremap <C-o><C-d> <nop>
+function! rc#CreateFoldForNLines(...)
+  if a:0 < 1
+    call inputsave()
+    let l:n = input("Num lines to fold: ")
+    call inputrestore()
+  else
+    let l:n = a:1
+  endif
+  "
+  let l:n1 = substitute(l:n, "[^0-9]", "", "g")
+  if (l:n != l:n1) || (strlen(l:n1) == 0)
+    return
+  endif
+  exec "norm! ".l:n1."zF"
+endfunction
+command! -nargs=* CreateFoldForNLines call rc#CreateFoldForNLines(<f-args>)
+"
+" Ctrl-O Ctrl-D Ctrl-A toggles a fold recursively
+Nap <C-o><C-d><C-a> zA
+" Ctrl-O Ctrl-D Ctrl-C closes fold recursively
+Nap <C-o><C-d><C-c> zC
+" Ctrl-O Ctrl-D Ctrl-D deletes fold recursively
+Nap <C-o><C-d><C-d> zD
+" Ctrl-O Ctrl-D Ctrl-E deletes all folds
+Nap <C-o><C-d><C-e> zE
+" Ctrl-O Ctrl-D Ctrl-F creates a fold
+NapC <C-o><C-d><C-f> CreateFoldForNLines
+" Ctrl-O Ctrl-D Ctrl-M closes all folds
+Nap <C-o><C-d><C-m> zM
+" Ctrl-O Ctrl-D Ctrl-N turns folding on/off
+Nap <C-o><C-d><C-n> zN
+" Ctrl-O Ctrl-D Ctrl-O opens fold recursively
+Nap <C-o><C-d><C-o> zO
+" Ctrl-O Ctrl-D Ctrl-R opens all folds
+Nap <C-o><C-d><C-r> zR
+" Ctrl-O Ctrl-D Ctrl-X reapplies the foldlevel
+Nap <C-o><C-d><C-x> zX
+" Ctrl-O Ctrl-D A toggles a single fold
+Nap <C-o><C-d>a za
+" Ctrl-O Ctrl-D C closes a single fold
+Nap <C-o><C-d>c zc
+" Ctrl-O Ctrl-D D deletes a single fold
+Nap <C-o><C-d>d zd
+" Ctrl-O Ctrl-D F create a fold for a motion; example:
+"= Ctrl-O Ctrl-D F 4 Down      create a fold for the next 4 lines
+Nap <C-o><C-d>f zf
+" Ctrl-O Ctrl-D I turns folding on/off
+Nap <C-o><C-d>i zi
+" Ctrl-O Ctrl-D J moves a fold forward
+Nap <C-o><C-d>j zj
+" Ctrl-O Ctrl-D K moves a fold backward
+Nap <C-o><C-d>k zk
+" Ctrl-O Ctrl-D M closes one level of all folds
+Nap <C-o><C-d>m zm
+" Ctrl-O Ctrl-D N resets folding on/off
+Nap <C-o><C-d>n zn
+" Ctrl-O Ctrl-D O opens a single fold
+Nap <C-o><C-d>o zo
+" Ctrl-O Ctrl-D R opens one level of all folds
+Nap <C-o><C-d>r zr
+" Ctrl-O Ctrl-D V opens folds under cursor
+Nap <C-o><C-d>v zv
+" Ctrl-O Ctrl-D X reapplies foldlevel, and opens folds under cursor
+Nap <C-o><C-d>x zx
+"
 " Ctrl-O Ctrl-R inserts a file-specific string (R also asks for)
 "
 function! rc#InsertFileSpecificString(ask)
