@@ -383,9 +383,13 @@ NapC <C-s> w!
 " Ctrl-F searches
 "= Access search history with Ctrl-F Ctrl-F
 Nap <C-f> /
+" Ctrl-O Ctrl-F searches backwards
+Nap <C-o><C-f> ?
 " Ctrl-G goes to next match
 let g:surround_no_insert_mappings = 1
 Nap <C-g> n
+" Ctrl-O Ctrl-G goes to previous match
+Nap <C-o><C-g> N
 " F6/Ctrl-B switch window/file
 "= Access buffer list with Ctrl-B Ctrl-D
 Nap <F6> <c-w>w
