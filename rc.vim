@@ -115,8 +115,8 @@ else
     snoremap x <c-o>x
 endif
 
-" Ctrl-Q inserts input as-is
-"= (provided by Vim).
+" Ctrl-Q inserts input as-is (e.g. Ctrl-Q Ctrl-I always gives TAB)
+"= Provided by Vim.
 
 " Ctrl-V pastes
 " Ctrl-K cuts selection or line
@@ -331,16 +331,19 @@ NapMap2 OF <End>
 
 " Ctrl-A executes a command
 " Not conventional, but useful
+"= Access command history with Ctrl-A Ctrl-F
 Nap <C-a> :
 vnoremap <C-a> :
 " Ctrl-S saves
 NapC <C-s> w!
 " Ctrl-F searches
+"= Access search history with Ctrl-F Ctrl-F
 Nap <C-f> /
 " Ctrl-G goes to next match
 let g:surround_no_insert_mappings = 1
 Nap <C-g> n
 " F6/Ctrl-B switch window/file
+"= Access buffer list with Ctrl-B Ctrl-D
 Nap <F6> <c-w>w
 Nap <S-F6> <c-w>W
 Nap <c-b> :b!<space>
@@ -359,7 +362,7 @@ NapC <F8> lnext
 NapC <S-F8> lprev
 
 " Ctrl-W for window operations
-" Not conventional, but useful
+"= Not conventional, but useful - try e.g. Ctrl-W V,S, or Shift-L
 Nap <c-w> <c-w>
 
 " Ctrl-F4 closes file
@@ -481,8 +484,8 @@ inoremap <c-t> <c-o>:<esc>
 "
 " Ctrl-T 1 or 0 selects
 " Ctrl-T 2 selects line-wise
-" Ctrl-T 4 selects rectangular
 " Ctrl-T 3 selects rectangular as much as possible
+" Ctrl-T 4 selects rectangular (unimplemented - currently the same as Ctrl-T 3)
 "
 " The explicit NapC A norm B is used instead of Nap A B,
 " as the latter sometimes gets interpreted as Insert binding
@@ -581,6 +584,7 @@ NapC <C-t><C-w> close
 NapC <C-t><PageUp> tabprev
 NapC <C-t><PageDown> tabnext
 " Ctrl-T Ctrl-N/P switch tabs
+"= The analogy is with Ctrl-N/P that switch completion choices
 NapC <C-t><C-n> tabnext
 NapC <C-t><C-p> tabprev
 "
@@ -681,6 +685,10 @@ imap <C-o><C-k> <C-t><C-k>
 imap <C-o><C-h> <C-t><C-h>
 imap <C-o><bs> <C-t><bs>
 
+"=
+
+"== Indent width is controlled with :I<N>
+"
 command! -nargs=1 I call SetIndent(<f-args>)
 function! SetIndent(n)
   exec "setl sw=" . a:n . ""

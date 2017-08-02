@@ -1,16 +1,20 @@
 Shift selects
 When selected with shift, C/X copies/cuts
-Ctrl-Q inserts input as-is
- (provided by Vim).
+Ctrl-Q inserts input as-is (e.g. Ctrl-Q Ctrl-I always gives TAB)
+ Provided by Vim.
 Ctrl-V pastes
 Ctrl-K cuts selection or line
  Tab also completes
 Ctrl-A executes a command
+ Access command history with Ctrl-A Ctrl-F
 Ctrl-S saves
 Ctrl-F searches
+ Access search history with Ctrl-F Ctrl-F
 Ctrl-G goes to next match
 F6/Ctrl-B switch window/file
+ Access buffer list with Ctrl-B Ctrl-D
 Ctrl-W for window operations
+ Not conventional, but useful - try e.g. Ctrl-W V,S, or Shift-L
 Ctrl-F4 closes file
 Ctrl-W F4 does the same
 Ctrl-Z undoes
@@ -22,8 +26,8 @@ Ctrl-L goes to line
 Ctrl-T is a selection key
 Ctrl-T 1 or 0 selects
 Ctrl-T 2 selects line-wise
-Ctrl-T 4 selects rectangular
 Ctrl-T 3 selects rectangular as much as possible
+Ctrl-T 4 selects rectangular (unimplemented - currently the same as Ctrl-T 3)
 Ctrl-T Ctrl-A executes ('selects') a menu command
 Ctrl-T a/g/G select all, to-start, to-end
 Ctrl-T Home/End select to absolute line beginning/end
@@ -37,6 +41,7 @@ Ctrl-T N opens a new tab
 Ctrl-T Ctrl-W closes window
 Ctrl-T PageUp/PageDown switch tabs
 Ctrl-T Ctrl-N/P switch tabs
+ The analogy is with Ctrl-N/P that switch completion choices
 Ctrl-T W closes window
 Ctrl-T F4 closes file
 Ctrl-T 8 describes current character
@@ -60,3 +65,5 @@ Ctrl-O N/P switch location lists
 Ctrl-O W close location list
 Ctrl-O Ctrl-R inserts a file-specific string (R also asks for)
 Ctrl-O Ctrl-K/Backspace cut forward/backward
+
+Indent width is controlled with :I<N>
