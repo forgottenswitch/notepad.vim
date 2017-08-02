@@ -6,7 +6,7 @@ all: $(shortcuts_txt)
 $(shortcuts_txt): rc.vim
 	grep "Ctrl" $+ | \
 		grep -v shortcuts | \
-		grep -v '^"-'| \
+		grep -v '^"_'| \
 		sed -e 's/^" //' > $@
 
 .PHONY: clean

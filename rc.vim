@@ -265,7 +265,7 @@ NapMap [32~ <S-F6>
 NapMap [33~ <S-F7>
 NapMap [34~ <S-F8>
 "
-"- Ctrl+level5+Left/Right/Backspace/Delete of qwaf
+"_ Ctrl+level5+Left/Right/Backspace/Delete of qwaf
 NapMap b <C-Left>
 NapMap f <C-Right>
 NapMap  <C-BS>
@@ -476,7 +476,7 @@ NapC <C-l> GotoLine
 
 " Ctrl-T is a selection key
 "
-"- Unbind the Vim Ctrl-T
+"_ Unbind the Vim Ctrl-T
 inoremap <c-t> <c-o>:<esc>
 "
 " Ctrl-T 1 or 0 selects
