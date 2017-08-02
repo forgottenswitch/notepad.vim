@@ -340,9 +340,6 @@ Nap <S-F3> #
 NapC <F8> lnext
 NapC <S-F8> lprev
 
-" Ctrl-Alt-c shows errors if any
-NapC <c-a-c> copen\|cwin
-
 " Ctrl-W for window operations
 " Not conventional, but useful
 Nap <c-w> <c-w>
@@ -615,16 +612,31 @@ NapC <C-o><PageDown> confirm\ next
 NapC <C-o><Home> confirm\ first
 NapC <C-o><End> confirm\ last
 "
-" Ctrl-O O edits the file under cursor
-Nap <C-o>o gf
 " Ctrl-O E starts file opening with the path to current file
 Nap <C-o>e :e<space><c-r>=bufname("")<cr>
+" Ctrl-O Ctrl-E edits the file under cursor
+Nap <C-o><C-e> gf
 "
-" Ctrl-O F4/F8 show errors/search-in-files if there are any
-NapC <C-o><F4> cwin
-NapC <C-o><F8> lwin
+" Ctrl-O F4/F8 show errors/locations
+NapC <C-o><F4> botright\ copen
+NapC <C-o><F8> lopen
+" Ctrl-O Ctrl-O/O do the same
+NapC <C-o><C-o> botright\ copen
+NapC <C-o>o lopen
 "
-" Ctrl-O Ctrl-N inserts a file-specific string (N also asks for)
+" Ctrl-O Ctrl-N/P switch error lists
+NapC <C-o><C-n> cnewer
+NapC <C-o><C-p> colder
+" Ctrl-O Ctrl-W close error list
+NapC <C-o><C-w> cclose
+"
+" Ctrl-O N/P switch location lists
+NapC <C-o>n lnewer
+NapC <C-o>p lolder
+" Ctrl-O W close location list
+NapC <C-o>w lclose
+"
+" Ctrl-O Ctrl-R inserts a file-specific string (R also asks for)
 "
 function! rc#InsertFileSpecificString(ask)
   if !exists("b:FileSpecificString")
@@ -640,8 +652,8 @@ function! rc#InsertFileSpecificString(ask)
 endfunction
 command! AskingFileSpecificString call rc#InsertFileSpecificString(1)
 command! InsertFileSpecificString call rc#InsertFileSpecificString(0)
-NapC <C-o><C-n> InsertFileSpecificString
-NapC <C-o>n AskingFileSpecificString
+NapC <C-o><C-r> InsertFileSpecificString
+NapC <C-o>r AskingFileSpecificString
 "
 " Ctrl-O Ctrl-K/Backspace cut forward/backward
 map <C-o><C-k> <C-t><C-k>
