@@ -30,10 +30,12 @@ Ctrl-T 3 selects rectangular as much as possible
 Ctrl-T 4 selects rectangular (unimplemented - currently the same as Ctrl-T 3)
 Ctrl-T Ctrl-A executes ('selects') a menu command
 Ctrl-T a/g/G select all, to-start, to-end
+Ctrl-T T/Ctrl-T resumes the last selection
 Ctrl-T Home/End select to absolute line beginning/end
 Ctrl-T Ctrl-L clears search highlights
-Ctrl-TT Home/End act as Ctrl-T Ctrl-Home
-Ctrl-TT Up/Down selects paragraphs
+Ctrl-T Ctrl-A does a "strong selection" ("as in Ctrl-A")
+Ctrl-T Ctrl-A Home/End act as Ctrl-T Ctrl-Home
+Ctrl-T Ctrl-A Up/Down selects paragraphs
 Ctrl-T S/Ctrl-S saves as
 Ctrl-T Ctrl-K/Delete cuts forward
 Ctrl-T Ctrl-H/Backspace cuts backward

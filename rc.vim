@@ -504,6 +504,10 @@ NapC <C-t>a norm!\ Gvgg
 NapC <C-t>g norm!\ vgg
 NapC <C-t>G norm!\ vG
 "
+" Ctrl-T T/Ctrl-T resumes the last selection
+NapC <C-t>t norm!\ gv
+NapC <C-t><C-t> norm!\ gv
+"
 " Ctrl-T Left/Right shortcuts
 NapV <C-t><left> h
 NapV <C-t><right> l
@@ -526,17 +530,15 @@ NapV <C-t><C-End> G
 NapC <C-t><C-l> nohlsearch\|if\ has('diff')\|diffupdate\|endif\|redraw!
 
 
-" Control + TT does a "strong selection"
+" Ctrl-T Ctrl-A does a "strong selection" ("as in Ctrl-A")
 "
-imap <C-t>t <C-t><C-t>
-map <C-t>t <C-t><C-t>
-" Ctrl-TT Home/End act as Ctrl-T Ctrl-Home
-NapV <C-t><C-t><Home> gg
-NapV <C-t><C-t><End> G
+" Ctrl-T Ctrl-A Home/End act as Ctrl-T Ctrl-Home
+NapV <C-t><C-a><Home> gg
+NapV <C-t><C-a><End> G
 "
-" Ctrl-TT Up/Down selects paragraphs
-NapV <C-t><C-t><Up> {
-NapV <C-t><C-t><Down> }
+" Ctrl-T Ctrl-A Up/Down selects paragraphs
+NapV <C-t><C-a><Up> {
+NapV <C-t><C-a><Down> }
 
 
 " Ctrl-T S/Ctrl-S saves as
