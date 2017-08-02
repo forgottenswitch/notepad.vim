@@ -55,7 +55,7 @@ Ctrl-T 8 describes current character
 Ctrl-T Ctrl-O reflows current paragraph
 Ctrl-E goes to pair brace
 Ctrl-O is source code key
-Ctrl-O 2/1 navigate Excuberant Ctags and Vim help
+Ctrl-O 3/2/1 navigate Excuberant Ctags and Vim help
 Ctrl-O Ctrl-A executes ("developer's") command-line
 Ctrl-O Ctrl-Z suspends ("goes to developer's console")
 Ctrl-O Tilde does the same
