@@ -559,7 +559,7 @@ else
 endif
 
 
-" Ctrl-T Ctrl-N inserts a file-specific string (N also asks for)
+" Ctrl-O Ctrl-N inserts a file-specific string (N also asks for)
 "
 function! rc#InsertFileSpecificString(ask)
   if !exists("b:FileSpecificString")
@@ -575,8 +575,8 @@ function! rc#InsertFileSpecificString(ask)
 endfunction
 command! AskingFileSpecificString call rc#InsertFileSpecificString(1)
 command! InsertFileSpecificString call rc#InsertFileSpecificString(0)
-NapC <C-t><C-n> InsertFileSpecificString
-NapC <C-t>n AskingFileSpecificString
+NapC <C-o><C-n> InsertFileSpecificString
+NapC <C-o>n AskingFileSpecificString
 
 " Ctrl-T 8 describes current character
 NapC <C-t>8 norm!\ ga
@@ -625,6 +625,15 @@ function! rc#Explorer()
   Sexplore!
 endfunction
 NapC <C-o><C-e> call\ notepad#Explorer()
+"
+" Ctrl-T Ctrl-N opens a new tab
+NapC <C-t><C-n> tabnew
+" Ctrl-T Ctrl-W closes the tab
+NapC <C-t><C-w> tabclose
+"
+" Ctrl-T PageUp/PageDown switch tabs
+NapC <C-t><PageUp> tabprev
+NapC <C-t><PageDown> tabnext
 "
 " Ctrl-O F4/F8 show errors
 NapC <C-o><F4> cwin
