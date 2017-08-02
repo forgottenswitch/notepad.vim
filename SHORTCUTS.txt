@@ -1,5 +1,6 @@
 Shift selects
 When selected with shift, C/X copies/cuts
+When selected with shift, I/T/Tab indents, D/U/Shift-Tab deindents
 Ctrl-Q inserts input as-is (e.g. Ctrl-Q Ctrl-I always gives TAB)
  Provided by Vim.
 Ctrl-V pastes

@@ -115,6 +115,21 @@ else
     snoremap x <c-o>x
 endif
 
+"== When selected with shift, I/T/Tab indents, D/U/Shift-Tab deindents
+vnoremap i >gv
+vnoremap t >gv
+vnoremap <Tab> >gv
+snoremap i >gv
+snoremap t >gv
+snoremap <Tab> >gv
+"
+vnoremap d <gv
+vnoremap u <gv
+vnoremap <S-Tab> <gv
+snoremap d <gv
+snoremap u <gv
+snoremap <S-Tab> <gv
+
 " Ctrl-Q inserts input as-is (e.g. Ctrl-Q Ctrl-I always gives TAB)
 "= Provided by Vim.
 
