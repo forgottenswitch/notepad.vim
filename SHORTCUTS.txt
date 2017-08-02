@@ -1,6 +1,8 @@
 Shift selects
 When selected with shift, C/X copies/cuts
 When selected with shift, I/T/Tab indents, D/U/Shift-Tab deindents
+When selected with shift, Shift-I / Shift-T / Space indent by a single column
+ (Shift-D/U/Space deindent).  Bug: Space / Shift-Space do not work.
 Ctrl-Q inserts input as-is (e.g. Ctrl-Q Ctrl-I always gives TAB)
  Provided by Vim.
 Ctrl-V pastes

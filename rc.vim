@@ -130,6 +130,35 @@ snoremap d <gv
 snoremap u <gv
 snoremap <S-Tab> <gv
 
+"== When selected with shift, Shift-I / Shift-T / Space indent by a single column
+"= (Shift-D/U/Space deindent).  Bug: Space / Shift-Space do not work.
+command! -range -nargs=1 IndentLinesBy call IndentLinesByFunc(<f-args>)
+function! IndentLinesByFunc(width)
+  let l:saved_width = &shiftwidth
+  if a:width > 0
+    exec "set shiftwidth=" . (0+a:width)
+    exec "norm! gv>gv"
+  elseif a:width < 0
+    exec "set shiftwidth=" . (0-a:width)
+    exec "norm! gv<gv"
+  endif
+  exec "set shiftwidth=" . l:saved_width
+endfunction
+"
+vnoremap I :IndentLinesBy 1<cr>
+vnoremap T :IndentLinesBy 1<cr>
+vnoremap <Space> :IndentLinesBy 1<cr>
+snoremap I :IndentLinesBy 1<cr>
+snoremap T :IndentLinesBy 1<cr>
+snoremap <Space> :IndentLinesBy 1<cr>
+"
+vnoremap D :IndentLinesBy -1<cr>
+vnoremap U :IndentLinesBy -1<cr>
+snoremap <S-Space> :IndentLinesBy -1<cr>
+snoremap D :IndentLinesBy -1<cr>
+snoremap U :IndentLinesBy -1<cr>
+snoremap <S-Space> :IndentLinesBy -1<cr>
+
 " Ctrl-Q inserts input as-is (e.g. Ctrl-Q Ctrl-I always gives TAB)
 "= Provided by Vim.
 
