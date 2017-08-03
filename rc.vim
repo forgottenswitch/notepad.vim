@@ -662,7 +662,7 @@ NapC <C-t>a norm!\ Gvgg
 NapC <C-t>g norm!\ vgg
 NapC <C-t>G norm!\ vG
 "
-" Ctrl-T T/Ctrl-T resumes the last selection
+" Ctrl-T Ctrl-T resumes the last selection
 NapC <C-t>t norm!\ gv
 NapC <C-t><C-t> norm!\ gv
 "
