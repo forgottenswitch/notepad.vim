@@ -100,6 +100,8 @@ Ctrl-O Ctrl-N/P switch error lists
 Ctrl-O Ctrl-W close error list
 Ctrl-O N/P switch location lists
 Ctrl-O W close location list
+Ctrl-O Ctrl-L goes to N-th error
+Ctrl-O L goes to N-th element in the location list
 Ctrl-O Ctrl-D is the folding key
  Its bindings are taken from the Vim ones
 Ctrl-O Ctrl-D Ctrl-A toggles a fold recursively

@@ -837,6 +837,44 @@ NapC <C-o>p lolder
 " Ctrl-O W close location list
 NapC <C-o>w lclose
 "
+" Ctrl-O Ctrl-L goes to N-th error
+function! rc#GotoError(...)
+  if a:0 < 1
+    call inputsave()
+    let l:n = input("Goto error: ")
+    call inputrestore()
+  else
+    let l:n = a:1
+  endif
+  "
+  let l:n1 = substitute(l:n, "[^0-9]", "", "g")
+  if (l:n != l:n1) || (strlen(l:n1) == 0)
+    return
+  endif
+  exec "cc " . l:n1 . ""
+endfunction
+command! -nargs=* GotoError call rc#GotoError(<f-args>)
+NapC <C-o><C-l> GotoError
+"
+" Ctrl-O L goes to N-th element in the location list
+function! rc#GotoLocation(...)
+  if a:0 < 1
+    call inputsave()
+    let l:n = input("Goto location: ")
+    call inputrestore()
+  else
+    let l:n = a:1
+  endif
+  "
+  let l:n1 = substitute(l:n, "[^0-9]", "", "g")
+  if (l:n != l:n1) || (strlen(l:n1) == 0)
+    return
+  endif
+  exec "ll " . l:n1 . ""
+endfunction
+command! -nargs=* GotoLocation call rc#GotoLocation(<f-args>)
+NapC <C-o>l GotoLocation
+"
 " Ctrl-O Ctrl-D is the folding key
 "= Its bindings are taken from the Vim ones
 "
