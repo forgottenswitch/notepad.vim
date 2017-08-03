@@ -102,6 +102,7 @@ Ctrl-T Ctrl-N/P switch tabs
 Ctrl-T W closes window
 Ctrl-T F4 closes file
 Ctrl-T 8 describes current character
+Ctrl-T B goes to byte
 Ctrl-T Ctrl-O reflows current paragraph
 Ctrl-E goes to pair brace
 Ctrl-O is source code key

@@ -804,6 +804,25 @@ NapC <C-t><F4> confirm\ bw
 " Ctrl-T 8 describes current character
 NapC <C-t>8 norm!\ ga
 
+" Ctrl-T B goes to byte
+function! rc#GotoByte(...)
+  if a:0 < 1
+    call inputsave()
+    let l:n = input("Goto byte: ")
+    call inputrestore()
+  else
+    let l:n = a:1
+  endif
+  "
+  let l:n1 = substitute(l:n, "[^0-9]", "", "g")
+  if (l:n != l:n1) || (strlen(l:n1) == 0)
+    return
+  endif
+  exec "norm! ".l:n1."go"
+endfunction
+command! -nargs=* GotoByte call rc#GotoByte(<f-args>)
+NapC <C-t>b GotoByte
+
 " Ctrl-T Ctrl-O reflows current paragraph
 "
 NapC <C-t><C-o> norm!\ gqip
