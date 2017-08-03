@@ -520,7 +520,10 @@ NapC <F8> lnext
 NapC <S-F8> lprev
 
 " Ctrl-W for window operations
-"= Not conventional, but useful - try e.g. Ctrl-W V,S, or Shift-L
+"= Not conventional, but useful:
+"=  V        vertical split
+"=  S        horizontal split
+"=  Shift-L  make the window rightmost
 Nap <c-w> <c-w>
 
 " Ctrl-F4 closes file

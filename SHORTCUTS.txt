@@ -41,7 +41,10 @@ Ctrl-B switches files
 F6 switches windows
  (ignoring error and location list ones)
 Ctrl-W for window operations
- Not conventional, but useful - try e.g. Ctrl-W V,S, or Shift-L
+ Not conventional, but useful:
+  V        vertical split
+  S        horizontal split
+  Shift-L  make the window rightmost
 Ctrl-F4 closes file
 Ctrl-W F4 does the same
 Ctrl-Z undoes
