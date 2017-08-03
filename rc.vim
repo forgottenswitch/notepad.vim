@@ -247,6 +247,28 @@ snoremap D :IndentLinesBy -1<cr>
 snoremap U :IndentLinesBy -1<cr>
 snoremap <S-Space> :IndentLinesBy -1<cr>
 
+"== When selected with shift, text objects could be moved over (one at a time)
+"= Provided by Vim.
+"=  A W        word with spaces
+"=  I W        word without spaces (and so on for other 'A' objects)
+"=  A D        identifier
+"=  A S        sentence
+"=  A P        paragraph
+"=  A ]        [] block
+"=  A )        () block
+"=  A B        () block, both ends
+"=  A >        <> block
+"=  A T        XML tag block (e.g. <a>...</a>)
+"=  A }        {} block
+"=  A Shift-B  {} block, both ends
+"=  A "        quoted string
+"=  A '        single-quoted string
+"=  A `        backtick-quoted string
+snoremap a <esc>gva
+snoremap i <esc>gvi
+vnoremap ad aW
+vnoremap id iW
+
 " Ctrl-Q inserts input as-is (e.g. Ctrl-Q Ctrl-I always gives TAB)
 "= Provided by Vim.
 
