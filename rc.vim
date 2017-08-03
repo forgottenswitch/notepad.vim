@@ -247,6 +247,12 @@ snoremap D :IndentLinesBy -1<cr>
 snoremap U :IndentLinesBy -1<cr>
 snoremap <S-Space> :IndentLinesBy -1<cr>
 
+"== When selected with shift, O goes to the other end of selection
+"= (With a rectangular selection, Shift-O goes horizontally).
+"= Provided by Vim.
+snoremap o <esc>gvo
+snoremap O <esc>gvO
+
 "== When selected with shift, text objects could be moved over (one at a time)
 "= Provided by Vim.
 "=  A W        word with spaces
