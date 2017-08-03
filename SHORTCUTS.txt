@@ -1,5 +1,12 @@
 Shift selects
 When selected with shift, C/X copies/cuts
+When selected with shift, R C / R X copy/cut into a register
+When selected with shift, Shift-C / Shift-X do the same
+ To paste a register then:
+  Ctrl-R         inserts a register as if typed
+  Ctrl-R Ctrl-R  inserts a register literally
+  Ctrl-R Ctrl-O  inserts a register literally, no auto-indent
+  Ctrl-R Ctrl-P  inserts a register literally, and fixes indent
 When selected with shift, T/Tab indents, D/U/Shift-Tab deindents
  ('I' is not used so as not to clash with iW/is/ib/ip/iB text objects)
 When selected with shift, Shift-T / Space indent by a single column

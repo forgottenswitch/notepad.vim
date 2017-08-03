@@ -115,6 +115,97 @@ else
   snoremap x <c-o>x
 endif
 
+"== When selected with shift, R C / R X copy/cut into a register
+vnoremap rc mQ:CopyIntoRegister<cr><c-o>`Q
+vnoremap rx mQ:CutIntoRegister<cr><c-o>`Q
+snoremap rc <c-o>mQ<esc>:CopyIntoRegister<cr><c-o>`Q
+snoremap rx <c-o>mQ<esc>:CutIntoRegister<cr><c-o>`Q
+"== When selected with shift, Shift-C / Shift-X do the same
+"= To paste a register then:
+"=  Ctrl-R         inserts a register as if typed
+"=  Ctrl-R Ctrl-R  inserts a register literally
+"=  Ctrl-R Ctrl-O  inserts a register literally, no auto-indent
+"=  Ctrl-R Ctrl-P  inserts a register literally, and fixes indent
+vnoremap C mQ:CopyIntoRegister<cr><c-o>`Q
+vnoremap X mQ:CutIntoRegister<cr><c-o>`Q
+snoremap C <c-o>mQ<esc>:CopyIntoRegister<cr><c-o>`Q
+snoremap X <c-o>mQ<esc>:CutIntoRegister<cr><c-o>`Q
+
+command! -nargs=* -range CopyIntoRegister call rc#CopyIntoRegister()
+command! -nargs=* -range CutIntoRegister call rc#CutIntoRegister()
+
+function! rc#CopyIntoRegister()
+  if a:0 < 1
+    let l:reg = rc#AskForRegisterName(0)
+  else
+    let l:reg = rc#WritableOrReadableRegisterName(a:1, 0)
+  endif
+  if l:reg == ""
+    return
+  endif
+  exec 'norm! gv"' . l:reg . 'y'
+  call rc#ReportRegisterOp("Copied", l:reg)
+endfunction
+
+function! rc#CutIntoRegister()
+  if a:0 < 1
+    let l:reg = rc#AskForRegisterName(0)
+  else
+    let l:reg = rc#WritableOrReadableRegisterName(a:1, 0)
+  endif
+  if l:reg == ""
+    return
+  endif
+  exec 'norm! gv"' . l:reg . 'x'
+  call rc#ReportRegisterOp("Cutted", l:reg)
+endfunction
+
+function! rc#WritableOrReadableRegisterName(register_name, is_readable)
+  let l:reg = printf("%.1s", a:register_name)
+  let l:valid_registers = '' .
+        \ 'abcdefghijklmnopqrstuvwxyz' .
+        \ 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' .
+        \ '=' .
+        \ '*+~' .
+        \ '_'
+  if a:is_readable
+    let l:valid_registers = '-' .
+          \ l:valid_registers .
+          \ '0123456789' .
+          \ ':.%'
+          \ '#'
+          \ '/'
+  endif
+  let l:valid_register_regex = "^[" . l:valid_registers . "]$"
+  if match( l:reg, l:valid_register_regex ) == -1
+    return ''
+  endif
+  return l:reg
+endfunction
+
+function! rc#AskForRegisterName(is_readable)
+  call inputsave()
+  let l:reg = input("Register to use: ")
+  call inputrestore()
+  let l:reg = rc#WritableOrReadableRegisterName(l:reg, a:is_readable)
+  return l:reg
+endfunction
+
+function! rc#ReportRegisterOp(banner, register_name)
+  let l:sel_start = getpos("'<")
+  let l:sel_start_line = l:sel_start[1]
+  "
+  let l:sel_end = getpos("'>")
+  let l:sel_end_line = l:sel_end[1]
+  "
+  let l:beg = min([ l:sel_start_line, l:sel_end_line ])
+  let l:end = max([ l:sel_start_line, l:sel_end_line ])
+  let l:lines_count = 1 + (l:end - l:beg)
+  echo printf("%s %d lines (%d - %d) into register '%s'",
+      \ a:banner, l:lines_count, l:beg, l:end, a:register_name)
+endfunction
+
+
 "== When selected with shift, T/Tab indents, D/U/Shift-Tab deindents
 "= ('I' is not used so as not to clash with iW/is/ib/ip/iB text objects)
 vnoremap t >gv
