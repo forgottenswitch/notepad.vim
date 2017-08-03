@@ -38,8 +38,12 @@ endfunction
 " Do not bell
 SetIfExists belloff all
 
+" Avoid autocommands duplication on reloads
+augroup rc_vim
+au! rc_vim
+
 " Fix .md files
-autocmd BufNewFile,BufRead *.md set filetype=markdown
+au BufNewFile,BufRead *.md set filetype=markdown
 
 " git commit message wrap
 au BufNewFile,BufRead *.git/* setl textwidth=72
@@ -1018,3 +1022,6 @@ function! SetIndent(n)
   exec "setl sw=" . a:n . ""
   exec "IndentLinesReset"
 endfunction
+
+" Select the default au group
+augroup end
