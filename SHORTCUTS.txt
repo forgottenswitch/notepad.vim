@@ -88,7 +88,8 @@ Ctrl-O Ctrl-Z suspends ("goes to developer's console")
 Ctrl-O Tilde does the same
 Ctrl-O 9 and 0 go to entities - or whatever is meant by [ and ]
  Example: Ctrl-O 9 M goes to previous method
-Ctrl-O M runs make
+Ctrl-O M runs makeprg
+ (Use Ctrl-O Ctrl-O and F4 to navigate errors)
 Ctrl-O PageUp/Down go to prev/next file
 Ctrl-O Home/End rewind files
 Ctrl-O E starts file opening with the path to current file
