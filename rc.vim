@@ -461,8 +461,21 @@ let g:surround_no_insert_mappings = 1
 Nap <C-g> n
 " Ctrl-O Ctrl-G goes to previous match
 Nap <C-o><C-g> N
+
 " Ctrl-N / Ctrl-P select completions
 "= Provided by Vim.
+"= To select a specific completion:
+"=  Ctrl-X Ctrl-D  tags
+"=  Ctrl-X Ctrl-F  filenames
+"=  Ctrl-X Ctrl-I  identifiers
+"=  Ctrl-X Ctrl-K  dictionary
+"=  Ctrl-X Ctrl-L  entire lines
+"=  Ctrl-X Ctrl-O  omni (e.g. programming language)
+"=  Ctrl-X Ctrl-S  spelling
+"=  Ctrl-X Ctrl-T  thesaurus
+"=  Ctrl-X Ctrl-U  completefunc
+"=  Ctrl-X Ctrl-V  commands
+inoremap <C-x><C-i> <C-x><C-]>
 
 " Ctrl-B switches files
 "= Access file list with Ctrl-B Ctrl-D
