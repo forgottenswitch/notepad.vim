@@ -210,15 +210,15 @@ endfunction
 "= ('I' is not used so as not to clash with iW/is/ib/ip/iB text objects)
 vnoremap t >gv
 vnoremap <Tab> >gv
-snoremap t >gv
-snoremap <Tab> >gv
+snoremap t <c-o>><c-o>gv
+snoremap <Tab> <c-o>><c-o>gv
 "
 vnoremap d <gv
 vnoremap u <gv
 vnoremap <S-Tab> <gv
-snoremap d <gv
-snoremap u <gv
-snoremap <S-Tab> <gv
+snoremap d <c-o><<c-o>gv
+snoremap u <c-o><<c-o>gv
+snoremap <S-Tab> <c-o><<c-o>gv
 
 "== When selected with shift, Shift-T / Space indent by a single column
 "= (Shift-D/U/Space deindent).  Bug: Space / Shift-Space do not work.
