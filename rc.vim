@@ -831,10 +831,35 @@ Nap <C-o><C-z> <C-z>
 Nap <C-o>` <C-z>
 Nap <C-o>~ <C-z>
 "
-" Ctrl-O 9 and 0 go to entities - or whatever is meant by [ and ]
-"= Example: Ctrl-O 9 M goes to previous method
+" Ctrl-O 0/9 go to next/prev 'entity'
+"= Provided by Vim.
+"=  M        method beginnings in a class
+"=  Shift-M  method ends
+"=  )        unmatched '(' or ')'
+"=  }        unmatched '{' or '}'
+"=  #        unmatched #if/#else or #else/#endif
+"=  *        /**/ comment
+"=  /        /**/ comment
+"=  0/9      sentence
+"=  ]        '{' or '}' in the first column
+"=  `        nearest mark (a-z)
+"=  '        nearest mark (a-z), line start
+"=  C        start of the nearest change
+"=  S        misspelled word
+"=  Z        open fold
+"= Non-next/prev keys:
+"=  D        list first #define matching the word under cursor
+"=  I        list first declaration of the word under cursor
+"=  Shift-D  list all #define-s that match the word under cursor
+"=  Shift-I list all declarations of the word under cursor
+"=  Ctrl-D   go to #define under cursor
+"=  Ctrl-I   go to file that declares the word under cursor
 Nap <C-o>9 [
 Nap <C-o>0 ]
+Nap <C-o>99 (
+Nap <C-o>00 )
+Nap <C-o>90 (
+Nap <C-o>09 )
 
 "
 " Ctrl-O M runs makeprg
