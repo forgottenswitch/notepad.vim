@@ -848,6 +848,7 @@ Nap <C-o>~ <C-z>
 "=  S        misspelled word
 "=  Z        open fold
 "= Non-next/prev keys:
+"=  8        next invalid UTF-8 byte
 "=  D        list first #define matching the word under cursor
 "=  I        list first declaration of the word under cursor
 "=  Shift-D  list all #define-s that match the word under cursor
@@ -860,6 +861,8 @@ Nap <C-o>99 (
 Nap <C-o>00 )
 Nap <C-o>90 (
 Nap <C-o>09 )
+Nap <C-o>98 8g8
+Nap <C-o>08 8g8
 
 "
 " Ctrl-O M runs makeprg
