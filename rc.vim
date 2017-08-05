@@ -958,10 +958,34 @@ command! -nargs=* GotoLocation call rc#GotoLocation(<f-args>)
 NapC <C-o>l GotoLocation
 "
 " Ctrl-O Ctrl-D is the folding key
-"= Its bindings are taken from the Vim ones
+"= Most bindings are from Vim.
 "
 inoremap <C-o><C-d> <nop>
 vnoremap <C-o><C-d> <nop>
+"
+" Ctrl-O Ctrl-D 1  selects folding by {{{1 and }}}1 markers (the default)
+NapC <C-o><C-d>1 set\ foldmethod=marker
+set foldmethod=marker
+" Ctrl-O Ctrl-D 2  selects folding by diff
+NapC <C-o><C-d>2 set\ foldmethod=diff
+" Ctrl-O Ctrl-D 3  selects folding by programming language
+NapC <C-o><C-d>3 set\ foldmethod=syntax
+" Ctrl-O Ctrl-D 4  selects folding by indentation
+NapC <C-o><C-d>4 set\ foldmethod=indent
+" Ctrl-O Ctrl-D 5  selects manual folding
+NapC <C-o><C-d>5 set\ foldmethod=manual
+" Ctrl-O Ctrl-D 6  selects folding by an expression
+NapC <C-o><C-d>6 set\ foldmethod=expr
+"
+" Ctrl-O Ctrl-D 9 1/2/3/4/5/6  select folding for current file only
+NapC <C-o><C-d>91 set\ foldmethod=marker
+NapC <C-o><C-d>92 set\ foldmethod=diff
+NapC <C-o><C-d>93 set\ foldmethod=syntax
+NapC <C-o><C-d>94 set\ foldmethod=indent
+NapC <C-o><C-d>95 set\ foldmethod=manual
+NapC <C-o><C-d>96 set\ foldmethod=expr
+"
+"
 function! rc#CreateFoldForNLines(...)
   if a:0 < 1
     call inputsave()

@@ -149,7 +149,14 @@ Ctrl-O W close location list
 Ctrl-O Ctrl-L goes to N-th error
 Ctrl-O L goes to N-th element in the location list
 Ctrl-O Ctrl-D is the folding key
- Its bindings are taken from the Vim ones
+ Most bindings are from Vim.
+Ctrl-O Ctrl-D 1  selects folding by {{{1 and }}}1 markers (the default)
+Ctrl-O Ctrl-D 2  selects folding by diff
+Ctrl-O Ctrl-D 3  selects folding by programming language
+Ctrl-O Ctrl-D 4  selects folding by indentation
+Ctrl-O Ctrl-D 5  selects manual folding
+Ctrl-O Ctrl-D 6  selects folding by an expression
+Ctrl-O Ctrl-D 9 1/2/3/4/5/6  select folding for current file only
 Ctrl-O Ctrl-D Ctrl-A toggles a fold recursively
 Ctrl-O Ctrl-D Ctrl-C closes fold recursively
 Ctrl-O Ctrl-D Ctrl-D deletes fold recursively
