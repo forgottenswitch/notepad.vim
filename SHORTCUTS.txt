@@ -15,7 +15,11 @@ When selected with shift, O goes to the other end of selection
  (With a rectangular selection, Shift-O goes horizontally).
  Provided by Vim.
 When selected with shift, M places a mark, J goes to
- Also, pseudo-marks (<[{ are available
+ Also, pseudo-marks are available:
+  (          sentence
+  {          paragraph
+  <          selection
+  [          lowercase mark
 When selected with shift, text objects could be moved over (one at a time)
  Provided by Vim.
   A W        word with spaces

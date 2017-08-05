@@ -257,7 +257,11 @@ snoremap o <esc>gvo
 snoremap O <esc>gvO
 
 "== When selected with shift, M places a mark, J goes to
-"= Also, pseudo-marks (<[{ are available
+"= Also, pseudo-marks are available:
+"=  (          sentence
+"=  {          paragraph
+"=  <          selection
+"=  [          lowercase mark
 snoremap m <c-o>m
 vnoremap j `
 snoremap j <c-o>`
