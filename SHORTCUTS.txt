@@ -193,4 +193,6 @@ Ctrl-O Ctrl-K/Backspace cut forward/backward
 Ctrl-O Y toggles syntax checking on save
 Ctrl-O Ctrl-Y opens syntax errors list
 
-Indent width is controlled with :I<N>
+Spaces-only indent is controlled with :I <N>
+ Tabs-only indent is controlled with :T <N>
+ Tabs-and-Spaces indent is controlled with :ITS <n-spaces> <tab-width>

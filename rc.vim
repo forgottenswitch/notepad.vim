@@ -1102,12 +1102,40 @@ NapC <C-o><C-y> Errors
 
 "=
 
-"== Indent width is controlled with :I<N>
-"
-command! -nargs=1 I call SetIndent(<f-args>)
-function! SetIndent(n)
-  exec "setl sw=" . a:n . ""
+function! rc#AfterIndentTabChange()
   exec "IndentLinesReset"
+endfunction
+
+"== Spaces-only indent is controlled with :I <N>
+command! -nargs=1 I call SetIndent(<f-args>)
+command! -nargs=1 IS call SetIndent(<f-args>)
+function! SetIndent(n)
+  setl expandtab
+  exec "setl shiftwidth=" . a:n . ""
+  call rc#AfterIndentTabChange()
+endfunction
+
+"= Tabs-only indent is controlled with :T <N>
+command! -nargs=1 T call SetTab(<f-args>)
+command! -nargs=1 IT call SetTab(<f-args>)
+function! SetTab(n)
+  setl noexpandtab
+  exec "setl tabstop=" . a:n . ""
+  call rc#AfterIndentTabChange()
+endfunction
+
+"= Tabs-and-Spaces indent is controlled with :ITS <n-spaces> <tab-width>
+command! -nargs=* ITS call SetTabSpaces(<f-args>)
+command! -nargs=* IST call SetTabSpaces(<f-args>)
+function! SetTabSpaces(...)
+  if a:0 != 2
+    echo "Usage: ITS <n-spaces> <tab-width>"
+    return
+  endif
+  setl noexpandtab
+  exec "setl shiftwidth=" . a:1 . ""
+  exec "setl tabstop=" . a:2 . ""
+  call rc#AfterIndentTabChange()
 endfunction
 
 " Select the default au group
