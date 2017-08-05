@@ -963,21 +963,21 @@ NapC <C-o>l GotoLocation
 inoremap <C-o><C-d> <nop>
 vnoremap <C-o><C-d> <nop>
 "
-" Ctrl-O Ctrl-D 1  selects folding by {{{1 and }}}1 markers (the default)
+"=  1        select folding by {{{1 and }}}1 markers (the default)
 NapC <C-o><C-d>1 set\ foldmethod=marker
 set foldmethod=marker
-" Ctrl-O Ctrl-D 2  selects folding by diff
+"=  2        select folding by diff
 NapC <C-o><C-d>2 set\ foldmethod=diff
-" Ctrl-O Ctrl-D 3  selects folding by programming language
+"=  3        select folding by programming language
 NapC <C-o><C-d>3 set\ foldmethod=syntax
-" Ctrl-O Ctrl-D 4  selects folding by indentation
+"=  4        select folding by indentation
 NapC <C-o><C-d>4 set\ foldmethod=indent
-" Ctrl-O Ctrl-D 5  selects manual folding
+"=  5        select manual folding
 NapC <C-o><C-d>5 set\ foldmethod=manual
-" Ctrl-O Ctrl-D 6  selects folding by an expression
+"=  6        select folding by an expression
 NapC <C-o><C-d>6 set\ foldmethod=expr
 "
-" Ctrl-O Ctrl-D 9 1/2/3/4/5/6  select folding for current file only
+"=  9 1-6    select folding for current file only
 NapC <C-o><C-d>91 set\ foldmethod=marker
 NapC <C-o><C-d>92 set\ foldmethod=diff
 NapC <C-o><C-d>93 set\ foldmethod=syntax
@@ -1003,52 +1003,52 @@ function! rc#CreateFoldForNLines(...)
 endfunction
 command! -nargs=* CreateFoldForNLines call rc#CreateFoldForNLines(<f-args>)
 "
-" Ctrl-O Ctrl-D Ctrl-A toggles a fold recursively
+"=  Ctrl-A   toggle fold recursively
 Nap <C-o><C-d><C-a> zA
-" Ctrl-O Ctrl-D Ctrl-C closes fold recursively
+"=  Ctrl-C   close fold recursively
 Nap <C-o><C-d><C-c> zC
-" Ctrl-O Ctrl-D Ctrl-D deletes fold recursively
+"=  Ctrl-D   delete fold recursively
 Nap <C-o><C-d><C-d> zD
-" Ctrl-O Ctrl-D Ctrl-E deletes all folds
+"=  Ctrl-E   delete all folds
 Nap <C-o><C-d><C-e> zE
-" Ctrl-O Ctrl-D Ctrl-F creates a fold
+"=  Ctrl-F   create a fold
 NapC <C-o><C-d><C-f> CreateFoldForNLines
-" Ctrl-O Ctrl-D Ctrl-M closes all folds
+"=  Ctrl-M   close all folds
 Nap <C-o><C-d><C-m> zM
-" Ctrl-O Ctrl-D Ctrl-N turns folding on/off
+"=  Ctrl-N   toggle folding on/off
 Nap <C-o><C-d><C-n> zN
-" Ctrl-O Ctrl-D Ctrl-O opens fold recursively
+"=  Ctrl-O   open fold recursively
 Nap <C-o><C-d><C-o> zO
-" Ctrl-O Ctrl-D Ctrl-R opens all folds
+"=  Ctrl-R   opens all folds
 Nap <C-o><C-d><C-r> zR
-" Ctrl-O Ctrl-D Ctrl-X reapplies the foldlevel
+"=  Ctrl-X   reapply foldlevel
 Nap <C-o><C-d><C-x> zX
-" Ctrl-O Ctrl-D A toggles a single fold
+"=  A        toggle single fold
 Nap <C-o><C-d>a za
-" Ctrl-O Ctrl-D C closes a single fold
+"=  C        close single fold
 Nap <C-o><C-d>c zc
-" Ctrl-O Ctrl-D D deletes a single fold
+"=  D        delete single fold
 Nap <C-o><C-d>d zd
-" Ctrl-O Ctrl-D F create a fold for a motion; example:
-"= Ctrl-O Ctrl-D F 4 Down      create a fold for the next 4 lines
+"=  F        create a fold for motion; example:
+"=  Ctrl-O Ctrl-D F 4 Down      create a fold for the next 4 lines
 Nap <C-o><C-d>f zf
-" Ctrl-O Ctrl-D I turns folding on/off
+"=  I        toggle folding on/off
 Nap <C-o><C-d>i zi
-" Ctrl-O Ctrl-D J moves a fold forward
+"=  J        go a fold forward
 Nap <C-o><C-d>j zj
-" Ctrl-O Ctrl-D K moves a fold backward
+"=  K        go a fold backward
 Nap <C-o><C-d>k zk
-" Ctrl-O Ctrl-D M closes one level of all folds
+"=  M        close one level of all folds
 Nap <C-o><C-d>m zm
-" Ctrl-O Ctrl-D N resets folding on/off
+"=  N        reset folding on/off
 Nap <C-o><C-d>n zn
-" Ctrl-O Ctrl-D O opens a single fold
+"=  O        open single fold
 Nap <C-o><C-d>o zo
-" Ctrl-O Ctrl-D R opens one level of all folds
+"=  R        open one level of all folds
 Nap <C-o><C-d>r zr
-" Ctrl-O Ctrl-D V opens folds under cursor
+"=  V        open the folds under cursor
 Nap <C-o><C-d>v zv
-" Ctrl-O Ctrl-D X reapplies foldlevel, and opens folds under cursor
+"=  X        reapply foldlevel, and open folds under cursor
 Nap <C-o><C-d>x zx
 "
 " Ctrl-O Ctrl-R inserts a file-specific string (R also asks for)
