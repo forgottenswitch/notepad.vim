@@ -838,8 +838,8 @@ vnoremap <C-t><C-e> %
 "
 " Ctrl-O 3/2/1 navigate Excuberant Ctags and Vim help
 Nap <C-o>1 <C-t>
-Nap <C-o>2 <C-]>
-Nap <C-o>3 g]
+Nap <C-o>2 g]
+Nap <C-o>3 <C-]>
 "
 " Ctrl-O Ctrl-A executes ("developer's") command-line
 Nap <C-o><C-a> :!
