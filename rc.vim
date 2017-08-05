@@ -38,6 +38,13 @@ endfunction
 " Do not bell
 SetIfExists belloff all
 
+" Pick up a :grep
+if executable("rg")
+  set grepprg=rg\ --vimgrep
+elseif executable("ag")
+  set grepprg=ag\ --vimgrep
+endif
+
 " Avoid autocommands duplication on reloads
 augroup rc_vim
 au! rc_vim
@@ -497,6 +504,10 @@ NapC <C-s> w!
 Nap <C-f> /
 " Ctrl-O Ctrl-F searches backwards
 Nap <C-o><C-f> ?
+" Ctrl-O F searches-in-files
+"= Show matches with Ctrl-O Ctrl-O
+"= Go to a match with F4
+Nap <C-o>f :grep<space>
 " Ctrl-G goes to next match
 let g:surround_no_insert_mappings = 1
 Nap <C-g> n
