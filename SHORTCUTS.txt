@@ -14,6 +14,8 @@ When selected with shift, Shift-T / Space indent by a single column
 When selected with shift, O goes to the other end of selection
  (With a rectangular selection, Shift-O goes horizontally).
  Provided by Vim.
+When selected with shift, M places a mark, J goes to
+ Also, pseudo-marks (<[{ are available
 When selected with shift, text objects could be moved over (one at a time)
  Provided by Vim.
   A W        word with spaces
@@ -85,8 +87,6 @@ Ctrl-T Home/End select to absolute line beginning/end
 Ctrl-T H clears highlights (from searching)
 Ctrl-T M places a mark
 Ctrl-T J goes to a mark
- (or just J when there is a selection)
- Also, pseudo-marks (<[{ are available
 Ctrl-T Shift-J lists marks
 Ctrl-T Ctrl-A does a "strong selection" ("as in Ctrl-A")
 Ctrl-T Ctrl-A Home/End act as Ctrl-T Ctrl-Home

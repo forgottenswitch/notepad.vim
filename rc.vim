@@ -209,7 +209,6 @@ function! rc#ReportRegisterOp(banner, register_name)
       \ a:banner, l:lines_count, l:beg, l:end, a:register_name)
 endfunction
 
-
 "== When selected with shift, T/Tab indents, D/U/Shift-Tab deindents
 "= ('I' is not used so as not to clash with iW/is/ib/ip/iB text objects)
 vnoremap t >gv
@@ -256,6 +255,12 @@ snoremap <S-Space> :IndentLinesBy -1<cr>
 "= Provided by Vim.
 snoremap o <esc>gvo
 snoremap O <esc>gvO
+
+"== When selected with shift, M places a mark, J goes to
+"= Also, pseudo-marks (<[{ are available
+snoremap m <c-o>m
+vnoremap j `
+snoremap j <c-o>`
 
 "== When selected with shift, text objects could be moved over (one at a time)
 "= Provided by Vim.
@@ -725,11 +730,7 @@ NapC <C-t>h nohlsearch\|if\ has('diff')\|diffupdate\|endif\|redraw!
 " Ctrl-T M places a mark
 Nap <C-t>m m
 " Ctrl-T J goes to a mark
-"= (or just J when there is a selection)
-"= Also, pseudo-marks (<[{ are available
 Nap <C-t>j `
-vnoremap j `
-snoremap j `
 " Ctrl-T Shift-J lists marks
 NapC <C-t>J marks
 
