@@ -45,6 +45,13 @@ elseif executable("ag")
   set grepprg=ag\ --vimgrep
 endif
 
+" Pick up a :make
+if filereadable("b/build.ninja")
+  setglobal makeprg=ninja\ -j4\ -C\ b
+else
+  setglobal makeprg=make\ -j4
+endif
+
 " Avoid autocommands duplication on reloads
 augroup rc_vim
 au! rc_vim
