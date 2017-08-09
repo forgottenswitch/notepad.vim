@@ -89,7 +89,6 @@ Ctrl-T 1 or 0 selects
 Ctrl-T 2 selects line-wise
 Ctrl-T 3 selects rectangular as much as possible
 Ctrl-T 4 selects rectangular (unimplemented - currently the same as Ctrl-T 3)
-Ctrl-T Ctrl-A executes ('selects') a menu command
 Ctrl-T A selects all
 Ctrl-T Ctrl-T resumes the last selection
 Ctrl-T Home/End select to absolute line beginning/end

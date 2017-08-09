@@ -719,10 +719,6 @@ NapC <C-t>2 norm!\ V
 NapC <C-t>3 norm!\ <c-v><c-v>
 NapC <C-t>4 norm!\ <c-v><c-v>
 "
-" Ctrl-T Ctrl-A executes ('selects') a menu command
-source $VIMRUNTIME/menu.vim
-Nap <C-t><C-a> :emenu<space>
-"
 " Ctrl-T A selects all
 NapC <C-t>a norm!\ Gvgg
 "
