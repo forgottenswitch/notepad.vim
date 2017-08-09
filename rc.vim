@@ -723,10 +723,8 @@ NapC <C-t>4 norm!\ <c-v><c-v>
 source $VIMRUNTIME/menu.vim
 Nap <C-t><C-a> :emenu<space>
 "
-" Ctrl-T A / G / Shift-G select all, to-start, to-end
+" Ctrl-T A selects all
 NapC <C-t>a norm!\ Gvgg
-NapC <C-t>g norm!\ vgg
-NapC <C-t>G norm!\ vG
 "
 " Ctrl-T Ctrl-T resumes the last selection
 NapC <C-t>t norm!\ gv
