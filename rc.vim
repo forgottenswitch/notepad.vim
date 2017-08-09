@@ -913,7 +913,7 @@ Nap <C-o>08 8g8
 "
 " Ctrl-O M runs makeprg
 "= (Use Ctrl-O Ctrl-O and F4 to navigate errors)
-NapC <C-o>m make
+NapC <C-o>m make<cr>
 "
 " Ctrl-O PageUp/Down go to prev/next file
 NapC <C-o><PageUp> confirm\ prev
