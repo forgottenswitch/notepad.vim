@@ -931,13 +931,13 @@ NapC <C-o>o lopen
 " Ctrl-O Ctrl-N/P switch error lists
 NapC <C-o><C-n> cnewer
 NapC <C-o><C-p> colder
-" Ctrl-O Ctrl-W close error list
+" Ctrl-O Ctrl-W closes error list
 NapC <C-o><C-w> cclose
 "
 " Ctrl-O N/P switch location lists
 NapC <C-o>n lnewer
 NapC <C-o>p lolder
-" Ctrl-O W close location list
+" Ctrl-O W closes location list
 NapC <C-o>w lclose
 "
 " Ctrl-O Ctrl-L goes to N-th error

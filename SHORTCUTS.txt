@@ -151,9 +151,9 @@ Ctrl-O Ctrl-E edits the file under cursor
 Ctrl-O F4/F8 show errors/locations
 Ctrl-O Ctrl-O/O do the same
 Ctrl-O Ctrl-N/P switch error lists
-Ctrl-O Ctrl-W close error list
+Ctrl-O Ctrl-W closes error list
 Ctrl-O N/P switch location lists
-Ctrl-O W close location list
+Ctrl-O W closes location list
 Ctrl-O Ctrl-L goes to N-th error
 Ctrl-O L goes to N-th element in the location list
 Ctrl-O Ctrl-D is the folding key
