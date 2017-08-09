@@ -892,7 +892,7 @@ Nap <C-o>~ <C-z>
 "=  D        list first #define matching the word under cursor
 "=  I        list first declaration of the word under cursor
 "=  Shift-D  list all #define-s that match the word under cursor
-"=  Shift-I list all declarations of the word under cursor
+"=  Shift-I  list all declarations of the word under cursor
 "=  Ctrl-D   go to #define under cursor
 "=  Ctrl-I   go to file that declares the word under cursor
 Nap <C-o>9 [
