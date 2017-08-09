@@ -43,6 +43,7 @@ Ctrl-V pastes
 Ctrl-K cuts selection or line
 Ctrl-A executes a command
  Access command history with Ctrl-A Ctrl-F
+ Insert the word under cursor with F3
 Ctrl-S saves
 Ctrl-F searches
  Access search history with Ctrl-F Ctrl-F
@@ -50,6 +51,7 @@ Ctrl-O Ctrl-F searches backwards
 Ctrl-O F searches-in-files
  Show matches with Ctrl-O Ctrl-O
  Go to a match with F4
+Ctrl-O Shift-F searches for word under cursor
 Ctrl-G goes to next match
 Ctrl-O Ctrl-G goes to previous match
 Ctrl-N / Ctrl-P select completions

@@ -495,8 +495,10 @@ NapMap2 OF <End>
 " Ctrl-A executes a command
 " Not conventional, but useful
 "= Access command history with Ctrl-A Ctrl-F
+"= Insert the word under cursor with F3
 Nap <C-a> :
 vnoremap <C-a> :
+cnoremap <F3> <c-r>=expand("<cword>")<cr>
 " Ctrl-S saves
 NapC <C-s> w!
 " Ctrl-F searches
@@ -508,6 +510,8 @@ Nap <C-o><C-f> ?
 "= Show matches with Ctrl-O Ctrl-O
 "= Go to a match with F4
 Nap <C-o>f :grep<space>
+" Ctrl-O Shift-F searches for word under cursor
+Nap <C-o>F :grep<space>-w<space><c-r>=expand("<cword>")<cr><cr><cr>
 " Ctrl-G goes to next match
 let g:surround_no_insert_mappings = 1
 Nap <C-g> n
