@@ -518,7 +518,7 @@ Nap <C-o><C-f> ?
 "= Go to a match with F4
 Nap <C-o>f :grep<space>
 " Ctrl-O Shift-F searches for word under cursor
-Nap <C-o>F :grep<space>-w<space><c-r>=expand("<cword>")<cr><cr><cr>
+Nap <C-o>F :grep<space>-w<space><c-r>=expand("<cword>")<cr><cr><cr><c-o>:botright\ copen<cr><cr>
 " Ctrl-G goes to next match
 let g:surround_no_insert_mappings = 1
 Nap <C-g> n
