@@ -909,6 +909,9 @@ Nap <C-o>08 8g8
 "= (Use Ctrl-O Ctrl-O and F4 to navigate errors)
 NapC <C-o>m make<cr>
 "
+" Ctrl-O Ctrl-M saves, for compatibility with nano
+NapC <C-o><C-m> w
+"
 " Ctrl-O PageUp/Down go to prev/next file
 NapC <C-o><PageUp> confirm\ prev
 NapC <C-o><PageDown> confirm\ next

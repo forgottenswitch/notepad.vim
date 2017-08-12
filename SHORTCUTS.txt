@@ -144,6 +144,7 @@ Ctrl-O 0/9 go to next/prev 'entity'
   Ctrl-I   go to file that declares the word under cursor
 Ctrl-O M runs makeprg
  (Use Ctrl-O Ctrl-O and F4 to navigate errors)
+Ctrl-O Ctrl-M saves, for compatibility with nano
 Ctrl-O PageUp/Down go to prev/next file
 Ctrl-O Home/End rewind files
 Ctrl-O E starts file opening with the path to current file
