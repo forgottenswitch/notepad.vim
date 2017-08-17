@@ -20,6 +20,8 @@ syntax on
 set insertmode
 " Show line numbers column
 set nu
+" Show file name line unconditionally
+set laststatus=2
 " Disable automatic line breaking
 set textwidth=0 wrapmargin=0
 " Tab inserts spaces
