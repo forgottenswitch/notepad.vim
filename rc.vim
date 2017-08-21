@@ -703,7 +703,7 @@ command! -nargs=* GotoLine call rc#GotoLine(<f-args>)
 NapC <C-l> GotoLine
 
 
-" Ctrl-T is a selection key
+" Ctrl-T is a "selection" key
 "
 "_ Unbind the Vim Ctrl-T
 inoremap <c-t> <c-o>:<esc>
@@ -857,7 +857,7 @@ Nap <C-t><C-e> v%
 vnoremap <C-t><C-e> %
 
 
-" Ctrl-O is source code key
+" Ctrl-O is "source code" key
 "
 " Ctrl-O 1/2 go from/to tags file definition
 "==  (The analogy is with browser Back/Forward keys).
