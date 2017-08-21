@@ -859,10 +859,21 @@ vnoremap <C-t><C-e> %
 
 " Ctrl-O is source code key
 "
-" Ctrl-O 3/2/1 navigate Excuberant Ctags and Vim help
+" Ctrl-O 1/2 go from/to tags file definition
+"==  (The analogy is with browser Back/Forward keys).
+"==  Also works for Vim help.
 Nap <C-o>1 <C-t>
 Nap <C-o>2 g]
+" Ctrl-O 3 goes to a tag without first choosing it
 Nap <C-o>3 <C-]>
+" Ctrl-O 4 goes to a tag in a dedicated 'Preview' window
+"= To preview side-by-side, F6 to the 'Preview', and then Ctrl-W Shift-L
+Nap <C-o>4 :ptselect\ <c-r>=expand("<cword>")<cr><cr>
+" Ctrl-O 5/6 go to prev/next tag definition
+NapC <C-o>5 tprev
+NapC <C-o>6 tnext
+" Ctrl-O Shift-W closes the 'Preview' window
+NapC <C-o>W pclose
 "
 " Ctrl-O Ctrl-A executes ("developer's") command-line
 Nap <C-o><C-a> :!

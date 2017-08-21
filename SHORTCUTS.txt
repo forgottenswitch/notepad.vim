@@ -114,7 +114,14 @@ Ctrl-T B goes to byte
 Ctrl-T Ctrl-O reflows current paragraph
 Ctrl-E goes to pair brace
 Ctrl-O is source code key
-Ctrl-O 3/2/1 navigate Excuberant Ctags and Vim help
+Ctrl-O 1/2 go from/to tags file definition
+ (The analogy is with browser Back/Forward keys).
+ Also works for Vim help.
+Ctrl-O 3 goes to a tag without first choosing it
+Ctrl-O 4 goes to a tag in a dedicated 'Preview' window
+ To preview side-by-side, F6 to the 'Preview', and then Ctrl-W Shift-L
+Ctrl-O 5/6 go to prev/next tag definition
+Ctrl-O Shift-W closes the 'Preview' window
 Ctrl-O Ctrl-A executes ("developer's") command-line
 Ctrl-O Ctrl-Z suspends ("goes to developer's console")
 Ctrl-O Tilde does the same
